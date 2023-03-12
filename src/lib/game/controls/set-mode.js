@@ -1,5 +1,5 @@
 import { scene } from "../scene";
-import { resetUI } from "../../jsx/ui";
+// import { resetUI } from "../../jsx/ui";
 import { renderLoop } from "../scene";
 import { keyCheck, resetKeys, keyEventFunctions } from "./key-check";
 import { editMode } from "./modes/edit";
@@ -17,13 +17,13 @@ const pauseToggle = () => {
   }
 };
 
-const toggleFullScreen = () => {
-  if (!document.fullscreenElement) {
-    canvasRoot.requestFullscreen();
-  } else if (document.exitFullscreen) {
-    document.exitFullscreen();
-  }
-};
+// const toggleFullScreen = () => {
+//   if (!document.fullscreenElement) {
+//     canvasRoot.requestFullscreen();
+//   } else if (document.exitFullscreen) {
+//     document.exitFullscreen();
+//   }
+// };
 
 keyEventFunctions.keyDown = (keyCode) => {
   switch (keyCode) {
@@ -33,7 +33,7 @@ keyEventFunctions.keyDown = (keyCode) => {
 
     case "Enter":
       if (keyCheck("ControlLeft")) {
-        toggleFullScreen();
+        // toggleFullScreen();
       }
       break;
 

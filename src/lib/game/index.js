@@ -7,4 +7,4 @@ const start = async () => {
   window.dump = () => console.log(scene);
 };
 
-start();
+export { start };

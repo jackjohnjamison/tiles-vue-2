@@ -1,5 +1,12 @@
 <script setup>
-// import TheWelcome from '../components/TheWelcome.vue'
+
+  import { onMounted } from 'vue'
+  import { start } from '../lib/game'
+
+  onMounted(() => {
+    start()
+  })
+
 </script>
 
 <template>

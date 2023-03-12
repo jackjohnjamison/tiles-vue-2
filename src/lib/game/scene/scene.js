@@ -1,4 +1,4 @@
-import { Root } from "../../jsx/root";
+// import { Root } from "../../jsx/root";
 import { createTileMapFromParams, loadMapFromImport } from "../map";
 import { setView } from "./set-view";
 import { initSaveLoad } from "./save-load";
@@ -16,20 +16,20 @@ const scene = {};
 
 // Sets parts of the scene that don't change between map loads
 scene.start = async (map) => {
-  const root = document.getElementById("root");
-  scene.canvasRoot = Root();
-  root.replaceWith(scene.canvasRoot);
+  // const root = document.getElementById("root");
+  // scene.canvasRoot = Root();
+  // root.replaceWith(scene.canvasRoot);
 
-  scene.shadowUI = document
-    .getElementById("uiMount")
-    .attachShadow({ mode: "open" });
+  // scene.shadowUI = document
+  //   .getElementById("uiMount")
+  //   .attachShadow({ mode: "open" });
 
-  const uiStyles = document.getElementById("uiStyles");
-  scene.shadowUI.appendChild(uiStyles);
+  // const uiStyles = document.getElementById("uiStyles");
+  // scene.shadowUI.appendChild(uiStyles);
 
-  const ui = document.createElement("div");
-  ui.setAttribute("id", "ui");
-  scene.shadowUI.appendChild(ui);
+  // const ui = document.createElement("div");
+  // ui.setAttribute("id", "ui");
+  // scene.shadowUI.appendChild(ui);
 
   scene.floorCanvas = document.getElementById("floorCanvas");
   scene.floorCtx = scene.floorCanvas.getContext("2d", { alpha: false });
@@ -62,11 +62,11 @@ scene.start = async (map) => {
 
   scene.mode = "playMode";
 
-  mode.onchange = () => {
-    // Gets the value of the radio buttons on the control type form
-    const type = mode.elements.mode.value;
-    setMode(type);
-  };
+  // mode.onchange = () => {
+  //   // Gets the value of the radio buttons on the control type form
+  //   const type = mode.elements.mode.value;
+  //   setMode(type);
+  // };
 
   initSaveLoad();
 
@@ -103,11 +103,13 @@ scene.loadMap = (tileMap) => {
 
       switch (name) {
         case "entity":
+          // eslint-disable-next-line no-case-declarations
           const _entity = new entity({});
           _entity.addToScene(tileIndex);
           break;
 
         case "npc":
+          // eslint-disable-next-line no-case-declarations
           const _npc = new npc({
             sprite: sprites.playerTokens.despoiler,
             haloColor: "red",

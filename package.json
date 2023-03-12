@@ -10,6 +10,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "pathfinding": "^0.4.18",
     "pinia": "^2.0.32",
     "sass": "^1.59.2",
     "vue": "^3.2.47",
