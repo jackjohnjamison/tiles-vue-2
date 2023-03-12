@@ -3,8 +3,5 @@
 </script>
 
 <template>
-  <main>
-    <h1>Home</h1>
-      <GamePort />
-  </main>
+  <GamePort />
 </template>
