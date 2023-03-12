@@ -4,7 +4,7 @@ const sprites = {};
 
 const imageAssetPath = import.meta.env.PROD
   ? "/tiles/src/images/"
-  : "./images/";
+  : "/game/images/";
 
 sprites.load = async () => {
   const terracotta1 = loadImage(`${imageAssetPath}terracotta1.png`);

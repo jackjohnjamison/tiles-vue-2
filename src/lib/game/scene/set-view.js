@@ -14,6 +14,8 @@ const setView = ({ xTiles, yTiles }) => {
     canvasTop,
   } = scene;
 
+  console.log(scene)
+
   const baseHeight = ((xTiles + yTiles) / 2) * tileHeight;
 
   // Canvas dimensions once padding is included

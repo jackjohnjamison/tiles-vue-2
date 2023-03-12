@@ -62,7 +62,7 @@ const modes = {
 const setMode = (mode) => {
   modes[scene.mode].unset();
   scene.mode = mode;
-  resetUI();
+  // resetUI();
   modes[mode].set();
 };
 
