@@ -17,13 +17,13 @@ const pauseToggle = () => {
   }
 };
 
-// const toggleFullScreen = () => {
-//   if (!document.fullscreenElement) {
-//     canvasRoot.requestFullscreen();
-//   } else if (document.exitFullscreen) {
-//     document.exitFullscreen();
-//   }
-// };
+const toggleFullScreen = () => {
+  if (!document.fullscreenElement) {
+    scene.canvasRoot.requestFullscreen();
+  } else if (document.exitFullscreen) {
+    document.exitFullscreen();
+  }
+};
 
 keyEventFunctions.keyDown = (keyCode) => {
   switch (keyCode) {
@@ -33,7 +33,7 @@ keyEventFunctions.keyDown = (keyCode) => {
 
     case "Enter":
       if (keyCheck("ControlLeft")) {
-        // toggleFullScreen();
+        toggleFullScreen();
       }
       break;
 

@@ -56,6 +56,7 @@ const setTile = (tileIndex, tileMap, set, colors, variant = null) => {
       break;
 
     case "linked":
+      // eslint-disable-next-line no-case-declarations
       const linkedVariant = variant || getVariant(floor);
       tile.floor = {
         set: floor,
