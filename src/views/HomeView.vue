@@ -1,9 +1,10 @@
 <script setup>
-// import TheWelcome from '../components/TheWelcome.vue'
+  import GamePort from '../components/GamePort.vue'
 </script>
 
 <template>
   <main>
-    <!-- <TheWelcome /> -->
+    <h1>Home</h1>
+      <GamePort />
   </main>
 </template>
