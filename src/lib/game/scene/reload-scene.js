@@ -18,7 +18,8 @@ const reloadScene = (tileMap) => {
 
   scene.loadMap(tileMap);
 
-  renderLoop.start(onFrameFunctions);
+  // Removed to stop loop from starting on load while paused
+  // renderLoop.start(onFrameFunctions);
 };
 
 export { reloadScene };
