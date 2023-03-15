@@ -1,7 +1,7 @@
 <script setup>
-
   import { onMounted } from 'vue'
   import { start } from '../lib/game'
+  import PauseMenu from './PauseMenu.vue'
 
   onMounted(() => {
     start()
@@ -17,6 +17,6 @@
     <canvas class="layer-canvas" id="entityCanvas" />
     <canvas class="layer-canvas" id="canvasTop" />
     <div id="uiMount" />
-    <!-- PauseMenu /-->
+    <PauseMenu />
   </div>
 </template>
