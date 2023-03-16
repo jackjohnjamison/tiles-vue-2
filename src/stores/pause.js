@@ -7,18 +7,6 @@ export const pauseStore = defineStore('pause', {
   },
 
   actions: {
-    toggle() {
-      const { stop, restart } = renderLoop;
-
-      if(this.isPaused) {
-        this.isPaused = false
-        restart()
-      } else {
-        this.isPaused = true
-        stop()
-      }
-    },
-
     unpause() {
       const { restart } = renderLoop;
 
@@ -31,6 +19,14 @@ export const pauseStore = defineStore('pause', {
 
       this.isPaused = true
       stop()
-    }
+    },
+
+    toggle() {
+      if(this.isPaused) {
+        this.unpause()
+      } else {
+        this.pause()
+      }
+    },
   }
 })
