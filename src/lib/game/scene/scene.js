@@ -1,7 +1,6 @@
 // import { Root } from "../../jsx/root";
 import { createTileMapFromParams, loadMapFromImport } from "../map";
 import { setView } from "./set-view";
-// import { initSaveLoad } from "./save-load";
 import { createEntityMap, entity, unit, npc } from "../entities";
 import { onFrameFunctions } from "./on-frame-functions";
 import { panCameraTo } from "./camera";
@@ -69,8 +68,6 @@ scene.start = async (map) => {
   //   const type = mode.elements.mode.value;
   //   setMode(type);
   // };
-
-  // initSaveLoad();
 
   try {
     const mapData = await loadMapFromImport(map);

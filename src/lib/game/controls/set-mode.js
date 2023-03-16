@@ -5,8 +5,6 @@ import { keyCheck, resetKeys, keyEventFunctions } from "./key-check";
 import { editMode } from "./modes/edit";
 import { playMode } from "./modes/play";
 
-
-
 const toggleFullScreen = () => {
   if (!document.fullscreenElement) {
     scene.canvasRoot.requestFullscreen();

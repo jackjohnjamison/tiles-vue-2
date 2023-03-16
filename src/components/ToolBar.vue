@@ -1,10 +1,16 @@
 <script setup>
+  import { setMode } from "@/lib/game/controls";
 
+  const switchMode = (event) => {
+    const type = event.target._value
+
+    setMode(type);
+  }
 </script>
 
 <template>
   <div class="toolbar">
-    <form id="mode" name="mode" class="margin-right-10">
+    <form @change="switchMode($event)" class="margin-right-10">
       <input
         type="radio"
         id="playRadio"
