@@ -1,5 +1,6 @@
 import { scene } from "../scene";
 // import { resetUI } from "../../jsx/ui";
+// import { pauseStore } from '@/stores/pause'
 import { renderLoop } from "../scene";
 import { keyCheck, resetKeys, keyEventFunctions } from "./key-check";
 import { editMode } from "./modes/edit";
