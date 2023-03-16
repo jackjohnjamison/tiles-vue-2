@@ -1,6 +1,6 @@
 import { mouseTracker } from "./mouse";
 import { movementMarkers } from "./movment-markers";
 import { keyCheck } from "./key-check";
-import { setMode } from "./set-mode";
+import { initControls } from "./init-controls";
 
-export { mouseTracker, keyCheck, setMode, movementMarkers };
+export { mouseTracker, keyCheck, initControls, movementMarkers };

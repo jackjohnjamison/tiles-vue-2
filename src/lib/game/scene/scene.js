@@ -5,11 +5,14 @@ import { createEntityMap, entity, unit, npc } from "../entities";
 import { onFrameFunctions } from "./on-frame-functions";
 import { panCameraTo } from "./camera";
 import { renderLoop } from "./render-loop";
-import { setMode, mouseTracker } from "../controls";
+import { mouseTracker } from "../controls";
 import { mapSize } from "../constants";
 import { sprites } from "../sprites";
 import { firstRender } from "./first-render";
 import { frameRateMonitor } from "../frame-rate-monitor";
+import { initControls } from "../controls";
+import { modeStore } from '@/stores/mode'
+
 
 const scene = {};
 
@@ -17,20 +20,6 @@ const scene = {};
 scene.start = async (map) => {
   const root = document.getElementById("canvasRoot");
   scene.canvasRoot = root
-
-  // scene.canvasRoot = Root();
-  // root.replaceWith(scene.canvasRoot);
-
-  // scene.shadowUI = document
-  //   .getElementById("uiMount")
-  //   .attachShadow({ mode: "open" });
-
-  // const uiStyles = document.getElementById("uiStyles");
-  // scene.shadowUI.appendChild(uiStyles);
-
-  // const ui = document.createElement("div");
-  // ui.setAttribute("id", "ui");
-  // scene.shadowUI.appendChild(ui);
 
   scene.floorCanvas = document.getElementById("floorCanvas");
   scene.floorCtx = scene.floorCanvas.getContext("2d", { alpha: false });
@@ -61,13 +50,7 @@ scene.start = async (map) => {
     tileIndex: null,
   };
 
-  scene.mode = "playMode";
-
-  // mode.onchange = () => {
-  //   // Gets the value of the radio buttons on the control type form
-  //   const type = mode.elements.mode.value;
-  //   setMode(type);
-  // };
+  initControls();
 
   try {
     const mapData = await loadMapFromImport(map);
@@ -122,7 +105,9 @@ scene.loadMap = (tileMap) => {
     });
   }
 
-  setMode(scene.mode);
+  const mode = modeStore()
+  mode.set("playMode")
+
   scene.view.setApertureSize();
   firstRender();
 

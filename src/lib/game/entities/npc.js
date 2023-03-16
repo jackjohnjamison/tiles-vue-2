@@ -4,6 +4,7 @@ import { entity } from "./entity";
 import { randomVariationInt } from "../utilities";
 import { pathfinding } from "./movement/pathfinding";
 import { npcPatrolSpeed } from "../constants";
+import { modeStore } from '@/stores/mode'
 
 class npc extends entity {
   constructor(sprite) {
@@ -29,7 +30,8 @@ class npc extends entity {
   update = (delta) => {
     const { pathFinder, pickPath, redraw, isMoving } = this;
 
-    if (scene.mode !== "editMode") {
+    // This is super ugly! I should probably stop the whole loop of NPC actions instead of testing every time!
+    if (modeStore().mode !== "editMode") {
       if (!isMoving) {
         pickPath();
       }

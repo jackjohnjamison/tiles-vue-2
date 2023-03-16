@@ -1,10 +1,12 @@
 <script setup>
-  import { setMode } from "@/lib/game/controls";
+  import { modeStore } from "@/stores/mode";
 
+  const mode = modeStore()
+  
   const switchMode = (event) => {
     const type = event.target._value
 
-    setMode(type);
+    mode.set(type);
   }
 </script>
 
