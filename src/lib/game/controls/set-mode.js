@@ -1,7 +1,6 @@
 import { scene } from "../scene";
 // import { resetUI } from "../../jsx/ui";
 import { pauseStore } from '@/stores/pause'
-import { renderLoop } from "../scene";
 import { keyCheck, resetKeys, keyEventFunctions } from "./key-check";
 import { editMode } from "./modes/edit";
 import { playMode } from "./modes/play";
@@ -36,10 +35,10 @@ keyEventFunctions.keyDown = (keyCode) => {
 };
 
 document.addEventListener("visibilitychange", () => {
-  const { stop } = renderLoop;
+  const { pause } = pauseStore()
 
   if (document.visibilityState === "hidden") {
-    stop();
+    pause();
     document.body.classList.add("paused");
   } else if (document.visibilityState === "visible") {
     // Prevents bug where keys are stuck down after tabbing away.

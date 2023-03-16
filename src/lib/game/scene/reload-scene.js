@@ -1,5 +1,5 @@
 import { scene } from ".";
-import { onFrameFunctions } from "./on-frame-functions";
+import { pauseStore } from '@/stores/pause'
 import { renderLoop } from "./render-loop";
 
 const reloadScene = (tileMap) => {
@@ -18,8 +18,7 @@ const reloadScene = (tileMap) => {
 
   scene.loadMap(tileMap);
 
-  // Removed to stop loop from starting on load while paused
-  // renderLoop.start(onFrameFunctions);
+  pauseStore().unpause()
 };
 
 export { reloadScene };

@@ -24,6 +24,13 @@ export const pauseStore = defineStore('pause', {
 
       this.isPaused = false
       restart()
+    },
+
+    pause() {
+      const { stop } = renderLoop;
+
+      this.isPaused = true
+      stop()
     }
   }
 })
