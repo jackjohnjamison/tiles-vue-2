@@ -11,17 +11,17 @@
 
 <template>
   <!-- Toolbar /-->
-  <div id="canvasRoot">
+  <main id="canvasRoot">
     <canvas class="layer-canvas" id="floorCanvas" />
     <canvas class="layer-canvas" id="canvasMid" />
     <canvas class="layer-canvas" id="entityCanvas" />
     <canvas class="layer-canvas" id="canvasTop" />
     <div id="uiMount" />
     <PauseMenu />
-  </div>
+  </main>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .toolbar {
     flex: 0 1 auto;
     display: flex;
@@ -43,12 +43,6 @@
     #canvasTop {
       mix-blend-mode: hard-light;
     }
-  }
-
-  .monitor {
-    position: absolute;
-    right: 0;
-    background-color: rgba(100,100,100,.5);
   }
 
   .margin-left-auto {

@@ -4,16 +4,15 @@
 
 <template>
   <div class="wrapper">
-    <header>
-      <!-- img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /-->
+    <!-- <header>
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/other">Other</RouterLink>
       </nav>
-    </header>
+    </header> -->
 
-  <RouterView />
+    <RouterView />
   </div>
 </template>
 
@@ -51,5 +50,11 @@
     display: flex;
     flex-flow: column;
     height: 100%;
+  }
+
+  .monitor {
+    position: absolute;
+    right: 0;
+    background-color: rgba(100,100,100,.5);
   }
 </style>
