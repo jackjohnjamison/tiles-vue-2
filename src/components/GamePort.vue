@@ -1,16 +1,16 @@
 <script setup>
   import { onMounted } from 'vue'
   import { start } from '../lib/game'
+  import ToolBar from './ToolBar.vue'
   import PauseMenu from './PauseMenu.vue'
 
   onMounted(() => {
     start()
   })
-
 </script>
 
 <template>
-  <!-- Toolbar /-->
+  <ToolBar />
   <main id="canvasRoot">
     <canvas class="layer-canvas" id="floorCanvas" />
     <canvas class="layer-canvas" id="canvasMid" />
@@ -22,12 +22,6 @@
 </template>
 
 <style lang="scss" scoped>
-  .toolbar {
-    flex: 0 1 auto;
-    display: flex;
-    margin: 5px 10px 0;
-  }
-
   #canvasRoot {
     flex: 1 1 auto;
     border: solid 1px var(--color1);
@@ -55,14 +49,5 @@
 
   .margin-left-10 {
     margin-left: 10px;
-  }
-
-  button, input, select, label {
-    cursor: pointer;
-    margin: 2px;
-  }
-
-  input[type="text"] {
-    cursor: text;
   }
 </style>

@@ -57,4 +57,13 @@
     right: 0;
     background-color: rgba(100,100,100,.5);
   }
+
+  button, input, select, label {
+    cursor: pointer;
+    margin: 2px;
+  }
+
+  input[type="text"] {
+    cursor: text;
+  }
 </style>
