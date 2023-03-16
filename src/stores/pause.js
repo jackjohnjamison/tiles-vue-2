@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { renderLoop } from "@/lib/game/scene"
 
 export const pauseStore = defineStore('pause', {
   state: () => {
@@ -7,7 +8,22 @@ export const pauseStore = defineStore('pause', {
 
   actions: {
     toggle() {
-      this.isPaused = !this.isPaused
+      const { stop, restart } = renderLoop;
+
+      if(this.isPaused) {
+        this.isPaused = false
+        restart()
+      } else {
+        this.isPaused = true
+        stop()
+      }
+    },
+
+    unpause() {
+      const { restart } = renderLoop;
+
+      this.isPaused = false
+      restart()
     }
   }
 })

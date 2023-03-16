@@ -1,22 +1,12 @@
 import { scene } from "../scene";
 // import { resetUI } from "../../jsx/ui";
-// import { pauseStore } from '@/stores/pause'
+import { pauseStore } from '@/stores/pause'
 import { renderLoop } from "../scene";
 import { keyCheck, resetKeys, keyEventFunctions } from "./key-check";
 import { editMode } from "./modes/edit";
 import { playMode } from "./modes/play";
 
-const pauseToggle = () => {
-  const { paused, stop, restart } = renderLoop;
 
-  if (paused) {
-    restart();
-    document.body.classList.remove("paused");
-  } else {
-    stop();
-    document.body.classList.add("paused");
-  }
-};
 
 const toggleFullScreen = () => {
   if (!document.fullscreenElement) {
@@ -27,9 +17,11 @@ const toggleFullScreen = () => {
 };
 
 keyEventFunctions.keyDown = (keyCode) => {
+  const pause = pauseStore()
+
   switch (keyCode) {
     case "Space":
-      pauseToggle();
+      pause.toggle();
       break;
 
     case "Enter":
@@ -67,4 +59,4 @@ const setMode = (mode) => {
   modes[mode].set();
 };
 
-export { setMode, pauseToggle };
+export { setMode };

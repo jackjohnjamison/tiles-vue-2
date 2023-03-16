@@ -9,19 +9,16 @@ renderLoop.start = (onFrameFunctions) => {
   frameId = requestAnimationFrame((timeStamp) => {
     rerender(timeStamp, onFrameFunctions);
   });
-  renderLoop.paused = false;
 };
 
 renderLoop.restart = () => {
   renderLoop.start(storedOnFrameFunctions);
-  renderLoop.paused = false;
 };
 
 renderLoop.stop = () => {
   window.cancelAnimationFrame(frameId);
   // This prevent a massive build up of milliseconds in the delta causing animations to jump
   previousTimeStamp = 0;
-  renderLoop.paused = true;
 };
 
 // Action happens in here
