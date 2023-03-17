@@ -33,3 +33,9 @@ npm run build
 ```sh
 npm run lint
 ```
+
+## TODO
+- Move all get element calls to refs
+- Organise CSS, sass of css variables? Maybe just pick one
+- Decide what to do with imports, should the be all @/lib etc. Maybe move game up to lib as there is nothing else in the lib file
+- Think about prettier and css linting 

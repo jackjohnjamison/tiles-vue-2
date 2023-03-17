@@ -1,14 +1,23 @@
 <script setup>
   // import { modeStore } from "@/stores/mode";
+  import { tileTypes } from "@/lib/game/map"
+  console.log(tileTypes);
 
-  // const mode = modeStore()
+  // Gets the first tile type and sets it as selected
+  let [ selectedTileSet ] = Object.keys(tileTypes)
+
 </script>
 
 <template>
   <div class="edit-mode">
     <form id="tilePainter">
       <select id="terrainType" name="terrainType">
-        Scary stuff goes here
+        <option 
+          v-for="brush in tileTypes"
+          :key="brush.key"
+          :value="brush.key"
+          :selected="selectedTileSet === brush.key"
+        >{{brush.displayName}}</option>
       </select>
       <!-- SpriteDisplay / -->
     </form>

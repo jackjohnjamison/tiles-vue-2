@@ -51,4 +51,11 @@ const tileTypes = {
   },
 };
 
+const tileKeys = Object.keys(tileTypes)
+
+// Adds property keys into each object property
+tileKeys.forEach((tileKey) => {
+  tileTypes[tileKey].key = tileKey;
+})
+
 export { tileTypes };
