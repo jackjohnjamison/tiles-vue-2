@@ -2,6 +2,7 @@
   import { onMounted } from 'vue'
   import { start } from '../lib/game'
   import ToolBar from './ToolBar.vue'
+  import GameUi from './GameUi.vue'
   import PauseMenu from './PauseMenu.vue'
 
   onMounted(() => {
@@ -16,7 +17,7 @@
     <canvas class="layer-canvas" id="canvasMid" />
     <canvas class="layer-canvas" id="entityCanvas" />
     <canvas class="layer-canvas" id="canvasTop" />
-    <div id="uiMount" />
+    <GameUi />
     <PauseMenu />
   </main>
 </template>

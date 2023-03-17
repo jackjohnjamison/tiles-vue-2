@@ -18,6 +18,7 @@ const scene = {};
 
 // Sets parts of the scene that don't change between map loads
 scene.start = async (map) => {
+  // Change these get element calls for refs
   const root = document.getElementById("canvasRoot");
   scene.canvasRoot = root
 

@@ -1,4 +1,3 @@
-import { scene } from "../scene";
 import { isWalkable } from "../map";
 import { entity } from "./entity";
 import { randomVariationInt } from "../utilities";
