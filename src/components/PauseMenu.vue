@@ -1,6 +1,7 @@
 <script setup>
   import { save, load } from "../lib/game/scene/save-load";
   import { pauseStore } from '@/stores/pause'
+
   const pause = pauseStore()
 </script>
 
