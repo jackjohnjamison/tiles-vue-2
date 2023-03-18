@@ -12,7 +12,7 @@
 
 <template>
   <div class="toolbar">
-    <form @change="switchMode($event)" class="margin-right-10">
+    <div @change="switchMode($event)" class="margin-right-10">
       <input
         type="radio"
         id="playRadio"
@@ -30,7 +30,7 @@
         name="mode"
       />
       <label for="editModeRadio">Edit Mode</label>
-    </form>
+    </div>
   </div>
 </template>
 

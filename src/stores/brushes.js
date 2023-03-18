@@ -1,16 +1,18 @@
 import { defineStore } from 'pinia'
+import { tileTypes } from "@/lib/game/map"
 
 export const brushStore = defineStore('brush', {
   state: () => {
-    return { 
+    return {
+      selectedTileSetKey: Object.keys(tileTypes)[0],
       selectedTileSet: null,
       currentBrush: null,
     }
   },
 
   actions: {
-    setSelectedTileSet(tileSet) {
-      this.selectedTileSet = tileSet
+    setSelectedTileSet(tileSetKey) {
+      this.selectedTileSet = tileTypes[tileSetKey]
     },
 
     setBrush() {

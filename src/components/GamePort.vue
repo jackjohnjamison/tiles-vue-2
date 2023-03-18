@@ -1,13 +1,10 @@
 <script setup>
-  import { onMounted } from 'vue'
   import { start } from '../lib/game'
   import ToolBar from './ToolBar.vue'
   import GameUi from './GameUi.vue'
   import PauseMenu from './PauseMenu.vue'
 
-  onMounted(() => {
-    start()
-  })
+  start()
 </script>
 
 <template>

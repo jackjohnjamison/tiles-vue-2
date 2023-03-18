@@ -41,6 +41,7 @@
       border-radius: 3px;
       border: solid 2px #000;
       text-shadow: 0px 0px 4px #000000, 0px 0px 4px #000000;
+      backdrop-filter: grayscale(0.5) blur(2px);
     }
 
     ul {

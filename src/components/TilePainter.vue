@@ -1,35 +1,125 @@
 <script setup>
+  import { ref, onUpdated, onMounted } from 'vue'
   import { brushStore } from "@/stores/brushes"
   import { tileTypes } from "@/lib/game/map"
+  import { sprites } from "@/lib/game/sprites"
 
   const brushes = brushStore()
+  const spriteCanvases = ref([])
+
+  // Styling pixel widths
+  const paddingSides = 5
+  const paddingBottom = 6
+  const offset = 4
+
+  let spriteWidth
+  let spriteHeight
+  let selectedTileSetSprites
   let selectedTileSetKey = Object.keys(tileTypes)[0]
 
   const setSelectedTileSet = () => {
-    brushes.setSelectedTileSet(tileTypes[selectedTileSetKey])
+    console.log(selectedTileSetKey);
+    brushes.setSelectedTileSet(selectedTileSetKey)
+    selectedTileSetSprites = sprites[selectedTileSetKey]
+
+    if(selectedTileSetSprites) {
+      spriteWidth = Math.max(...selectedTileSetSprites.map((sprite) => sprite.data.width))
+        + paddingSides
+
+      spriteHeight = Math.max(...selectedTileSetSprites.map((sprite) => sprite.data.height))
+        + paddingBottom
+    }
   }
 
-  setSelectedTileSet()
+  const updateSpriteCanvases = () => {
+    // console.log(brushes.selectedTileSet.type);
+    // console.log(brushes.selectedTileSet)
+    if(brushes.selectedTileSet.type !== 'void') {
+      spriteCanvases.value.forEach((canvas, i) => {
+        if(canvas) {
+          canvas.width = spriteWidth
+          canvas.height = spriteHeight
+          const ctx = canvas.getContext("2d")
+          const image = sprites[selectedTileSetKey][i]?.data
 
+          if(image) {
+            ctx.drawImage(image, offset, offset);
+            // console.log(canvas)
+          }
+        }
+      })
+    }
+  }
+
+  onUpdated(() => {
+    updateSpriteCanvases()
+  })
+
+  onMounted(() => {
+    updateSpriteCanvases()
+  })
+
+  setSelectedTileSet()
 </script>
 
 <template>
   <div class="edit-mode">
-    <form id="tilePainter">
-      
-      <select id="terrainType" name="terrainType" :value="selectedTileSetKey"
-        v-model="selectedTileSetKey" @change="setSelectedTileSet()">
+    <div class="tilePainter">
+      <select class="terrainType" :value="selectedTileSetKey"
+        v-model="selectedTileSetKey"
+        @change="setSelectedTileSet()">
         <option 
           v-for="tileSet in tileTypes"
           :key="tileSet.key"
           :value="tileSet.key"
         >{{tileSet.displayName}}</option>
       </select>
-      <div>{{ selectedTileSetKey }}</div>
-      <div>{{ brushes.selectedTileSet }}</div>
-      
-      <!-- SpriteDisplay / -->
-    </form>
+
+      <!-- The Void brush -->
+      <div v-if="brushes.selectedTileSet.type === 'void'" class="brush">
+        <div class="void-brush">X</div>
+        <span>Delete tiles</span>
+      </div>
+
+      <!-- Other brushes -->
+      <div v-else>
+        <div class="sprite-brushes">
+          <div class="brush">
+            <div
+              class="random-tile-brush"
+              :style="{ width: spriteWidth + 'px', height: spriteHeight + 'px' }"
+            ><div>?</div></div>
+            <input
+              checked
+              type="radio"
+              value="random"
+              name="tileVariant"
+              :style="{ width: spriteWidth + 'px', height: spriteHeight + 'px' }"
+            />
+          </div>
+          <div v-for="(sprite, i) in selectedTileSetSprites" :key="i" class="brush">
+            <canvas
+              class="sprite-canvas"
+              :ref="el => spriteCanvases[i] = el"
+            />
+            <input
+              type="radio"
+              :value="i"
+              name="tileVariant"
+              :style="{ width: spriteWidth + 'px', height: spriteHeight + 'px' }"
+            />
+          </div>
+        </div>
+        <!-- { tileSetArray.map((type) => (
+          <HueSlider { ...{
+            tileSet: tileSets[type],
+            label: tileSetArray.length > 1 ? type + " Hue" : "Hue",
+            tiles: tileSets,
+            type,
+          }}/>
+        ))} -->
+      </div>
+    </div>
   </div>
 </template>
 
@@ -46,16 +136,12 @@
       margin: 2px;
     }
 
-    .paused & {
-      display: none;
-    }
-
-    #tilePainter {
+    .tilePainter {
       margin: 10px;
       min-width: 250px;
     
-      #terrainType {
-        // font-family: $font;
+      .terrainType {
+        font-family: var(--font);
         font-weight: 500;
         font-size: 16px;
         border-radius: 2px;
@@ -92,7 +178,7 @@
           align-items: center;
           justify-content: center;
           font-size: 32px;
-          // font-family: $font;
+          font-family: var(--font);
         }
     
         .void-brush {

@@ -35,7 +35,6 @@ const initControls = () => {
   
     if (document.visibilityState === "hidden") {
       pause();
-      document.body.classList.add("paused");
     } else if (document.visibilityState === "visible") {
       // Prevents bug where keys are stuck down after tabbing away.
       resetKeys();

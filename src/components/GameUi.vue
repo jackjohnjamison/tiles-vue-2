@@ -1,12 +1,14 @@
 <script setup>
   import TilePainter from './TilePainter.vue'
   import { modeStore } from "@/stores/mode";
+    import { pauseStore } from '@/stores/pause'
 
+  const pause = pauseStore()
   const mode = modeStore()
 </script>
 
 <template>
-  <div>
+  <div v-if="!pause.isPaused">
     <div v-if="mode.mode === 'playMode'">
       <!-- h2>Play mode</h2 -->
     </div>
