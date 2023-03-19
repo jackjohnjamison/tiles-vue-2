@@ -7,6 +7,7 @@
   const deltaMaxMeasure = 100;
   let monitor
 
+
   // Adds the frame rate monitor to additional functions
   onMounted(() => {
     const monitorCtx = monitor.getContext("2d")
