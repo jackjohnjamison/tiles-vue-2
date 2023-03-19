@@ -1,5 +1,5 @@
 <script setup>
-  import TilePainter from '@/components/TilePainter.vue'
+  import EditorPanel from '@/components/EditorPanel.vue'
   import { modeStore } from "@/stores/mode";
   import { pauseStore } from '@/stores/pause'
 
@@ -13,7 +13,7 @@
       <!-- h2>Play mode</h2 -->
     </div>
 
-    <TilePainter v-else-if="mode.mode === 'editMode'" />
+    <EditorPanel v-else-if="mode.mode === 'editMode'" />
     
   </div>
 </template>
