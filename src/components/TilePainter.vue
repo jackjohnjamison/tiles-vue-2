@@ -15,10 +15,9 @@
   let spriteWidth
   let spriteHeight
   let selectedTileSetSprites
-  let selectedTileSetKey = Object.keys(tileTypes)[0]
+  let [ selectedTileSetKey ] = Object.keys(tileTypes)
 
   const setSelectedTileSet = () => {
-    console.log(selectedTileSetKey);
     brushes.setSelectedTileSet(selectedTileSetKey)
     selectedTileSetSprites = sprites[selectedTileSetKey]
 
@@ -32,23 +31,15 @@
   }
 
   const updateSpriteCanvases = () => {
-    // console.log(brushes.selectedTileSet.type);
-    // console.log(brushes.selectedTileSet)
-    if(brushes.selectedTileSet.type !== 'void') {
-      spriteCanvases.value.forEach((canvas, i) => {
-        if(canvas) {
-          canvas.width = spriteWidth
-          canvas.height = spriteHeight
-          const ctx = canvas.getContext("2d")
-          const image = sprites[selectedTileSetKey][i]?.data
-
-          if(image) {
-            ctx.drawImage(image, offset, offset);
-            // console.log(canvas)
-          }
-        }
-      })
-    }
+    spriteCanvases.value.forEach((canvas, i) => {
+      if(canvas) {
+        canvas.width = spriteWidth
+        canvas.height = spriteHeight
+        const ctx = canvas.getContext("2d")
+        const image = sprites[selectedTileSetKey][i].data
+        ctx.drawImage(image, offset, offset);
+      }
+    })
   }
 
   onUpdated(() => {
