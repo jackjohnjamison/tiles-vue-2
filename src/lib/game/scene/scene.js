@@ -8,7 +8,6 @@ import { mouseTracker } from "../controls";
 import { mapSize } from "../constants";
 import { sprites } from "../sprites";
 import { firstRender } from "./first-render";
-import { frameRateMonitor } from "../frame-rate-monitor";
 import { initControls } from "../controls";
 import { modeStore } from '@/stores/mode'
 
@@ -24,7 +23,6 @@ scene.start = async (canvases, map) => {
   scene.entityCtx = scene.entityCanvas.getContext("2d");
   scene.ctxTop = scene.canvasTop.getContext("2d");
 
-  scene.monitor = frameRateMonitor();
   scene.mouse = mouseTracker(scene.canvasTop);
 
   scene.redrawEffects = true;
