@@ -1,6 +1,6 @@
 <script setup>
   import { onMounted } from 'vue'
-  import { additionalFunctions } from "@/lib/scene"
+  import { additionalFunctions } from '@/lib/scene'
 
   const monitorWidth = 150;
   const monitorHeight = 70;
@@ -18,8 +18,7 @@
       monitorCtx.drawImage(monitor, -1, 0);
       monitorCtx.globalCompositeOperation = "source-over";
 
-      const deltaLineTop =
-        monitorHeight - (delta / deltaMaxMeasure) * monitorHeight;
+      const deltaLineTop = monitorHeight - (delta / deltaMaxMeasure) * monitorHeight;
 
       monitorCtx.beginPath();
       monitorCtx.moveTo(monitorWidth, monitorHeight);
