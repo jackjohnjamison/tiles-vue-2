@@ -1,38 +1,33 @@
 <script setup>
-  import { RouterLink, RouterView } from 'vue-router'
+  import GamePort from '@/components/GamePort.vue'
 </script>
 
 <template>
   <div class="wrapper">
-    <!-- <header>
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/other">Other</RouterLink>
-      </nav>
-    </header> -->
-
-    <RouterView />
+    <GamePort />
   </div>
 </template>
 
 <style lang="scss">
-  @function pxToRem($value) {
-    @return calc($value / 16) + rem; 
-  }
+  @import "@/mixins/px-to-rem.scss";
 
   :root {
     --font: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
-    --color1: #639;
+    --font-size: pxToRem(16);
+    --font-weight: 400;
+
+    --font-color-light: #e3e3e3;
+    --color-accent: #639;
+    --color-dark: #242424;
+
+    --frostedFilter: grayscale(0.5) blur(1px);
 
     font-family: var(--font);
-    font-size: pxToRem(16);
-    line-height: pxToRem(24);
-    font-weight: 400;
+    font-weight: var(--font-weight);
+    font-size: var(--font-size);
+    color: var(--font-color-light);
 
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
-
+    background-color: var(--color-dark);
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -40,6 +35,7 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  // Global styles
   html,
   body, #app {
     height: 100%;
@@ -52,12 +48,6 @@
     height: 100%;
   }
 
-  .monitor {
-    position: absolute;
-    right: 0;
-    background-color: rgba(100,100,100,.5);
-  }
-
   button, input, select, label {
     cursor: pointer;
     margin: 2px;
@@ -65,5 +55,24 @@
 
   input[type="text"] {
     cursor: text;
+  }
+
+  .margin-left-auto {
+    margin-left: auto;
+  }
+
+  .margin-right-10 {
+    margin-right: 10px;
+  }
+
+  .margin-left-10 {
+    margin-left: 10px;
+  }
+
+  // Move me
+  .monitor {
+    position: absolute;
+    right: 0;
+    background-color: rgba(100,100,100,.5);
   }
 </style>

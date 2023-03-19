@@ -164,6 +164,7 @@
     background-color: rgba(80,80,80,.8);
     margin: 5px;
     border-radius: 2px;
+    backdrop-filter: var(--frostedFilter);
 
     button, input, select, label {
       cursor: pointer;
@@ -218,7 +219,7 @@
         .void-brush {
           width: 48px;
           line-height: 1.4;
-          border: solid 1px var(--color1);
+          border: solid 1px var(--color-accent);
           text-align: center;
           font-size: 32px;
           margin: 5px 10px 0 2px;
@@ -243,7 +244,7 @@
         border-radius: 2px;
     
         &:checked {
-          border-color: var(--color1);
+          border-color: var(--color-accent);
         }
       }
     }

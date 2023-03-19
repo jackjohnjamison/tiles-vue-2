@@ -41,7 +41,7 @@
       border-radius: 3px;
       border: solid 2px #000;
       text-shadow: 0px 0px 4px #000000, 0px 0px 4px #000000;
-      backdrop-filter: grayscale(0.5) blur(2px);
+      backdrop-filter: var(--frostedFilter);
     }
 
     ul {
@@ -73,7 +73,7 @@
     button {
       padding: 4px;
       color: #fff;
-      background-color: var(--color1);
+      background-color: var(--color-accent);
       transition: background-color .2s;
 
       &:hover {

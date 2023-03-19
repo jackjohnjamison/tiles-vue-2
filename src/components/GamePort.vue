@@ -22,7 +22,7 @@
 <style lang="scss" scoped>
   #canvasRoot {
     flex: 1 1 auto;
-    border: solid 1px var(--color1);
+    border: solid 1px var(--color-accent);
     margin: 5px 10px 10px;
     overflow: hidden;
     background-color: #000;
@@ -35,17 +35,5 @@
     #canvasTop {
       mix-blend-mode: hard-light;
     }
-  }
-
-  .margin-left-auto {
-    margin-left: auto;
-  }
-
-  .margin-right-10 {
-    margin-right: 10px;
-  }
-
-  .margin-left-10 {
-    margin-left: 10px;
   }
 </style>

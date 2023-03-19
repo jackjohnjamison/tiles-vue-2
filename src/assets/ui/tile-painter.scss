@@ -62,7 +62,7 @@
       .void-brush {
         width: 48px;
         line-height: 1.4;
-        border: solid 1px $color1;
+        border: solid 1px $color-accent;
         text-align: center;
         font-size: 32px;
         margin: 5px 10px 0 2px;
@@ -87,7 +87,7 @@
       border-radius: 2px;
   
       &:checked {
-        border-color: $color1;
+        border-color: $color-accent;
       }
     }
   }
