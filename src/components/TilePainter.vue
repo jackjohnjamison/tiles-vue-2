@@ -15,10 +15,12 @@
   let spriteWidth
   let spriteHeight
   let selectedTileSetSprites
-  let [ selectedTileSetKey ] = Object.keys(tileTypes)
+  let selectedTileSetKey = brushes.selectedTileSetKey
 
   const setSelectedTileSet = () => {
     brushes.setSelectedTileSet(selectedTileSetKey)
+    brushes.setSelectedTileSetKey(selectedTileSetKey)
+
     selectedTileSetSprites = sprites[selectedTileSetKey]
 
     if(selectedTileSetSprites) {
