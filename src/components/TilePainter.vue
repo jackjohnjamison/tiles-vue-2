@@ -135,7 +135,7 @@
           />
         </div>
 
-        <div v-if="brush.selectedTileSet.floor && brush.selectedTileSet.type === 'linked'">
+        <div v-if="brush.selectedTileSet.type !== 'feature'">
           <div>
             <label for="floorHue">Floor Hue: </label>
             <span>{{ brush.floorHueValue }}</span>
