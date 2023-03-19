@@ -1,8 +1,8 @@
 <script setup>
   import { ref, onUpdated, onMounted } from 'vue'
   import { brushStore } from "@/stores/brushes"
-  import { tileTypes } from "@/lib/game/map"
-  import { sprites } from "@/lib/game/sprites"
+  import { tileTypes } from "@/lib/map"
+  import { sprites } from "@/lib/sprites"
 
   const brush = brushStore()
   const spriteCanvases = ref([])

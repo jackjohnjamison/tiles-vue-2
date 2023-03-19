@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { tileTypes } from "@/lib/game/map"
+import { tileTypes } from "@/lib/map"
 
 const defaultHueValue = 0
 

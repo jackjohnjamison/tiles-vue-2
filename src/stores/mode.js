@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { editMode } from "@/lib/game/controls/modes/edit";
-import { playMode } from "@/lib/game/controls/modes/play";
+import { editMode } from "@/lib/controls/modes/edit";
+import { playMode } from "@/lib/controls/modes/play";
 
 const modes = {
   editMode,

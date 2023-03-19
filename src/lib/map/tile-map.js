@@ -143,7 +143,7 @@ const saveTileMaptoJSON = () => {
 };
 
 const loadMapFromImport = async (map) => {
-  const mapJSON = JSON.stringify(await import(`../../../maps/${map}.json`));
+  const mapJSON = JSON.stringify(await import(`../../maps/${map}.json`));
   return loadTileMapFromJSON(mapJSON);
 };
 

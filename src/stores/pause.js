@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { renderLoop } from "@/lib/game/scene"
+import { renderLoop } from "@/lib/scene"
 
 export const pauseStore = defineStore('pause', {
   state: () => {

@@ -1,5 +1,5 @@
 <script setup>
-  import { start } from '@/lib/game'
+  import { start } from '@/lib'
   import ToolBar from '@/components/ToolBar.vue'
   import GameUi from '@/components/GameUi.vue'
   import PauseMenu from '@/components/PauseMenu.vue'
@@ -18,8 +18,8 @@
     <canvas class="layer-canvas" :ref="function(el) { canvases.entityCanvas = el }" />
     <canvas class="layer-canvas canvas-top" :ref="function(el) { canvases.canvasTop = el }" />
     <GameUi />
-    <PauseMenu />
     <FrameRateMonitor />
+    <PauseMenu />
   </main>
 </template>
 
