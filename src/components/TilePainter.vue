@@ -16,12 +16,12 @@
   let spriteHeight
   let selectedTileSetSprites
   let selectedTileSetKey = brushes.selectedTileSetKey
+  let linkedTiles
 
   const setSelectedTileSet = () => {
     brushes.setSelectedTileSet(selectedTileSetKey)
-    brushes.setSelectedTileSetKey(selectedTileSetKey)
-
     selectedTileSetSprites = sprites[selectedTileSetKey]
+    linkedTiles = brushes.selectedTileSet.type === 'linked'
 
     if(selectedTileSetSprites) {
       spriteWidth = Math.max(...selectedTileSetSprites.map((sprite) => sprite.data.width))
@@ -38,10 +38,19 @@
         canvas.width = spriteWidth
         canvas.height = spriteHeight
         const ctx = canvas.getContext("2d")
+        ctx.filter = `hue-rotate(${brushes.floorHueValue}deg)`
         const image = sprites[selectedTileSetKey][i].data
         ctx.drawImage(image, offset, offset);
+
+        if(linkedTiles) {
+          ctx.filter = `hue-rotate(${brushes.featureHueValue}deg)`
+          const featureImage = sprites[brushes.selectedTileSet.feature][i].data
+          ctx.drawImage(featureImage, offset, offset);
+        }
       }
     })
+
+    brushes.setHues()
   }
 
   onUpdated(() => {
@@ -103,14 +112,34 @@
             />
           </div>
         </div>
-        <!-- { tileSetArray.map((type) => (
-          <HueSlider { ...{
-            tileSet: tileSets[type],
-            label: tileSetArray.length > 1 ? type + " Hue" : "Hue",
-            tiles: tileSets,
-            type,
-          }}/>
-        ))} -->
+
+          <!-- Hue sliders -->
+          <div v-if="linkedTiles">
+            <label for="featureHue">Feature Hue: </label>
+            <span>{{ brushes.featureHueValue }}</span>
+          </div>
+          <input v-if="linkedTiles"
+            class="hue-slider"
+            id="featureHue"
+            type="range"
+            min="-180"
+            max="180"
+            step="1"
+            v-model="brushes.featureHueValue"
+          />
+          <div>
+            <label for="floorHue">Floor Hue: </label>
+            <span>{{ brushes.floorHueValue }}</span>
+          </div>
+          <input
+            class="hue-slider"
+            id="floorHue"
+            type="range"
+            min="-180"
+            max="180"
+            step="1"
+            v-model="brushes.floorHueValue"
+          />
       </div>
     </div>
   </div>
