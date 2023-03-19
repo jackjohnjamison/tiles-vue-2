@@ -4,10 +4,10 @@
   import { tileTypes } from "@/lib/game/map"
   import { sprites } from "@/lib/game/sprites"
 
-  const brushes = brushStore()
+  const brush = brushStore()
   const spriteCanvases = ref([])
 
-  // Styling pixel widths
+  // Styling pixel widths for the brush canvases
   const paddingSides = 5
   const paddingBottom = 6
   const offset = 4
@@ -15,13 +15,11 @@
   let spriteWidth
   let spriteHeight
   let selectedTileSetSprites
-  let selectedTileSetKey = brushes.selectedTileSetKey
-  let linkedTiles
+  let selectedTileSetKey = brush.selectedTileSetKey
 
   const setSelectedTileSet = () => {
-    brushes.setSelectedTileSet(selectedTileSetKey)
+    brush.setSelectedTileSet(selectedTileSetKey)
     selectedTileSetSprites = sprites[selectedTileSetKey]
-    linkedTiles = brushes.selectedTileSet.type === 'linked'
 
     if(selectedTileSetSprites) {
       spriteWidth = Math.max(...selectedTileSetSprites.map((sprite) => sprite.data.width))
@@ -33,24 +31,29 @@
   }
 
   const updateSpriteCanvases = () => {
+    const { floor, feature } = brush.selectedTileSet
+
     spriteCanvases.value.forEach((canvas, i) => {
       if(canvas) {
         canvas.width = spriteWidth
         canvas.height = spriteHeight
         const ctx = canvas.getContext("2d")
-        ctx.filter = `hue-rotate(${brushes.floorHueValue}deg)`
-        const image = sprites[selectedTileSetKey][i].data
-        ctx.drawImage(image, offset, offset);
 
-        if(linkedTiles) {
-          ctx.filter = `hue-rotate(${brushes.featureHueValue}deg)`
-          const featureImage = sprites[brushes.selectedTileSet.feature][i].data
+        if(floor) {
+          ctx.filter = `hue-rotate(${brush.floorHueValue}deg)`
+          const image = sprites[selectedTileSetKey][i].data
+          ctx.drawImage(image, offset, offset);
+        }
+
+        if(feature) {
+          ctx.filter = `hue-rotate(${brush.featureHueValue}deg)`
+          const featureImage = sprites[brush.selectedTileSet.feature][i].data
           ctx.drawImage(featureImage, offset, offset);
         }
       }
     })
 
-    brushes.setHues()
+    brush.setHues()
   }
 
   onUpdated(() => {
@@ -78,7 +81,7 @@
       </select>
 
       <!-- The Void brush -->
-      <div v-if="brushes.selectedTileSet.type === 'void'" class="brush">
+      <div v-if="brush.selectedTileSet.type === 'void'" class="brush">
         <div class="void-brush">X</div>
         <span>Delete tiles</span>
       </div>
@@ -94,8 +97,9 @@
             <input
               checked
               type="radio"
-              value="random"
+              :value="null"
               name="tileVariant"
+              v-model="brush.variant"
               :style="{ width: spriteWidth + 'px', height: spriteHeight + 'px' }"
             />
           </div>
@@ -108,28 +112,33 @@
               type="radio"
               :value="i"
               name="tileVariant"
+              v-model="brush.variant"
               :style="{ width: spriteWidth + 'px', height: spriteHeight + 'px' }"
             />
           </div>
         </div>
 
-          <!-- Hue sliders -->
-          <div v-if="linkedTiles">
+        <!-- Hue sliders -->
+        <div v-if="brush.selectedTileSet.feature">
+          <div>
             <label for="featureHue">Feature Hue: </label>
-            <span>{{ brushes.featureHueValue }}</span>
+            <span>{{ brush.featureHueValue }}</span>
           </div>
-          <input v-if="linkedTiles"
+          <input
             class="hue-slider"
             id="featureHue"
             type="range"
             min="-180"
             max="180"
             step="1"
-            v-model="brushes.featureHueValue"
+            v-model="brush.featureHueValue"
           />
+        </div>
+
+        <div v-if="brush.selectedTileSet.floor && brush.selectedTileSet.type === 'linked'">
           <div>
             <label for="floorHue">Floor Hue: </label>
-            <span>{{ brushes.floorHueValue }}</span>
+            <span>{{ brush.floorHueValue }}</span>
           </div>
           <input
             class="hue-slider"
@@ -138,8 +147,10 @@
             min="-180"
             max="180"
             step="1"
-            v-model="brushes.floorHueValue"
+            v-model="brush.floorHueValue"
           />
+        </div>
+
       </div>
     </div>
   </div>

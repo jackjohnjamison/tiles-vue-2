@@ -1,17 +1,17 @@
 import { defineStore } from 'pinia'
 import { tileTypes } from "@/lib/game/map"
 
-const defaultHueValue = 1
+const defaultHueValue = 0
 
 export const brushStore = defineStore('brush', {
   state: () => {
     return {
       selectedTileSetKey: Object.keys(tileTypes)[0],
       selectedTileSet: null,
-      currentBrush: null,
       floorHueValue: defaultHueValue,
       featureHueValue: defaultHueValue,
       spriteHues: {},
+      variant: null
     }
   },
 
@@ -21,6 +21,7 @@ export const brushStore = defineStore('brush', {
       this.selectedTileSetKey = tileSetKey
       this.floorHueValue = this.spriteHues[tileSetKey]?.floorHueValue || defaultHueValue
       this.featureHueValue = this.spriteHues[tileSetKey]?.featureHueValue || defaultHueValue
+      this.variant = null
     },
 
     setHues() {
@@ -30,10 +31,6 @@ export const brushStore = defineStore('brush', {
         floorHueValue,
         featureHueValue
       }
-    },
-
-    setBrush() {
-
-    },
+    }
   }
 })

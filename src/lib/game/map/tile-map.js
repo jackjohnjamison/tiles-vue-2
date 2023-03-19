@@ -1,5 +1,4 @@
 import { scene } from "../scene";
-import { tileTypes } from ".";
 import { sprites } from "../sprites";
 import pathfinding from "pathfinding";
 
@@ -33,8 +32,9 @@ const createTileMapFromParams = ({ xTiles, yTiles }) => {
   return tileMap;
 };
 
-const setTile = (tileIndex, tileMap, set, colors, variant = null) => {
-  const { floor, feature, walkable, type } = tileTypes[set];
+const setTile = (tileIndex, tileMap, brush) => {
+  const { selectedTileSet, floorHueValue, featureHueValue, variant } = brush
+  const { floor, feature, walkable, type } = selectedTileSet;
   const { x, y } = tileIndex;
 
   const tile = tileMap.tiles[x][y];
@@ -50,7 +50,7 @@ const setTile = (tileIndex, tileMap, set, colors, variant = null) => {
       tile.floor = {
         set: floor,
         variant: variant || getVariant(floor),
-        color: colors?.[type] || 0,
+        color: floorHueValue,
       };
       tile.feature = null;
       break;
@@ -61,12 +61,12 @@ const setTile = (tileIndex, tileMap, set, colors, variant = null) => {
       tile.floor = {
         set: floor,
         variant: linkedVariant,
-        color: colors?.floor || 0,
+        color: floorHueValue,
       };
       tile.feature = {
         set: feature,
         variant: linkedVariant,
-        color: colors?.feature || 0,
+        color: featureHueValue,
       };
       break;
 
@@ -74,7 +74,7 @@ const setTile = (tileIndex, tileMap, set, colors, variant = null) => {
       tile.feature = {
         set: feature,
         variant: variant || getVariant(feature),
-        color: colors?.feature || 0,
+        color: featureHueValue,
       };
       if (
         tile.type === "void" ||
@@ -84,7 +84,7 @@ const setTile = (tileIndex, tileMap, set, colors, variant = null) => {
         tile.floor = {
           set: floor,
           variant: getVariant(floor),
-          color: colors?.feature,
+          color: featureHueValue,
         };
       }
       break;
