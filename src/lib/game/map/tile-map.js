@@ -1,10 +1,18 @@
 import { scene } from "../scene";
 import { sprites } from "../sprites";
+import { tileTypes } from "./tile-types"
 import pathfinding from "pathfinding";
 
 const getVariant = (set) => {
   return Math.floor(Math.random() * sprites[set].length);
 };
+
+const defaultTile = {
+  selectedTileSet: tileTypes.grass,
+  floorHueValue: 0,
+  featureHueValue: 0,
+  variant: null
+}
 
 const createTileMapFromParams = ({ xTiles, yTiles }) => {
   const tileMap = {
@@ -25,7 +33,7 @@ const createTileMapFromParams = ({ xTiles, yTiles }) => {
 
   for (let x = 0; x < xTiles; x++) {
     for (let y = 0; y < yTiles; y++) {
-      setTile({ x, y }, tileMap, "grass");
+      setTile({ x, y }, tileMap, defaultTile);
     }
   }
 

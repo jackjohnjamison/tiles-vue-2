@@ -5,30 +5,20 @@
   import GameUi from './GameUi.vue'
   import PauseMenu from './PauseMenu.vue'
 
-  let canvasRoot
-  let floorCanvas
-  let canvasMid
-  let entityCanvas
-  let canvasTop
+  const canvases = {}
 
   onMounted(() => {
-    start({
-      canvasRoot,
-      floorCanvas,
-      canvasMid,
-      entityCanvas,
-      canvasTop
-    })
+    start(canvases)
   })
 </script>
 
 <template>
   <ToolBar />
-  <main class="canvasRoot" ref="canvasRoot">
-    <canvas class="layer-canvas" ref="floorCanvas" />
-    <canvas class="layer-canvas" ref="canvasMid" />
-    <canvas class="layer-canvas" ref="entityCanvas" />
-    <canvas class="layer-canvas canvas-top" ref="canvasTop" />
+  <main class="canvasRoot" :ref="el => canvases.canvasRoot = el">
+    <canvas class="layer-canvas" :ref="el => canvases.floorCanvas = el" />
+    <canvas class="layer-canvas" :ref="el => canvases.canvasMid = el" />
+    <canvas class="layer-canvas" :ref="el => canvases.entityCanvas = el" />
+    <canvas class="layer-canvas canvas-top" :ref="el => canvases.canvasTop = el" />
     <GameUi />
     <PauseMenu />
   </main>
