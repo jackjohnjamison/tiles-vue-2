@@ -1,7 +1,7 @@
 <script setup>
-  import TilePainter from './TilePainter.vue'
+  import TilePainter from '@/components/TilePainter.vue'
   import { modeStore } from "@/stores/mode";
-    import { pauseStore } from '@/stores/pause'
+  import { pauseStore } from '@/stores/pause'
 
   const pause = pauseStore()
   const mode = modeStore()

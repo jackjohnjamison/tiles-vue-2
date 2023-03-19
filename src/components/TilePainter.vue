@@ -80,7 +80,7 @@
         >{{tileSet.displayName}}</option>
       </select>
 
-      <!-- The Void brush -->
+      <!-- The Void (delete) brush -->
       <div v-if="brush.selectedTileSet.type === 'void'" class="brush">
         <div class="void-brush">X</div>
         <span>Delete tiles</span>
@@ -118,7 +118,7 @@
           </div>
         </div>
 
-        <!-- Hue sliders -->
+        <!-- Hue slider feature -->
         <div v-if="brush.selectedTileSet.feature">
           <div>
             <label for="featureHue">Feature Hue: </label>
@@ -135,6 +135,7 @@
           />
         </div>
 
+        <!-- Hue slider floor -->
         <div v-if="brush.selectedTileSet.type !== 'feature'">
           <div>
             <label for="floorHue">Floor Hue: </label>
