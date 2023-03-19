@@ -1,9 +1,37 @@
 <script setup>
+  import { onMounted } from 'vue'
+  import { additionalFunctions } from "@/lib/game/scene"
+
+  const monitorWidth = 150;
+  const monitorHeight = 70;
+  const deltaMaxMeasure = 100;
+
+  let monitor
+
+  onMounted(() => {
+    console.log(monitor);
+    const monitorCtx = monitor.getContext("2d")
+    monitorCtx.strokeStyle = "#ff0000";
+
+    additionalFunctions.push((delta) => {
+      monitorCtx.globalCompositeOperation = "copy";
+      monitorCtx.drawImage(monitor, -1, 0);
+      monitorCtx.globalCompositeOperation = "source-over";
+
+      const deltaLineTop =
+        monitorHeight - (delta / deltaMaxMeasure) * monitorHeight;
+
+      monitorCtx.beginPath();
+      monitorCtx.moveTo(monitorWidth, monitorHeight);
+      monitorCtx.lineTo(monitorWidth, deltaLineTop);
+      monitorCtx.stroke();
+    })
+  })
 
 </script>
 
 <template>
-  <div></div>
+  <canvas class="monitor" :width="monitorWidth" :height="monitorHeight" ref="monitor" />
 </template>
 
 <style lang="scss" scoped>

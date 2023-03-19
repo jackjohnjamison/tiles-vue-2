@@ -1,15 +1,13 @@
 <script setup>
-  import { onMounted } from 'vue'
   import { start } from '@/lib/game'
-  import ToolBar from './ToolBar.vue'
-  import GameUi from './GameUi.vue'
-  import PauseMenu from './PauseMenu.vue'
+  import ToolBar from '@/components/ToolBar.vue'
+  import GameUi from '@/components/GameUi.vue'
+  import PauseMenu from '@/components/PauseMenu.vue'
+  import FrameRateMonitor from '@/components/FrameRateMonitor.vue'
 
   const canvases = {}
 
-  onMounted(() => {
-    start(canvases)
-  })
+  start(canvases)
 </script>
 
 <template>
@@ -21,6 +19,7 @@
     <canvas class="layer-canvas canvas-top" :ref="function(el) { canvases.canvasTop = el }" />
     <GameUi />
     <PauseMenu />
+    <FrameRateMonitor />
   </main>
 </template>
 
