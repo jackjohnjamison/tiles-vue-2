@@ -106,7 +106,7 @@
           <div v-for="(sprite, i) in selectedTileSetSprites" :key="i" class="brush">
             <canvas
               class="sprite-canvas"
-              :ref="el => spriteCanvases[i] = el"
+              :ref="function(el) { spriteCanvases[i] = el }"
             />
             <input
               type="radio"

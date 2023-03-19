@@ -14,11 +14,11 @@
 
 <template>
   <ToolBar />
-  <main class="canvasRoot" :ref="el => canvases.canvasRoot = el">
-    <canvas class="layer-canvas" :ref="el => canvases.floorCanvas = el" />
-    <canvas class="layer-canvas" :ref="el => canvases.canvasMid = el" />
-    <canvas class="layer-canvas" :ref="el => canvases.entityCanvas = el" />
-    <canvas class="layer-canvas canvas-top" :ref="el => canvases.canvasTop = el" />
+  <main class="canvasRoot" :ref="function(el) { canvases.canvasRoot = el }">
+    <canvas class="layer-canvas" :ref="function(el) { canvases.floorCanvas = el }" />
+    <canvas class="layer-canvas" :ref="function(el) { canvases.canvasMid = el }" />
+    <canvas class="layer-canvas" :ref="function(el) { canvases.entityCanvas = el }" />
+    <canvas class="layer-canvas canvas-top" :ref="function(el) { canvases.canvasTop = el }" />
     <GameUi />
     <PauseMenu />
   </main>
