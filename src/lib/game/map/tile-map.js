@@ -57,7 +57,7 @@ const setTile = (tileIndex, tileMap, brush) => {
     case "floor":
       tile.floor = {
         set: floor,
-        variant: variant || getVariant(floor),
+        variant: variant ?? getVariant(floor),
         color: floorHueValue,
       };
       tile.feature = null;
@@ -65,7 +65,7 @@ const setTile = (tileIndex, tileMap, brush) => {
 
     case "linked":
       // eslint-disable-next-line no-case-declarations
-      const linkedVariant = variant || getVariant(floor);
+      const linkedVariant = variant ?? getVariant(floor);
       tile.floor = {
         set: floor,
         variant: linkedVariant,
@@ -81,7 +81,7 @@ const setTile = (tileIndex, tileMap, brush) => {
     case "feature":
       tile.feature = {
         set: feature,
-        variant: variant || getVariant(feature),
+        variant: variant ?? getVariant(feature),
         color: featureHueValue,
       };
       if (
