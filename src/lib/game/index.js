@@ -1,9 +1,9 @@
 import { scene } from "./scene";
 import { sprites } from "./sprites";
 
-const start = async () => {
+const start = async (canvases) => {
   await sprites.load();
-  scene.start("riddle");
+  scene.start(canvases, "riddle");
   window.dump = () => console.log(scene);
 };
 

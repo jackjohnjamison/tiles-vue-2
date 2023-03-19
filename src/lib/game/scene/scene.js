@@ -1,4 +1,3 @@
-// import { Root } from "../../jsx/root";
 import { createTileMapFromParams, loadMapFromImport } from "../map";
 import { setView } from "./set-view";
 import { createEntityMap, entity, unit, npc } from "../entities";
@@ -17,23 +16,12 @@ import { modeStore } from '@/stores/mode'
 const scene = {};
 
 // Sets parts of the scene that don't change between map loads
-scene.start = async (map) => {
-  // Change these get element calls for refs
-  const root = document.getElementById("canvasRoot");
-  scene.canvasRoot = root
+scene.start = async (canvases, map) => {
+  Object.assign(scene, canvases)
 
-  scene.floorCanvas = document.getElementById("floorCanvas");
   scene.floorCtx = scene.floorCanvas.getContext("2d", { alpha: false });
-
-  // Canvas 2 for ui effects
-  scene.canvasMid = document.getElementById("canvasMid");
   scene.ctxMid = scene.canvasMid.getContext("2d");
-
-  scene.entityCanvas = document.getElementById("entityCanvas");
   scene.entityCtx = scene.entityCanvas.getContext("2d");
-
-  // Canvas 4 for ui effects and mouse interactions
-  scene.canvasTop = document.getElementById("canvasTop");
   scene.ctxTop = scene.canvasTop.getContext("2d");
 
   scene.monitor = frameRateMonitor();
