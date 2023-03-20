@@ -157,7 +157,6 @@
 
 <style lang="scss" scoped>
   button, input, select, label {
-    cursor: pointer;
     margin: 2px;
   }
 

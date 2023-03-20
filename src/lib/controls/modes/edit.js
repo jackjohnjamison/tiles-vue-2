@@ -3,8 +3,6 @@ import { movementMarkers } from '../movment-markers'
 import { findHoveredTile, paintTile, unsetTileLock } from '../../map'
 import { noop } from '../../constants'
 import { sprites } from '@/lib/sprites'
-
-// Tempory inports until this can be moved somewhere more sensible
 import { panelStore } from '@/stores/editor-panel'
 import { entityActionStore } from '@/stores/entity-actions'
 import { npc } from '@/lib/entities'
@@ -17,10 +15,18 @@ const addNpc = (tileIndex) => {
   _npc.addToScene(tileIndex)
 }
 
+const addTravelPoint = (tileIndex) => {
+  console.log('Add travel point')
+}
+
 const rightClickAction = (tileIndex, action) => {
   switch (action) {
     case 'addNpc':
       addNpc(tileIndex)
+      break
+
+    case 'travelPoint':
+      addTravelPoint(tileIndex)
       break
 
     default:
