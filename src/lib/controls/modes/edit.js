@@ -6,13 +6,34 @@ import { sprites } from '@/lib/sprites'
 
 // Tempory inports until this can be moved somewhere more sensible
 import { panelStore } from '@/stores/editor-panel'
+import { entityActionStore } from '@/stores/entity-actions'
 import { npc } from '@/lib/entities'
+
+const addNpc = (tileIndex) => {
+  const _npc = new npc({
+    sprite: sprites.playerTokens.despoiler,
+    haloColor: 'red'
+  })
+  _npc.addToScene(tileIndex)
+}
+
+const rightClickAction = (tileIndex, action) => {
+  switch (action) {
+    case 'addNpc':
+      addNpc(tileIndex)
+      break
+
+    default:
+    // Do nothing
+  }
+}
 
 const editMode = {}
 
 editMode.set = () => {
   const { hoveredTile, mouse, player, canvasTop } = scene
   const panel = panelStore()
+  const entityAction = entityActionStore()
 
   mouse.onMouseMove = () => {
     if (mouse.buttonCode === 1) {
@@ -23,15 +44,14 @@ editMode.set = () => {
   mouse.onMouseUp = () => {
     const validClick = hoveredTile.tileIndex && !mouse.isDragged
 
-    if (mouse.buttonCode === 1 && validClick) {
-      player.requestMove(hoveredTile.tileIndex)
-    } else if (mouse.buttonCode === 3 && validClick && panel.activePanel === 'entities') {
-      // Add NPC function. To be moved out as the entity dialog develops, possibly into its own mode entirely
-      const _npc = new npc({
-        sprite: sprites.playerTokens.despoiler,
-        haloColor: 'red'
-      })
-      _npc.addToScene(hoveredTile.tileIndex)
+    if (validClick) {
+      const isEditingEntities = panel.activePanel === 'entities'
+
+      if (mouse.buttonCode === 1) {
+        player.requestMove(hoveredTile.tileIndex)
+      } else if (mouse.buttonCode === 3 && isEditingEntities) {
+        rightClickAction(hoveredTile.tileIndex, entityAction.action)
+      }
     }
 
     unsetTileLock()
