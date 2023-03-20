@@ -1,6 +1,7 @@
 <script setup>
   import { panelStore } from '@/stores/editor-panel'
   import TilePainter from '@/components/TilePainter.vue'
+  import EntityDialog from '@/components/EntityDialog.vue'
 
   const panel = panelStore()
   let tilesDeselected
@@ -22,11 +23,9 @@
       <button role="tab" @click="setActivePanel('tiles')" :class="{ deselected: tilesDeselected }">Tile Painter</button>
       <button role="tab" @click="setActivePanel('entities')" :class="{ deselected: entitiesDeselected }">Entities</button>
     </div>
-    <TilePainter v-if="panel.activePanel === 'tiles'" />
 
-    <section v-else-if="panel.activePanel === 'entities'">
-      <p>ENTITIES!!!</p>
-    </section>
+    <TilePainter v-if="panel.activePanel === 'tiles'" />
+    <EntityDialog v-else-if="panel.activePanel === 'entities'" />
   </div>
 </template>
 

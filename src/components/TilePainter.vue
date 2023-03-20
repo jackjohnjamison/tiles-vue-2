@@ -68,8 +68,8 @@
 </script>
 
 <template>
-  <section class="tilePainter">
-    <select class="terrainType" :value="selectedTileSetKey"
+  <section class="tile-painter">
+    <select class="terrain-type" :value="selectedTileSetKey"
       v-model="selectedTileSetKey"
       @change="setSelectedTileSet()">
       <option 
@@ -161,11 +161,11 @@
     margin: 2px;
   }
 
-  .tilePainter {
+  .tile-painter {
     margin: 10px;
     min-width: 250px;
   
-    .terrainType {
+    .terrain-type {
       font-family: var(--font);
       font-weight: 500;
       font-size: 16px;

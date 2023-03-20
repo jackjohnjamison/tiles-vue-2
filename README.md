@@ -38,6 +38,7 @@ npm run lint
 - Organise CSS, sass of css variables? Maybe just pick one
 - Decide what to do with imports, should the be all @/lib etc. Maybe move game up to lib as there is nothing else in the lib file
 - Think about prettier and css linting
-- Switch to enums for game modes
-- Use the improved image import script from tanks
-- Move some CSS into the html so the background colour is set. Maybe add a "Turn of JavaScript" message
+- Switch to enums for game modes, maybe
+- Use the improved image import script from tanks - looks harder than I thought!
+- Make the editor tabs accesible, maybe more the sections up a level, re-use CSS,
+they should poobably have a consistant width most of the time at least

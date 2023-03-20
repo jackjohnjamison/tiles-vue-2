@@ -1,59 +1,71 @@
-import { scene, panCameraKeys, panCameraTo } from "../../scene";
-import { movementMarkers } from "../movment-markers";
-// import { resetBrushes } from "../../../jsx/tile-painter";
-import { findHoveredTile, paintTile, unsetTileLock } from "../../map";
-import { noop } from "../../constants";
+import { scene, panCameraKeys, panCameraTo } from '../../scene'
+import { movementMarkers } from '../movment-markers'
+import { findHoveredTile, paintTile, unsetTileLock } from '../../map'
+import { noop } from '../../constants'
+import { sprites } from '@/lib/sprites'
 
-const editMode = {};
+// Tempory inports until this can be moved somewhere more sensible
+import { panelStore } from '@/stores/editor-panel'
+import { npc } from '@/lib/entities'
+
+const editMode = {}
 
 editMode.set = () => {
-  const { hoveredTile, mouse, player, canvasTop } = scene;
-
-  // // Sets initial state of the tile painter UI
-  // resetBrushes();
+  const { hoveredTile, mouse, player, canvasTop } = scene
+  const panel = panelStore()
 
   mouse.onMouseMove = () => {
     if (mouse.buttonCode === 1) {
-      panCameraTo(-mouse.drag.x, -mouse.drag.y);
+      panCameraTo(-mouse.drag.x, -mouse.drag.y)
     }
-  };
+  }
 
   mouse.onMouseUp = () => {
-    if (mouse.buttonCode === 1 && hoveredTile.tileIndex && !mouse.isDragged) {
-      player.requestMove(hoveredTile.tileIndex);
+    const validClick = hoveredTile.tileIndex && !mouse.isDragged
+
+    if (mouse.buttonCode === 1 && validClick) {
+      player.requestMove(hoveredTile.tileIndex)
+    } else if (mouse.buttonCode === 3 && validClick && panel.activePanel === 'entities') {
+      // Add NPC function. To be moved out as the entity dialog develops, possibly into its own mode entirely
+      const _npc = new npc({
+        sprite: sprites.playerTokens.despoiler,
+        haloColor: 'red'
+      })
+      _npc.addToScene(hoveredTile.tileIndex)
     }
-    unsetTileLock();
-  };
+
+    unsetTileLock()
+  }
 
   scene.onFrameControls = (delta) => {
-    panCameraKeys(delta);
+    panCameraKeys(delta)
 
-    hoveredTile.tileIndex = findHoveredTile({ x: mouse.x, y: mouse.y });
+    hoveredTile.tileIndex = findHoveredTile({ x: mouse.x, y: mouse.y })
 
     if (hoveredTile.tileIndex) {
       // Cursor state
       if (mouse.isDragged) {
-        canvasTop.style.cursor = "grabbing";
+        canvasTop.style.cursor = 'grabbing'
       } else {
-        canvasTop.style.cursor = "pointer";
+        canvasTop.style.cursor = 'pointer'
       }
     } else {
-      canvasTop.style.cursor = "default";
+      canvasTop.style.cursor = 'default'
     }
 
-    movementMarkers(hoveredTile.tileIndex);
+    movementMarkers(hoveredTile.tileIndex)
 
-    if (hoveredTile.tileIndex) {
-      if (mouse.buttonCode === 3) paintTile(hoveredTile.tileIndex);
+    if (hoveredTile.tileIndex && panel.activePanel === 'tiles') {
+      if (mouse.buttonCode === 3) paintTile(hoveredTile.tileIndex)
     }
-  };
-};
+  }
+}
 
 editMode.unset = () => {
-  const { mouse, player } = scene;
-  player.unsetPath();
-  mouse.onMouseMove = noop;
-  mouse.onMouseUp = noop;
-};
+  const { mouse, player } = scene
+  player.unsetPath()
+  mouse.onMouseMove = noop
+  mouse.onMouseUp = noop
+}
 
-export { editMode };
+export { editMode }
