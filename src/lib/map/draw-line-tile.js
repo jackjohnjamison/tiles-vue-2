@@ -23,22 +23,22 @@ const drawLineTile = ({ x, y, strokeColor, fillColor }) => {
 
 // These functions can probably have less duplication when I have the time
 const drawLineTileMarker = ({ x, y, strokeColor, fillColor }) => {
-  const { floorCtx } = scene
+  const { entityCtx } = scene
 
   const position = tileIndexToPosition({ x, y })
-  floorCtx.strokeStyle = strokeColor
-  floorCtx.fillStyle = fillColor
+  entityCtx.strokeStyle = strokeColor
+  entityCtx.fillStyle = fillColor
 
   // Draw tile outline
-  floorCtx.beginPath()
-  floorCtx.moveTo(position.x, position.y + tileHeight / 2)
-  floorCtx.lineTo(position.x + tileWidth / 2, position.y)
-  floorCtx.lineTo(position.x + tileWidth, position.y + tileHeight / 2)
-  floorCtx.lineTo(position.x + tileWidth / 2, position.y + tileHeight)
-  floorCtx.closePath()
+  entityCtx.beginPath()
+  entityCtx.moveTo(position.x, position.y + tileHeight / 2)
+  entityCtx.lineTo(position.x + tileWidth / 2, position.y)
+  entityCtx.lineTo(position.x + tileWidth, position.y + tileHeight / 2)
+  entityCtx.lineTo(position.x + tileWidth / 2, position.y + tileHeight)
+  entityCtx.closePath()
 
-  floorCtx.fill()
-  floorCtx.stroke()
+  entityCtx.fill()
+  entityCtx.stroke()
 }
 
 export { drawLineTile, drawLineTileMarker }

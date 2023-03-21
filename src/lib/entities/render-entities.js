@@ -1,11 +1,18 @@
 import { scene } from '../scene'
 import { getSpriteImage } from '../sprites'
+import { drawLineTileMarker } from '../map'
 
 const renderEntities = (x, y) => {
   const { tileMap, entityMap } = scene
   const tile = tileMap.tiles[x][y]
   const { feature, position } = tile
   const entityMapLocation = entityMap.entities[x][y]
+
+  if (tile.marker) {
+    const { strokeColor, fillColor } = tile.marker
+
+    drawLineTileMarker({ x, y, strokeColor, fillColor })
+  }
 
   if (entityMapLocation) {
     entityMapLocation()

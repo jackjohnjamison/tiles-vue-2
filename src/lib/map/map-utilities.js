@@ -1,6 +1,6 @@
 import { scene, redrawTile } from '../scene'
 import { getSpriteImage } from '../sprites'
-import { drawLineTile, drawLineTileMarker } from '.'
+import { drawLineTile } from '.'
 import { hoveredTileColor, tileWidth, tileHeight } from '../constants'
 
 const drawImageTile = ({ x, y, image }) => {
@@ -22,13 +22,6 @@ const renderTile = (x, y) => {
       y,
       image: getSpriteImage(set, color, variant)
     })
-
-    if (tile.marker) {
-      const { strokeColor, fillColor } = tile.marker
-      console.log('I RAN')
-
-      drawLineTileMarker({ x, y, strokeColor, fillColor })
-    }
   }
 }
 
