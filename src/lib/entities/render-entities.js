@@ -1,5 +1,4 @@
 import { scene } from '../scene'
-import { tileIndexToPosition } from '../map'
 import { getSpriteImage } from '../sprites'
 
 const renderEntities = (x, y) => {
@@ -7,9 +6,7 @@ const renderEntities = (x, y) => {
 
   const tile = tileMap.tiles[x]?.[y]
   if (tile) {
-    const { feature } = tile
-
-    const position = tileIndexToPosition({ x, y })
+    const { feature, position } = tile
 
     const entityMapLocation = entityMap.entities[x][y]
 

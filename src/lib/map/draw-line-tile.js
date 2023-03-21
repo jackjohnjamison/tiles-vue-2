@@ -24,7 +24,6 @@ const drawLineTile = ({ x, y, strokeColor, fillColor }) => {
 // These functions can probably have less duplication when I have the time
 const drawLineTileMarker = ({ x, y, strokeColor, fillColor }) => {
   const { floorCtx } = scene
-  console.log(floorCtx)
 
   const position = tileIndexToPosition({ x, y })
   floorCtx.strokeStyle = strokeColor
