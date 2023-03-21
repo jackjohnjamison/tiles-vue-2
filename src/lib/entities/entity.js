@@ -1,69 +1,69 @@
-import { scene, redrawEntities } from "../scene";
-import { getId } from "../utilities";
-import { tileIndexToPosition, setWalkable } from "../map";
-import { sprites } from "../sprites";
-import { drawEllipse } from "../effects";
-import { defaultHaloColor, baseMarkerSize } from "../constants";
+import { scene, redrawEntities } from '../scene'
+import { getId } from '../utilities'
+import { tileIndexToPosition, setWalkable } from '../map'
+import { sprites } from '../sprites'
+import { drawEllipse } from '../effects'
+import { defaultHaloColor, baseMarkerSize } from '../constants'
 
 class entity {
   constructor({ sprite, haloColor }) {
-    this.sprite = sprite || sprites.playerTokens.sheild;
-    this.haloColor = haloColor || defaultHaloColor;
-    this.id = getId();
+    this.sprite = sprite || sprites.playerTokens.sheild
+    this.haloColor = haloColor || defaultHaloColor
+    this.id = getId()
     this.position = {
       x: 0,
-      y: 0,
-    };
+      y: 0
+    }
   }
 
-  afterAdd = () => {};
+  afterAdd = () => {}
 
   addToScene = (tileIndex) => {
-    const { entityMap } = scene;
-    const { id, render, redraw, afterAdd } = this;
+    const { entityMap } = scene
+    const { render, redraw, afterAdd } = this
 
-    this.tileIndex = tileIndex;
-    this.position = tileIndexToPosition(tileIndex);
-    this.positionPrevious = this.position;
-    this.redrawEntities = redrawEntities;
+    this.tileIndex = tileIndex
+    this.position = tileIndexToPosition(tileIndex)
+    this.positionPrevious = this.position
+    this.redrawEntities = redrawEntities
 
     entityMap.addEntity({
       tileIndex,
-      render,
-    });
+      render
+    })
 
-    setWalkable(tileIndex, false);
+    setWalkable(tileIndex, false)
 
-    scene.entities.push(this);
-    afterAdd();
-    redraw();
-  };
+    scene.entities.push(this)
+    afterAdd()
+    redraw()
+  }
 
   render = () => {
-    const { entityCtx } = scene;
-    const { sprite, position, haloColor } = this;
+    const { entityCtx } = scene
+    const { sprite, position, haloColor } = this
 
-    drawEllipse(position, haloColor, baseMarkerSize, entityCtx);
+    drawEllipse(position, haloColor, baseMarkerSize, entityCtx)
 
     entityCtx.drawImage(
       sprite.data,
       Math.round(position.x),
       Math.round(position.y - sprite.yOffset)
-    );
-  };
+    )
+  }
 
   redraw = () => {
-    const { tileIndex, position, positionPrevious } = this;
+    const { tileIndex, position, positionPrevious } = this
 
-    this.redrawEntities(tileIndex, position, positionPrevious);
+    this.redrawEntities(tileIndex, position, positionPrevious)
 
     this.positionPrevious = {
       x: position.x,
-      y: position.y,
-    };
-  };
+      y: position.y
+    }
+  }
 
   update() {}
 }
 
-export { entity };
+export { entity }
