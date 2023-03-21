@@ -25,11 +25,13 @@ const drawLineTile = ({ x, y, strokeColor, fillColor }) => {
 const drawLineTileMarker = ({ x, y, strokeColor, fillColor }) => {
   const { entityCtx } = scene
 
+  const markerOffset = -3
+
   const position = tileIndexToPosition({ x, y })
   entityCtx.strokeStyle = strokeColor
   entityCtx.fillStyle = fillColor
+  entityCtx.setLineDash([0, 2, 2])
 
-  // Draw tile outline
   entityCtx.beginPath()
   entityCtx.moveTo(position.x, position.y + tileHeight / 2)
   entityCtx.lineTo(position.x + tileWidth / 2, position.y)
@@ -39,6 +41,18 @@ const drawLineTileMarker = ({ x, y, strokeColor, fillColor }) => {
 
   entityCtx.fill()
   entityCtx.stroke()
+
+  entityCtx.beginPath()
+  entityCtx.moveTo(position.x, position.y + tileHeight / 2 + markerOffset)
+  entityCtx.lineTo(position.x + tileWidth / 2, position.y + markerOffset)
+  entityCtx.lineTo(position.x + tileWidth, position.y + tileHeight / 2 + markerOffset)
+  entityCtx.lineTo(position.x + tileWidth / 2, position.y + tileHeight + markerOffset)
+  entityCtx.closePath()
+
+  entityCtx.fill()
+  entityCtx.stroke()
+
+  entityCtx.setLineDash([])
 }
 
 export { drawLineTile, drawLineTileMarker }

@@ -18,7 +18,7 @@ const addNpc = (tileIndex) => {
 const addTravelPoint = (tileIndex) => {
   const { x, y } = tileIndex
 
-  addTileMarker(x, y, '#639', 'rgba(102, 51, 153, .3)')
+  addTileMarker(x, y, 'rgba(250, 227, 17, .8)', 'rgba(255, 248, 184, .3)')
 }
 
 const rightClickAction = (tileIndex, action) => {
