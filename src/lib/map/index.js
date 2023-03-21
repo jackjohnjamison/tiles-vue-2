@@ -1,26 +1,27 @@
-import { isWalkable, setWalkable } from "./is-walkable";
-import { paintTile, unsetTileLock } from "./paint-tile";
-import { drawLineTile } from "./draw-line-tile";
+import { isWalkable, setWalkable } from './is-walkable'
+import { paintTile, unsetTileLock } from './paint-tile'
+import { drawLineTile, drawLineTileMarker } from './draw-line-tile'
 import {
   createTileMapFromParams,
   loadMapFromImport,
   saveTileMaptoJSON,
-  loadTileMapFromJSON,
-} from "./tile-map";
-import { tileTypes } from "./tile-types";
+  loadTileMapFromJSON
+} from './tile-map'
+import { tileTypes } from './tile-types'
 
 import {
   drawImageTile,
-  renderGrid,
+  renderTile,
   findHoveredTile,
   highlightTile,
   positionToTileIndex,
   tileIndexToPosition,
-} from "./map-utilities";
+  addTileMarker
+} from './map-utilities'
 
 export {
   drawImageTile,
-  renderGrid,
+  renderTile,
   findHoveredTile,
   highlightTile,
   positionToTileIndex,
@@ -34,5 +35,7 @@ export {
   setWalkable,
   paintTile,
   unsetTileLock,
-  tileTypes,
-};
+  addTileMarker,
+  drawLineTileMarker,
+  tileTypes
+}

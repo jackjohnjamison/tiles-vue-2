@@ -1,6 +1,6 @@
 import { scene, panCameraKeys, panCameraTo } from '../../scene'
 import { movementMarkers } from '../movment-markers'
-import { findHoveredTile, paintTile, unsetTileLock } from '../../map'
+import { findHoveredTile, paintTile, unsetTileLock, addTileMarker } from '../../map'
 import { noop } from '../../constants'
 import { sprites } from '@/lib/sprites'
 import { panelStore } from '@/stores/editor-panel'
@@ -16,7 +16,9 @@ const addNpc = (tileIndex) => {
 }
 
 const addTravelPoint = (tileIndex) => {
-  console.log('Add travel point')
+  const { x, y } = tileIndex
+
+  addTileMarker(x, y, '#639', 'rgba(102, 51, 153, .3)')
 }
 
 const rightClickAction = (tileIndex, action) => {
