@@ -35,7 +35,6 @@ const redrawTile = (tileIndex) => {
 
     if (tileMap.tiles[x]?.[y]) {
       renderTile(x, y)
-      // render entities is also checking if the tile exists. Can this be moved so it is only checked once?
       renderEntities(x, y)
     }
   })
@@ -45,7 +44,7 @@ const redrawTile = (tileIndex) => {
 }
 
 const redrawEntities = (tileIndex, position, positionPrevious) => {
-  const { entityCtx } = scene
+  const { entityCtx, tileMap } = scene
 
   const redrawWindowOrigin = {
     x: Math.floor(Math.min(position.x, positionPrevious.x)),
@@ -67,7 +66,10 @@ const redrawEntities = (tileIndex, position, positionPrevious) => {
   redrawTileIndicesEntity.forEach((index) => {
     const x = index.x + tileIndex.x
     const y = index.y + tileIndex.y
-    renderEntities(x, y)
+
+    if (tileMap.tiles[x]?.[y]) {
+      renderEntities(x, y)
+    }
   })
 
   entityCtx.restore()
