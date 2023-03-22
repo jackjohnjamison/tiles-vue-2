@@ -6,11 +6,19 @@
 
 <template>
   <section class="entity-dialog">
-    <select class="entity-action-select" v-model="entityAction.action">
+    <select v-model="entityAction.action">
       <option value="addNpc">Add NPC</option>
       <option value="travelPoint">Travel Point</option>
       <option value="delete">Delete Entity</option>
     </select>
+
+    <div v-if="entityAction.action === 'travelPoint'">
+      <select v-model="entityAction.mapName">
+        <option value="windows">Windows</option>
+        <option value="lake">The Lake</option>
+      </select>
+    </div>
+
   </section>
 </template>
 
@@ -20,7 +28,7 @@
   }
 
   // Move to common CSS location with the terrain type select
-  .entity-action-select {
+  select {
     font-family: var(--font);
     font-weight: 500;
     font-size: 16px;
