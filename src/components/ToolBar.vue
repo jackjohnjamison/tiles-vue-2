@@ -3,10 +3,8 @@
 
   const mode = modeStore()
   
-  const switchMode = (event) => {
-    const type = event.target._value
-
-    mode.set(type);
+  const switchMode = () => {
+    mode.set(mode.mode);
   }
 </script>
 
