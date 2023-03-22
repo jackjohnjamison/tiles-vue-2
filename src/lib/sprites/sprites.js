@@ -190,6 +190,8 @@ sprites.load = async () => {
       data: await sheild
     }
   }
+
+  Object.freeze(sprites)
 }
 
 export { sprites }

@@ -4,6 +4,7 @@
   import GameUi from '@/components/GameUi.vue'
   import PauseMenu from '@/components/PauseMenu.vue'
   import FrameRateMonitor from '@/components/FrameRateMonitor.vue'
+  import TileInfo from '@/components/TileInfo.vue'
 
   const canvases = {}
 
@@ -20,6 +21,7 @@
     <GameUi />
     <FrameRateMonitor />
     <PauseMenu />
+    <TileInfo />
   </main>
 </template>
 

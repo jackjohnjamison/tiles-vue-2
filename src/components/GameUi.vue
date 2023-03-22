@@ -1,6 +1,7 @@
 <script setup>
   import EditorPanel from '@/components/EditorPanel.vue'
-  import { modeStore } from "@/stores/mode";
+  
+  import { modeStore } from "@/stores/mode"
   import { pauseStore } from '@/stores/pause'
 
   const pause = pauseStore()

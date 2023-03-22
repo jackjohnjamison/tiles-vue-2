@@ -5,6 +5,7 @@ import { noop } from '../../constants'
 import { sprites } from '@/lib/sprites'
 import { panelStore } from '@/stores/editor-panel'
 import { entityActionStore } from '@/stores/entity-actions'
+import { hoveredTileStore } from '@/stores/hovered-tile'
 import { npc } from '@/lib/entities'
 
 const addNpc = (tileIndex) => {
@@ -47,6 +48,7 @@ const editMode = {}
 editMode.set = () => {
   const { hoveredTile, mouse, player, canvasTop } = scene
   const panel = panelStore()
+  const hoveredTileTracker = hoveredTileStore()
   const entityAction = entityActionStore()
 
   mouse.onMouseMove = () => {
@@ -77,6 +79,9 @@ editMode.set = () => {
     hoveredTile.tileIndex = findHoveredTile({ x: mouse.x, y: mouse.y })
 
     if (hoveredTile.tileIndex) {
+      // Refactor to use this and not scene hovered tile
+      hoveredTileTracker.updateHoveredTile(hoveredTile.tileIndex)
+
       // Cursor state
       if (mouse.isDragged) {
         canvasTop.style.cursor = 'grabbing'
