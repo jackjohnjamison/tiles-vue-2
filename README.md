@@ -43,3 +43,7 @@ npm run lint
 - Use the improved image import script from tanks - looks harder than I thought!
 - Make the editor tabs accesible, maybe more the sections up a level, re-use CSS,
 they should poobably have a consistant width most of the time at least
+
+- Looking into hovered tile, can the pinia imlamentation be used in the rest of the code. What is hovered tile currently used for?
+- Get the travel point dialog to look in the file system for avalible maps and define entry point
+- Move about the edit UI to be more sensible before it gets oot of control
