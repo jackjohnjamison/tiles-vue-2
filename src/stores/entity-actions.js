@@ -5,7 +5,9 @@ export const entityActionStore = defineStore('entityAction', {
     return {
       action: 'addNpc',
       mapName: 'windows',
-      destinationIndex: { x: 0, y: 0 }
+      destinationIndex: { x: 0, y: 0 },
+      travelX: null,
+      travelY: null
     }
   },
 
