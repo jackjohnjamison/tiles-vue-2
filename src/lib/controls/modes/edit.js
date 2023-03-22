@@ -1,12 +1,12 @@
-import { scene, panCameraKeys, panCameraTo } from '../../scene'
-import { movementMarkers } from '../movment-markers'
-import { findHoveredTile, paintTile, unsetTileLock, addTileMarker } from '../../map'
-import { noop } from '../../constants'
+import { scene, panCameraTo } from '@/lib/scene'
+import { paintTile, unsetTileLock, addTileMarker } from '@/lib/map'
+import { noop } from '@/lib/constants'
 import { sprites } from '@/lib/sprites'
+import { npc } from '@/lib/entities'
 import { panelStore } from '@/stores/editor-panel'
+import { commonOnFrameControls } from './common-functions'
 import { entityActionStore } from '@/stores/entity-actions'
 import { hoveredTileStore } from '@/stores/hovered-tile'
-import { npc } from '@/lib/entities'
 
 const addNpc = (tileIndex) => {
   const _npc = new npc({
@@ -46,9 +46,9 @@ const rightClickAction = (tileIndex, action) => {
 const editMode = {}
 
 editMode.set = () => {
-  const { hoveredTile, mouse, player, canvasTop } = scene
+  const { mouse, player } = scene
   const panel = panelStore()
-  const hoveredTileTracker = hoveredTileStore()
+  const hoveredTile = hoveredTileStore()
   const entityAction = entityActionStore()
 
   mouse.onMouseMove = () => {
@@ -74,27 +74,9 @@ editMode.set = () => {
   }
 
   scene.onFrameControls = (delta) => {
-    panCameraKeys(delta)
+    commonOnFrameControls(delta)
 
-    hoveredTile.tileIndex = findHoveredTile({ x: mouse.x, y: mouse.y })
-
-    if (hoveredTile.tileIndex) {
-      // Refactor to use this and not scene hovered tile
-      hoveredTileTracker.updateHoveredTile(hoveredTile.tileIndex)
-
-      // Cursor state
-      if (mouse.isDragged) {
-        canvasTop.style.cursor = 'grabbing'
-      } else {
-        canvasTop.style.cursor = 'pointer'
-      }
-    } else {
-      canvasTop.style.cursor = 'default'
-    }
-
-    movementMarkers(hoveredTile.tileIndex)
-
-    if (hoveredTile.tileIndex && panel.activePanel === 'tiles') {
+    if (hoveredTile.tileIsHovered && panel.activePanel === 'tiles') {
       if (mouse.buttonCode === 3) paintTile(hoveredTile.tileIndex)
     }
   }

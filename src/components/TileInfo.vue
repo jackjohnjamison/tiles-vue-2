@@ -7,7 +7,7 @@
 </script>
 
 <template>
-  <aside v-if="mode.mode === 'editMode'" class="tile-info">
+  <aside v-if="mode.mode === 'editMode' && hoveredTile.tileIsHovered" class="tile-info">
     Current tile ( x: {{ hoveredTile.tileIndex.x }} y: {{ hoveredTile.tileIndex.y }})
   </aside>
 </template>

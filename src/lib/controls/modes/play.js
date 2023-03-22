@@ -1,52 +1,37 @@
-import { scene, panCameraKeys, panCameraTo } from "../../scene";
-import { movementMarkers } from "../movment-markers";
-import { findHoveredTile } from "../../map";
-import { noop } from "../../constants";
+import { scene, panCameraTo } from '@/lib/scene'
+import { commonOnFrameControls } from './common-functions'
+import { noop } from '@/lib/constants'
+import { hoveredTileStore } from '@/stores/hovered-tile'
 
-const playMode = {};
+const playMode = {}
 
 playMode.set = () => {
-  const { hoveredTile, mouse, player, canvasTop } = scene;
+  const { mouse, player } = scene
+  const hoveredTile = hoveredTileStore()
 
   mouse.onMouseMove = () => {
     if (mouse.buttonCode === 1) {
-      panCameraTo(-mouse.drag.x, -mouse.drag.y);
+      panCameraTo(-mouse.drag.x, -mouse.drag.y)
     }
-  };
+  }
 
   mouse.onMouseUp = () => {
     if (mouse.buttonCode === 1 && hoveredTile.tileIndex && !mouse.isDragged) {
-      player.requestMove(hoveredTile.tileIndex);
-      hoveredTile.path.length = 0;
-      scene.redrawEffects = true;
+      player.requestMove(hoveredTile.tileIndex)
+      scene.redrawEffects = true
     }
-  };
+  }
 
   scene.onFrameControls = (delta) => {
-    panCameraKeys(delta);
-
-    hoveredTile.tileIndex = findHoveredTile({ x: mouse.x, y: mouse.y });
-
-    if (hoveredTile.tileIndex) {
-      // Cursor state
-      if (mouse.isDragged) {
-        canvasTop.style.cursor = "grabbing";
-      } else {
-        canvasTop.style.cursor = "pointer";
-      }
-    } else {
-      canvasTop.style.cursor = "default";
-    }
-
-    movementMarkers(hoveredTile.tileIndex);
-  };
-};
+    commonOnFrameControls(delta)
+  }
+}
 
 playMode.unset = () => {
-  const { mouse, player } = scene;
-  player.unsetPath();
-  mouse.onMouseMove = noop;
-  mouse.onMouseUp = noop;
-};
+  const { mouse, player } = scene
+  player.unsetPath()
+  mouse.onMouseMove = noop
+  mouse.onMouseUp = noop
+}
 
-export { playMode };
+export { playMode }

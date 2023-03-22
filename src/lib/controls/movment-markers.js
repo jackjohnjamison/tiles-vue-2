@@ -1,68 +1,53 @@
-import { scene } from "../scene";
-import { findPath } from "../find-path";
-import { tileIndexToPosition, isWalkable, highlightTile } from "../map";
-import { breadcrumbTrail, drawEllipse } from "../effects";
-import { baseMarkerSize, hoveredTileOutlineColor } from "../constants";
+import { scene } from '@/lib/scene'
+import { tileIndexToPosition, isWalkable, highlightTile } from '@/lib/map'
+import { breadcrumbTrail, drawEllipse } from '@/lib/effects'
+import { baseMarkerSize, hoveredTileOutlineColor } from '@/lib/constants'
+import { hoveredTileStore } from '@/stores/hovered-tile'
 
-let hoveredTileIndexPrevious = null;
-
-const movementMarkers = (hoveredTileIndex) => {
+const movementMarkers = () => {
   const {
-    hoveredTile,
     player,
     ctxMid,
     ctxTop,
     canvasTop,
-    view: { translate },
-  } = scene;
+    view: { translate }
+  } = scene
 
-  const tileIndexChanged =
-    JSON.stringify(hoveredTileIndex) !== hoveredTileIndexPrevious;
+  const { tileChangedThisFrame, tileIndex, pathToTile } = hoveredTileStore()
 
   // Breadcrumb state
-  if (tileIndexChanged || scene.redrawEffects) {
-    const { width, height } = canvasTop;
-    ctxMid.clearRect(-translate.x, -translate.y, width, height);
-    ctxTop.clearRect(-translate.x, -translate.y, width, height);
+  if (tileChangedThisFrame || scene.redrawEffects) {
+    const { width, height } = canvasTop
+    ctxMid.clearRect(-translate.x, -translate.y, width, height)
+    ctxTop.clearRect(-translate.x, -translate.y, width, height)
 
     if (player.isMoving) {
-      breadcrumbTrail(player.path, "lime", false, ctxMid);
-      breadcrumbTrail(player.path, "rgba(200, 200, 200, 0.8)", true, ctxTop);
+      breadcrumbTrail(player.path, 'lime', false, ctxMid)
+      breadcrumbTrail(player.path, 'rgba(200, 200, 200, 0.8)', true, ctxTop)
     }
 
-    if (hoveredTileIndex) {
+    if (tileIndex) {
       if (player.isMoving) {
-        if (isWalkable(hoveredTileIndex)) {
-          const position = tileIndexToPosition(hoveredTileIndex);
-          drawEllipse(
-            position,
-            hoveredTileOutlineColor,
-            baseMarkerSize,
-            ctxTop
-          );
+        if (isWalkable(tileIndex)) {
+          const position = tileIndexToPosition(tileIndex)
+          drawEllipse(position, hoveredTileOutlineColor, baseMarkerSize, ctxTop)
         } else {
-          highlightTile(hoveredTileIndex, hoveredTileOutlineColor);
+          highlightTile(tileIndex, hoveredTileOutlineColor)
         }
       } else {
-        hoveredTile.path = findPath(player.tileIndex, hoveredTileIndex);
-        breadcrumbTrail(hoveredTile.path, "lime", false, ctxMid);
-        breadcrumbTrail(
-          hoveredTile.path,
-          "rgba(200, 200, 200, 0.8)",
-          false,
-          ctxTop
-        );
-        if (isWalkable(hoveredTileIndex)) {
-          const position = tileIndexToPosition(hoveredTileIndex);
-          drawEllipse(position, "lime", baseMarkerSize, ctxTop);
+        breadcrumbTrail(pathToTile, 'lime', false, ctxMid)
+        breadcrumbTrail(pathToTile, 'rgba(200, 200, 200, 0.8)', false, ctxTop)
+        if (isWalkable(tileIndex)) {
+          const position = tileIndexToPosition(tileIndex)
+          drawEllipse(position, 'lime', baseMarkerSize, ctxTop)
         } else {
-          highlightTile(hoveredTileIndex, hoveredTileOutlineColor);
+          highlightTile(tileIndex, hoveredTileOutlineColor)
         }
       }
     }
-    hoveredTileIndexPrevious = JSON.stringify(hoveredTileIndex);
-    scene.redrawEffects = false;
-  }
-};
 
-export { movementMarkers };
+    scene.redrawEffects = false
+  }
+}
+
+export { movementMarkers }
