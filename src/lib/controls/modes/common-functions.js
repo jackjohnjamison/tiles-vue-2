@@ -12,7 +12,7 @@ const commonOnFrameControls = (delta) => {
 
   panCameraKeys(delta)
 
-  if (mouseMoved || redrawEffects) {
+  if (mouseMoved) {
     hoveredTile.updateHoveredTile({ x: mouse.x, y: mouse.y })
 
     if (hoveredTile.tileIndex) {
