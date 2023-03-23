@@ -47,7 +47,7 @@ const findHoveredTile = (position) => {
   const { tileMap } = scene
   const { x, y } = positionToTileIndex(position)
 
-  if (tileMap.tiles[x] && tileMap.tiles[x][y]) {
+  if (tileMap.tiles[x]?.[y]) {
     return { x, y }
   } else {
     return null
