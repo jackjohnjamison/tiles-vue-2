@@ -1,27 +1,25 @@
-const pressedKeys = {};
+let pressedKeys = {}
 const keyEventFunctions = {
-  keyDown: () => {},
-};
+  keyDown: () => {}
+}
 
-document.addEventListener("keydown", (e) => {
-  const { keyDown } = keyEventFunctions;
+document.addEventListener('keydown', (e) => {
+  const { keyDown } = keyEventFunctions
 
-  pressedKeys[e.code] = true;
-  keyDown(e.code, e);
-});
+  pressedKeys[e.code] = true
+  keyDown(e.code, e)
+})
 
-document.addEventListener("keyup", (e) => {
-  pressedKeys[e.code] = false;
-});
+document.addEventListener('keyup', (e) => {
+  pressedKeys[e.code] = false
+})
 
 const resetKeys = () => {
-  Object.keys(pressedKeys).forEach((key) => {
-    pressedKeys[key] = false;
-  });
-};
+  pressedKeys = {}
+}
 
 const keyCheck = function (keyCode) {
-  return pressedKeys[keyCode] || false;
-};
+  return pressedKeys[keyCode] || false
+}
 
-export { keyCheck, resetKeys, keyEventFunctions };
+export { keyCheck, resetKeys, keyEventFunctions }

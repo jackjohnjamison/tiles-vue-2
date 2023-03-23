@@ -35,7 +35,6 @@ npm run lint
 ```
 
 ## TODO
-- tiles to hold their own index and position to avoid recalculating. Maybe strip this from the JSON on save and reconsitute on load to save space?
 - Organise CSS, sass of css variables? Maybe just pick one
 - Decide what to do with imports, should the be all @/lib etc. Maybe move game up to lib as there is nothing else in the lib file
 - Think about prettier and css linting
@@ -43,7 +42,6 @@ npm run lint
 - Use the improved image import script from tanks - looks harder than I thought!
 - Make the editor tabs accesible, maybe more the sections up a level, re-use CSS,
 they should poobably have a consistant width most of the time at least
-
-- Looking into hovered tile, can the pinia imlamentation be used in the rest of the code. What is hovered tile currently used for?
-- Get the travel point dialog to look in the file system for avalible maps and define entry point
 - Move about the edit UI to be more sensible before it gets oot of control
+- Move Math.round into draw functions
+- Fix wobble on the breadcrumb trail when moving map with keys
