@@ -18,11 +18,11 @@ const addNpc = (tileIndex) => {
 
 const addTravelPoint = (tileIndex) => {
   const { x, y } = tileIndex
-  const { mapName, travelX, travelY } = entityActionStore()
+  const { mapName, destinationX, destinationY } = entityActionStore()
 
   scene.tileMap.tiles[x][y].travelPoint = {
     mapName,
-    destinationIndex: { travelX, travelY }
+    destinationIndex: { x: destinationX, y: destinationY }
   }
 
   addTileMarker(x, y, 'rgba(250, 227, 17, .8)', 'rgba(255, 248, 184, .3)')

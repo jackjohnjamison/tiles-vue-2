@@ -5,8 +5,8 @@ export const entityActionStore = defineStore('entityAction', {
     return {
       action: 'addNpc',
       mapName: 'windows',
-      travelX: null,
-      travelY: null
+      destinationX: 0,
+      destinationY: 0
     }
   }
 })

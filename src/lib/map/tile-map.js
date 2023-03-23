@@ -1,5 +1,5 @@
-import { scene } from '../scene'
-import { sprites } from '../sprites'
+import { scene, reloadScene } from '@/lib/scene'
+import { sprites } from '@/lib/sprites'
 import { tileTypes } from './tile-types'
 import { tileIndexToPosition } from './map-utilities'
 import pathfinding from 'pathfinding'
@@ -143,6 +143,13 @@ const loadMapFromImport = async (map) => {
   return loadTileMapFromJSON(mapJSON)
 }
 
+const loadMapAtLocation = async (mapName, destinationIndex) => {
+  const mapData = await loadMapFromImport(mapName)
+
+  mapData.unitStart = destinationIndex
+  reloadScene(mapData)
+}
+
 const loadTileMapFromJSON = (json) => {
   const mapObject = JSON.parse(json)
   mapObject.pathGrid = new pathfinding.Grid(mapObject.xTiles, mapObject.yTiles)
@@ -162,5 +169,6 @@ export {
   loadMapFromImport,
   loadTileMapFromJSON,
   saveTileMaptoJSON,
+  loadMapAtLocation,
   setTile
 }

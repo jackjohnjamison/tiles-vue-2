@@ -9,8 +9,10 @@ const deleteEntity = ({ x, y }) => {
     const entityIndex = entities.findIndex((ent) => {
       return ent.id === entityId
     })
-    entities[entityIndex].deleteEntity()
-    entities.splice(entityIndex, 1)
+
+    if (entities[entityIndex].deleteEntity()) {
+      entities.splice(entityIndex, 1)
+    }
   } else if (tileMap.tiles[x][y].travelPoint) {
     delete tileMap.tiles[x][y].travelPoint
     delete tileMap.tiles[x][y].marker

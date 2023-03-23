@@ -65,6 +65,9 @@ class entity {
     const { entityMap } = scene
     entityMap.removeEntity(this.tileIndex)
     this.redrawEntities(tileIndex, position, positionPrevious)
+
+    // Returns true because it has been deleted
+    return true
   }
 
   update() {}

@@ -22,12 +22,12 @@
         <option v-for="map in mapList" :key="map.name" :value="map.name">{{ map.displayName }}</option>
       </select>
       <div>
-        <label for=travelX>Entry point X</label>
-        <input id=travelX v-model=entityAction.travelX type=number min=0 max=32 />
+        <label for=destinationX>Entry point X</label>
+        <input id=destinationX v-model=entityAction.destinationX type=number min=0 max=32 />
       </div>
       <div>
-        <label for=travelY>Entry point Y</label>
-        <input id=travelY v-model=entityAction.travelY type=number min=0 max=32 />
+        <label for=destinationY>Entry point Y</label>
+        <input id=destinationY v-model=entityAction.destinationY type=number min=0 max=32 />
       </div>
     </div>
 

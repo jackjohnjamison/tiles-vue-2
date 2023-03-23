@@ -1,9 +1,9 @@
-import { scene, reloadScene } from '../scene'
+import { scene, reloadScene } from '@/lib/scene'
 import { entity } from './entity'
-import { sprites } from '../sprites'
+import { sprites } from '@/lib/sprites'
 import { pathfinding } from './movement/pathfinding'
-import { pathMovementSpeed } from '../constants'
-import { loadMapFromImport } from '../map'
+import { pathMovementSpeed } from '@/lib/constants'
+import { loadMapAtLocation } from '@/lib/map'
 
 class unit extends entity {
   constructor() {
@@ -27,7 +27,7 @@ class unit extends entity {
       const { travelPoint } = currentTile
 
       if (travelPoint) {
-        this.loadMap(travelPoint.mapName)
+        loadMapAtLocation(travelPoint.mapName, travelPoint.destinationIndex)
       }
 
       pathFinder.move(delta)
@@ -37,11 +37,9 @@ class unit extends entity {
     this.requestMove = pathFinder.requestMove
     this.unsetPath = pathFinder.unsetPath
 
-    // This should be moved
-    this.loadMap = async (mapName) => {
-      const mapData = await loadMapFromImport(mapName)
-
-      reloadScene(mapData)
+    this.deleteEntity = () => {
+      // Returns false because the player can not be deleted
+      return false
     }
   }
 }
