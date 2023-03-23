@@ -1,9 +1,9 @@
-import { scene, redrawEntities } from '../scene'
-import { getId } from '../utilities'
-import { tileIndexToPosition, setWalkable } from '../map'
-import { sprites } from '../sprites'
-import { drawEllipse } from '../effects'
-import { defaultHaloColor, baseMarkerSize } from '../constants'
+import { scene, redrawEntities } from '@/lib/scene'
+import { getId } from '@/lib/utilities'
+import { tileIndexToPosition, setWalkable } from '@/lib/map'
+import { sprites } from '@/lib/sprites'
+import { drawEllipse } from '@/lib/effects'
+import { defaultHaloColor, baseMarkerSize } from '@/lib/constants'
 
 class entity {
   constructor({ sprite, haloColor }) {
@@ -20,17 +20,14 @@ class entity {
 
   addToScene = (tileIndex) => {
     const { entityMap } = scene
-    const { render, redraw, afterAdd } = this
+    const { render, redraw, afterAdd, id } = this
 
     this.tileIndex = tileIndex
     this.position = tileIndexToPosition(tileIndex)
     this.positionPrevious = this.position
     this.redrawEntities = redrawEntities
 
-    entityMap.addEntity({
-      tileIndex,
-      render
-    })
+    entityMap.addEntity(tileIndex, render, id)
 
     setWalkable(tileIndex, false)
 
@@ -61,6 +58,13 @@ class entity {
       x: position.x,
       y: position.y
     }
+  }
+
+  deleteEntity = () => {
+    const { tileIndex, position, positionPrevious } = this
+    const { entityMap } = scene
+    entityMap.removeEntity(this.tileIndex)
+    this.redrawEntities(tileIndex, position, positionPrevious)
   }
 
   update() {}

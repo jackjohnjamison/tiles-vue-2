@@ -15,7 +15,7 @@ const renderEntities = (x, y) => {
   }
 
   if (entityMapLocation) {
-    entityMapLocation()
+    entityMapLocation.render()
   }
 
   if (feature) {
@@ -25,7 +25,7 @@ const renderEntities = (x, y) => {
 
     if (entityMapLocation) {
       scene.entityCtx.globalAlpha = 0.5
-      entityMapLocation()
+      entityMapLocation.render()
       scene.entityCtx.globalAlpha = 1
     }
   }

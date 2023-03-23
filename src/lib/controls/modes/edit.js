@@ -2,7 +2,7 @@ import { scene, panCameraTo } from '@/lib/scene'
 import { paintTile, unsetTileLock, addTileMarker } from '@/lib/map'
 import { noop } from '@/lib/constants'
 import { sprites } from '@/lib/sprites'
-import { npc } from '@/lib/entities'
+import { npc, deleteEntity } from '@/lib/entities'
 import { panelStore } from '@/stores/editor-panel'
 import { commonOnFrameControls } from './common-functions'
 import { entityActionStore } from '@/stores/entity-actions'
@@ -18,11 +18,11 @@ const addNpc = (tileIndex) => {
 
 const addTravelPoint = (tileIndex) => {
   const { x, y } = tileIndex
-  const { mapName, destinationIndex } = entityActionStore()
+  const { mapName, travelX, travelY } = entityActionStore()
 
   scene.tileMap.tiles[x][y].travelPoint = {
     mapName,
-    destinationIndex
+    destinationIndex: { travelX, travelY }
   }
 
   addTileMarker(x, y, 'rgba(250, 227, 17, .8)', 'rgba(255, 248, 184, .3)')
@@ -36,6 +36,10 @@ const rightClickAction = (tileIndex, action) => {
 
     case 'travelPoint':
       addTravelPoint(tileIndex)
+      break
+
+    case 'delete':
+      deleteEntity(tileIndex)
       break
 
     default:

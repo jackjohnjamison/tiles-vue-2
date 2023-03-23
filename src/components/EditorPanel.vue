@@ -10,6 +10,7 @@
   const setActivePanel = (panelName) => {
     panel.switchPanel(panelName)
 
+    // This could use some work
     tilesDeselected = panelName === 'tiles' ? false : true
     entitiesDeselected = panelName === 'entities' ? false : true
   }
