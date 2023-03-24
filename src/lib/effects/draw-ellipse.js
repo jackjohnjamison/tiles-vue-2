@@ -1,4 +1,4 @@
-import { centerOffsetX, centerOffsetY, tileRatio, radians360 } from '../constants'
+import { centerOffsetX, centerOffsetY, tileRatio, radians360 } from '@/lib/constants'
 
 const drawEllipse = (position, color, radius, ctx) => {
   const centerX = position.x + centerOffsetX

@@ -1,8 +1,7 @@
+import { tileIndexToPosition, renderTile } from '@/lib/map'
+import { renderEntities } from '@/lib/entities'
+import { tileWidth, tileHeight } from '@/lib/constants'
 import { scene } from '.'
-
-import { tileIndexToPosition, renderTile } from '../map'
-import { renderEntities } from '../entities'
-import { tileWidth, tileHeight } from '../constants'
 
 const redrawWidth = tileWidth
 const redrawHeight = tileHeight * 3
@@ -18,7 +17,7 @@ const createRedrawWindow = (ctx, redrawWindowOrigin) => {
 }
 
 const redrawTile = (tileIndex) => {
-  const { floorCtx, entityCtx, tileMap } = scene
+  const { ctxFloor, ctxEntity, tileMap } = scene
   const redrawWindowOrigin = tileIndexToPosition({
     x: tileIndex.x,
     y: tileIndex.y
@@ -26,8 +25,8 @@ const redrawTile = (tileIndex) => {
 
   redrawWindowOrigin.y -= redrawWindowYoffset
 
-  createRedrawWindow(floorCtx, redrawWindowOrigin)
-  createRedrawWindow(entityCtx, redrawWindowOrigin)
+  createRedrawWindow(ctxFloor, redrawWindowOrigin)
+  createRedrawWindow(ctxEntity, redrawWindowOrigin)
 
   redrawTileIndicesFloor.forEach((index) => {
     const x = index.x + tileIndex.x
@@ -39,12 +38,12 @@ const redrawTile = (tileIndex) => {
     }
   })
 
-  entityCtx.restore()
-  floorCtx.restore()
+  ctxEntity.restore()
+  ctxFloor.restore()
 }
 
 const redrawEntities = (tileIndex, position, positionPrevious) => {
-  const { entityCtx, tileMap } = scene
+  const { ctxEntity, tileMap } = scene
 
   const redrawWindowOrigin = {
     x: Math.floor(Math.min(position.x, positionPrevious.x)),
@@ -57,11 +56,11 @@ const redrawEntities = (tileIndex, position, positionPrevious) => {
   redrawWindowOrigin.y
 
   const { x, y } = redrawWindowOrigin
-  entityCtx.save()
-  entityCtx.beginPath()
-  entityCtx.rect(x, y, width, height)
-  entityCtx.clip()
-  entityCtx.clearRect(x, y, width, height)
+  ctxEntity.save()
+  ctxEntity.beginPath()
+  ctxEntity.rect(x, y, width, height)
+  ctxEntity.clip()
+  ctxEntity.clearRect(x, y, width, height)
 
   redrawTileIndicesEntity.forEach((index) => {
     const x = index.x + tileIndex.x
@@ -72,7 +71,7 @@ const redrawEntities = (tileIndex, position, positionPrevious) => {
     }
   })
 
-  entityCtx.restore()
+  ctxEntity.restore()
 }
 
 export { redrawTile, redrawEntities }

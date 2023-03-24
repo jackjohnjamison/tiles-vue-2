@@ -1,13 +1,13 @@
-import { scene, redrawTile } from '../scene'
-import { getSpriteImage } from '../sprites'
+import { scene, redrawTile } from '@/lib/scene'
+import { getSpriteImage } from '@/lib/sprites'
+import { hoveredTileColor, tileWidth, tileHeight } from '@/lib/constants'
 import { drawLineTile } from '.'
-import { hoveredTileColor, tileWidth, tileHeight } from '../constants'
 
 const drawImageTile = ({ x, y, image }) => {
-  const { floorCtx } = scene
+  const { ctxFloor } = scene
   const position = tileIndexToPosition({ x, y })
 
-  floorCtx.drawImage(image.data, position.x, position.y - image.yOffset)
+  ctxFloor.drawImage(image.data, position.x, position.y - image.yOffset)
 }
 
 const renderTile = (x, y) => {

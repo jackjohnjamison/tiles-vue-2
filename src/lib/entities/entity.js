@@ -37,12 +37,12 @@ class entity {
   }
 
   render = () => {
-    const { entityCtx } = scene
+    const { ctxEntity } = scene
     const { sprite, position, haloColor } = this
 
-    drawEllipse(position, haloColor, baseMarkerSize, entityCtx)
+    drawEllipse(position, haloColor, baseMarkerSize, ctxEntity)
 
-    entityCtx.drawImage(
+    ctxEntity.drawImage(
       sprite.data,
       Math.round(position.x),
       Math.round(position.y - sprite.yOffset)

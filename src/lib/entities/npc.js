@@ -1,9 +1,9 @@
-import { isWalkable } from '../map'
-import { entity } from './entity'
-import { randomVariationInt } from '../utilities'
+import { isWalkable } from '@/lib/map'
+import { randomVariationInt } from '@/lib/utilities'
 import { pathfinding } from './movement/pathfinding'
-import { npcPatrolSpeed } from '../constants'
+import { npcPatrolSpeed } from '@/lib/constants'
 import { modeStore } from '@/stores/mode'
+import { entity } from './entity'
 
 class npc extends entity {
   constructor(sprite) {

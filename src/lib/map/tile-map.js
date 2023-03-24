@@ -1,8 +1,8 @@
+import pathfinding from 'pathfinding'
 import { scene, reloadScene } from '@/lib/scene'
 import { sprites } from '@/lib/sprites'
+import { tileIndexToPosition } from '.'
 import { tileTypes } from './tile-types'
-import { tileIndexToPosition } from './map-utilities'
-import pathfinding from 'pathfinding'
 
 const getVariant = (set) => {
   return Math.floor(Math.random() * sprites[set].length)

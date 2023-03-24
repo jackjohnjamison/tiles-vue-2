@@ -1,4 +1,4 @@
-import { scene } from '../scene'
+import { scene } from '@/lib/scene'
 
 const mouse = {
   x: null,

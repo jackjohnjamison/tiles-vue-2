@@ -2,8 +2,10 @@ import { scene } from './scene'
 import { panCameraKeys, panCameraTo } from './camera'
 import { redrawTile, redrawEntities } from './redraw'
 import { renderLoop } from './render-loop'
-import { additionalFunctions } from './on-frame-functions'
+import { onFrameFunctions, additionalFunctions } from './on-frame-functions'
 import { reloadScene } from './reload-scene'
+import { renderFrame } from './render-frame'
+import { firstRender } from './first-render'
 
 export {
   scene,
@@ -13,5 +15,8 @@ export {
   panCameraKeys,
   panCameraTo,
   reloadScene,
-  additionalFunctions
+  additionalFunctions,
+  renderFrame,
+  firstRender,
+  onFrameFunctions
 }

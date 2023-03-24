@@ -1,7 +1,7 @@
-import { scene } from '../../scene'
-import { findPath } from '../../find-path'
-import { positionToTileIndex, tileIndexToPosition, isWalkable, setWalkable } from '../../map'
-import { tileWidth, tileHeight, noop } from '../../constants'
+import { scene } from '@/lib/scene'
+import { findPath } from '@/lib/find-path'
+import { positionToTileIndex, tileIndexToPosition, isWalkable, setWalkable } from '@/lib/map'
+import { tileWidth, tileHeight, noop } from '@/lib/constants'
 
 const pathfinding = (entity, speed, step = noop) => {
   const { entityMap } = scene

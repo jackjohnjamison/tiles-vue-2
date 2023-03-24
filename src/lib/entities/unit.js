@@ -1,9 +1,8 @@
 import { scene } from '@/lib/scene'
-import { entity } from './entity'
 import { sprites } from '@/lib/sprites'
-import { pathfinding } from './movement/pathfinding'
 import { pathMovementSpeed } from '@/lib/constants'
 import { loadMapAtLocation } from '@/lib/map'
+import { entity, pathfinding } from '.'
 
 class unit extends entity {
   constructor() {

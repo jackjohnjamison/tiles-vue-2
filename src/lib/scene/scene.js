@@ -1,15 +1,12 @@
-import { createTileMapFromParams, loadMapFromImport } from '../map'
-import { setView } from './set-view'
-import { createEntityMap, entity, unit, npc } from '../entities'
-import { onFrameFunctions } from './on-frame-functions'
-import { panCameraTo } from './camera'
-import { renderLoop } from './render-loop'
-import { mouseTracker } from '../controls'
-import { mapSize } from '../constants'
-import { sprites } from '../sprites'
-import { firstRender } from './first-render'
-import { initControls } from '../controls'
+import { createTileMapFromParams, loadMapFromImport } from '@/lib/map'
+import { createEntityMap, entity, unit, npc } from '@/lib/entities'
+import { mouseTracker } from '@/lib/controls'
+import { mapSize } from '@/lib/constants'
+import { sprites } from '@/lib/sprites'
+import { initControls } from '@/lib/controls'
 import { modeStore } from '@/stores/mode'
+import { setView } from './set-view'
+import { firstRender, onFrameFunctions, panCameraTo, renderLoop } from '.'
 
 const scene = {}
 
@@ -17,9 +14,9 @@ const scene = {}
 scene.start = async (canvases, map) => {
   Object.assign(scene, canvases)
 
-  scene.floorCtx = scene.floorCanvas.getContext('2d', { alpha: false })
+  scene.ctxFloor = scene.canvasFloor.getContext('2d', { alpha: false })
   scene.ctxMid = scene.canvasMid.getContext('2d')
-  scene.entityCtx = scene.entityCanvas.getContext('2d')
+  scene.ctxEntity = scene.canvasEntity.getContext('2d')
   scene.ctxTop = scene.canvasTop.getContext('2d')
   scene.mouse = mouseTracker(scene.canvasTop)
   scene.redrawEffects = false

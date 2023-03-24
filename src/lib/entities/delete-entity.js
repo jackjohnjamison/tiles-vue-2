@@ -1,6 +1,5 @@
 import { scene, redrawTile } from '@/lib/scene'
 
-// I should probably top you being able to delete the player
 const deleteEntity = ({ x, y }) => {
   const { tileMap, entityMap, entities } = scene
 
@@ -10,6 +9,7 @@ const deleteEntity = ({ x, y }) => {
       return ent.id === entityId
     })
 
+    // Checks if the entity could be deleted before removing it from the entites array
     if (entities[entityIndex].deleteEntity()) {
       entities.splice(entityIndex, 1)
     }

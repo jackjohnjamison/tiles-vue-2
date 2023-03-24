@@ -1,5 +1,5 @@
-import { scene } from './scene'
-import { sprites } from './sprites'
+import { scene } from '@/lib/scene'
+import { sprites } from '@/lib/sprites'
 
 const start = async (canvases) => {
   await sprites.load()

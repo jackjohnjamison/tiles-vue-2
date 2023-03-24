@@ -14,9 +14,9 @@
 <template>
   <ToolBar />
   <main class="canvasRoot" :ref="function(el) { canvases.canvasRoot = el }">
-    <canvas class="layer-canvas" :ref="function(el) { canvases.floorCanvas = el }" />
+    <canvas class="layer-canvas" :ref="function(el) { canvases.canvasFloor = el }" />
     <canvas class="layer-canvas" :ref="function(el) { canvases.canvasMid = el }" />
-    <canvas class="layer-canvas" :ref="function(el) { canvases.entityCanvas = el }" />
+    <canvas class="layer-canvas" :ref="function(el) { canvases.canvasEntity = el }" />
     <canvas class="layer-canvas canvas-top" :ref="function(el) { canvases.canvasTop = el }" />
     <GameUi />
     <FrameRateMonitor />

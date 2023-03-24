@@ -1,16 +1,16 @@
+import { tileWidth, tileHeight, paddingBottom, paddingTop } from '@/lib/constants'
 import { scene } from '.'
-import { tileWidth, tileHeight, paddingBottom, paddingTop } from '../constants'
 
 const setView = ({ xTiles, yTiles }) => {
   const {
     canvasRoot,
-    floorCtx,
+    ctxFloor,
     ctxMid,
-    entityCtx,
+    ctxEntity,
     ctxTop,
-    floorCanvas,
+    canvasFloor,
     canvasMid,
-    entityCanvas,
+    canvasEntity,
     canvasTop
   } = scene
 
@@ -21,8 +21,8 @@ const setView = ({ xTiles, yTiles }) => {
   const height = baseHeight + paddingBottom + paddingTop
 
   // Sets floor and entity canvas size
-  floorCanvas.width = entityCanvas.width = width
-  floorCanvas.height = entityCanvas.height = height
+  canvasFloor.width = canvasEntity.width = width
+  canvasFloor.height = canvasEntity.height = height
 
   // The exactly fits the grid in the center on the Y axis
   const baseOriginY =
@@ -48,8 +48,8 @@ const setView = ({ xTiles, yTiles }) => {
     ctxTop.setTransform(1, 0, 0, 1, translate.x, translate.y)
     ctxTop.imageSmoothingEnabled = false
 
-    floorCtx.imageSmoothingEnabled = false
-    entityCtx.imageSmoothingEnabled = false
+    ctxFloor.imageSmoothingEnabled = false
+    ctxEntity.imageSmoothingEnabled = false
   }
 
   onresize = () => {

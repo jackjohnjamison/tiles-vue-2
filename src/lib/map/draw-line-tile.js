@@ -1,6 +1,6 @@
-import { scene } from '../scene'
+import { scene } from '@/lib/scene'
+import { tileWidth, tileHeight } from '@/lib/constants'
 import { tileIndexToPosition } from '.'
-import { tileWidth, tileHeight } from '../constants'
 
 const drawLineTile = ({ x, y, strokeColor, fillColor }) => {
   const { ctxTop } = scene
@@ -23,36 +23,36 @@ const drawLineTile = ({ x, y, strokeColor, fillColor }) => {
 
 // These functions can probably have less duplication when I have the time
 const drawLineTileMarker = ({ x, y, strokeColor, fillColor }) => {
-  const { entityCtx } = scene
+  const { ctxEntity } = scene
 
   const markerOffset = -3
 
   const position = tileIndexToPosition({ x, y })
-  entityCtx.strokeStyle = strokeColor
-  entityCtx.fillStyle = fillColor
-  entityCtx.setLineDash([0, 2, 2])
+  ctxEntity.strokeStyle = strokeColor
+  ctxEntity.fillStyle = fillColor
+  ctxEntity.setLineDash([0, 2, 2])
 
-  entityCtx.beginPath()
-  entityCtx.moveTo(position.x, position.y + tileHeight / 2)
-  entityCtx.lineTo(position.x + tileWidth / 2, position.y)
-  entityCtx.lineTo(position.x + tileWidth, position.y + tileHeight / 2)
-  entityCtx.lineTo(position.x + tileWidth / 2, position.y + tileHeight)
-  entityCtx.closePath()
+  ctxEntity.beginPath()
+  ctxEntity.moveTo(position.x, position.y + tileHeight / 2)
+  ctxEntity.lineTo(position.x + tileWidth / 2, position.y)
+  ctxEntity.lineTo(position.x + tileWidth, position.y + tileHeight / 2)
+  ctxEntity.lineTo(position.x + tileWidth / 2, position.y + tileHeight)
+  ctxEntity.closePath()
 
-  entityCtx.fill()
-  entityCtx.stroke()
+  ctxEntity.fill()
+  ctxEntity.stroke()
 
-  entityCtx.beginPath()
-  entityCtx.moveTo(position.x, position.y + tileHeight / 2 + markerOffset)
-  entityCtx.lineTo(position.x + tileWidth / 2, position.y + markerOffset)
-  entityCtx.lineTo(position.x + tileWidth, position.y + tileHeight / 2 + markerOffset)
-  entityCtx.lineTo(position.x + tileWidth / 2, position.y + tileHeight + markerOffset)
-  entityCtx.closePath()
+  ctxEntity.beginPath()
+  ctxEntity.moveTo(position.x, position.y + tileHeight / 2 + markerOffset)
+  ctxEntity.lineTo(position.x + tileWidth / 2, position.y + markerOffset)
+  ctxEntity.lineTo(position.x + tileWidth, position.y + tileHeight / 2 + markerOffset)
+  ctxEntity.lineTo(position.x + tileWidth / 2, position.y + tileHeight + markerOffset)
+  ctxEntity.closePath()
 
-  entityCtx.fill()
-  entityCtx.stroke()
+  ctxEntity.fill()
+  ctxEntity.stroke()
 
-  entityCtx.setLineDash([])
+  ctxEntity.setLineDash([])
 }
 
 export { drawLineTile, drawLineTileMarker }

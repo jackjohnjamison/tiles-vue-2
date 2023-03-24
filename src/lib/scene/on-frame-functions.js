@@ -1,5 +1,4 @@
-import { scene } from '.'
-import { renderFrame } from './render-frame'
+import { scene, renderFrame } from '.'
 
 // For additional functions like the frame rate monitor
 const additionalFunctions = []

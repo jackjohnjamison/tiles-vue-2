@@ -1,6 +1,6 @@
+import { keyCheck } from '@/lib/controls'
+import { friction, cameraAcceleration } from '@/lib/constants'
 import { scene } from '.'
-import { keyCheck } from '../controls'
-import { friction, cameraAcceleration } from '../constants'
 
 let velocityX = 0
 let velocityY = 0
@@ -11,8 +11,8 @@ const panCameraKeys = (delta) => {
   const {
     ctxMid,
     ctxTop,
-    floorCanvas,
-    entityCanvas,
+    canvasFloor,
+    canvasEntity,
     view: { translate }
   } = scene
 
@@ -28,8 +28,8 @@ const panCameraKeys = (delta) => {
   translate.y = Math.round(translate.y - velocityY)
 
   if (translate.x !== translatePrevious.x || translate.y !== translatePrevious.y) {
-    floorCanvas.style.left = entityCanvas.style.left = `${translate.x}px`
-    floorCanvas.style.top = entityCanvas.style.top = `${translate.y}px`
+    canvasFloor.style.left = canvasEntity.style.left = `${translate.x}px`
+    canvasFloor.style.top = canvasEntity.style.top = `${translate.y}px`
 
     ctxMid.setTransform(1, 0, 0, 1, translate.x, translate.y)
     ctxTop.setTransform(1, 0, 0, 1, translate.x, translate.y)

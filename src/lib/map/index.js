@@ -6,10 +6,10 @@ import {
   loadMapFromImport,
   saveTileMaptoJSON,
   loadTileMapFromJSON,
-  loadMapAtLocation
+  loadMapAtLocation,
+  setTile
 } from './tile-map'
 import { tileTypes } from './tile-types'
-
 import {
   drawImageTile,
   renderTile,
@@ -39,5 +39,6 @@ export {
   addTileMarker,
   drawLineTileMarker,
   loadMapAtLocation,
+  setTile,
   tileTypes
 }
