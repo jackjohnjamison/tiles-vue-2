@@ -1,7 +1,7 @@
 import { createTileMapFromParams, loadMapFromImport } from '@/lib/map'
 import { createEntityMap, entity, unit, npc } from '@/lib/entities'
 import { mouseTracker } from '@/lib/controls'
-import { mapSize } from '@/lib/constants'
+import { defaultMapSize } from '@/lib/constants'
 import { sprites } from '@/lib/sprites'
 import { initControls } from '@/lib/controls'
 import { modeStore } from '@/stores/mode'
@@ -21,8 +21,8 @@ scene.start = async (canvases, map) => {
   scene.mouse = mouseTracker(scene.canvasTop)
   scene.redrawEffects = false
   scene.view = setView({
-    xTiles: mapSize,
-    yTiles: mapSize
+    xTiles: defaultMapSize,
+    yTiles: defaultMapSize
   })
   scene.hoveredTile = {
     path: null,
@@ -37,8 +37,8 @@ scene.start = async (canvases, map) => {
     scene.loadMap(mapData)
   } catch {
     const startingMap = createTileMapFromParams({
-      xTiles: mapSize,
-      yTiles: mapSize
+      xTiles: defaultMapSize,
+      yTiles: defaultMapSize
     })
 
     scene.loadMap(startingMap)

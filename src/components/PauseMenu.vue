@@ -1,8 +1,23 @@
 <script setup>
-  import { save, load } from "../lib/scene/save-load";
+  import { reloadScene } from '@/lib/scene'
+  import { save, load } from "@/lib/scene/save-load"
+  import { createTileMapFromParams } from '@/lib/map'
+  import { maxTiles } from '@/lib/constants'
   import { pauseStore } from '@/stores/pause'
 
   const pause = pauseStore()
+
+  // Move this into lib
+  const generateMap = () => {
+    const { xTiles, yTiles } = pause
+    const newMap = createTileMapFromParams({
+      xTiles,
+      yTiles
+    })
+
+    reloadScene(newMap)
+    return
+  }
 </script>
 
 <template>
@@ -10,11 +25,35 @@
     <div class="pause-menu-items">
       <p>Paused</p>
       <ul>
-        <li><button @click='pause.toggle'>Resume</button></li>
-        <li><button @click='load(this.$refs)' ref="loadButton">Load</button></li>
-        <li>
-          <button @click='save(this.$refs)' class="save" ref="saveButton">Save</button>
-          <input type="text" ref="saveName" value="tile-map" />
+        <li><button @click=pause.toggle>Resume</button></li>
+        <li><button @click=load(this.$refs) ref=loadButton>Load</button></li>
+        <li class=group-wrapper>
+          <button @click=save(this.$refs) class=save ref=saveButton>Save</button>
+          <input type=text ref=saveName value=tile-map />
+        </li>
+        <li class=group-wrapper>
+          <button class=generate-map @click=generateMap>Generate New Map</button>
+          <input type=text ref=displayName v-model=pause.mapDisplayName />
+          <label for=xTiles>X Tiles: {{pause.xTiles}}</label>
+          <input
+            class=tile-slider
+            id=xTiles
+            type=range
+            :min=1
+            :max=maxTiles
+            :step=1
+            v-model="pause.xTiles"
+          />
+          <label for=yTiles>Y Tiles: {{pause.yTiles}}</label>
+          <input
+            class=tile-slider
+            id=yTiles
+            type=range
+            :min=1
+            :max=maxTiles
+            :step=1
+            v-model="pause.yTiles"
+          />
         </li>
       </ul>
     </div>
@@ -22,13 +61,15 @@
 </template>
 
 <style lang="scss" scoped>
+  @import '@/scss/px-to-rem.scss';
+
   .pauseMenu {
     position: absolute;
     width: 100%;
     height: 100%;
     display: flex;
     color: #fff;
-    font-size: 32px;
+    font-size: pxToRem(32);
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -40,16 +81,31 @@
       background-color: rgba(102, 51, 153, .8);
       border-radius: 3px;
       border: solid 2px #000;
-      text-shadow: 0px 0px 4px #000000, 0px 0px 4px #000000;
+      text-shadow: 0px 0px 4px #000000, 0px 0px 2px #000000;
       backdrop-filter: var(--frostedFilter);
+    }
+
+    .group-wrapper {
+      display: flex;
+      flex-direction: column;
+      border: solid 1px #1b1b1b;
+      padding: 6px;
+      padding-right: 0;
+      margin: 4px;
+      border-radius: 3px;
+
+      label {
+        font-size: pxToRem(16);
+      }
     }
 
     ul {
       padding: 0;
+      margin: 0;
     }
 
     p {
-      margin: 20px;
+      margin: 0;
     }
 
     li {
