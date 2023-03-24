@@ -2,7 +2,7 @@
   import { reloadScene } from '@/lib/scene'
   import { save, load } from "@/lib/scene/save-load"
   import { createTileMapFromParams } from '@/lib/map'
-  import { maxTiles } from '@/lib/constants'
+  import { maxTiles, minTiles } from '@/lib/constants'
   import { pauseStore } from '@/stores/pause'
 
   const pause = pauseStore()
@@ -39,9 +39,9 @@
             class=tile-slider
             id=xTiles
             type=range
-            :min=1
+            :min=minTiles
             :max=maxTiles
-            :step=1
+            step=1
             v-model.number="pause.xTiles"
           />
           <label for=yTiles>Y Tiles: {{pause.yTiles}}</label>
@@ -49,9 +49,9 @@
             class=tile-slider
             id=yTiles
             type=range
-            :min=1
+            :min=minTiles
             :max=maxTiles
-            :step=1
+            step=1
             v-model.number="pause.yTiles"
           />
         </li>
