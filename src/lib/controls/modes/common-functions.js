@@ -14,6 +14,9 @@ const commonOnFrameControls = (delta) => {
 
   if (mouseMoved || scene.redrawEffects) {
     hoveredTile.updateHoveredTile({ x: mouse.x, y: mouse.y })
+  }
+
+  if (hoveredTile.tileChangedThisFrame || scene.redrawEffects) {
     movementMarkers()
     scene.redrawEffects = false
   }

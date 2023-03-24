@@ -1,6 +1,6 @@
-import { scene, renderLoop } from '.'
+import { resetMousePosition } from '@/lib/controls'
 import { pauseStore } from '@/stores/pause'
-// import { hoveredTileStore } from '@/stores/hovered-tile'
+import { scene, renderLoop } from '.'
 
 const reloadScene = (tileMap) => {
   renderLoop.stop()
@@ -18,7 +18,7 @@ const reloadScene = (tileMap) => {
 
   scene.loadMap(tileMap)
   pauseStore().unpause()
-  // hoveredTileStore().updateHoveredTile(tileMap.unitStart)
+  resetMousePosition()
 }
 
 export { reloadScene }

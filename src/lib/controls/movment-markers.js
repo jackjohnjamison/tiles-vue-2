@@ -13,36 +13,34 @@ const movementMarkers = () => {
     view: { translate }
   } = scene
 
-  const { tileChangedThisFrame, tileIndex, pathToTile } = hoveredTileStore()
+  const { tileIndex, pathToTile } = hoveredTileStore()
 
   // Breadcrumb state
-  if (tileChangedThisFrame || scene.redrawEffects) {
-    const { width, height } = canvasTop
-    ctxMid.clearRect(-translate.x, -translate.y, width, height)
-    ctxTop.clearRect(-translate.x, -translate.y, width, height)
+  const { width, height } = canvasTop
+  ctxMid.clearRect(-translate.x, -translate.y, width, height)
+  ctxTop.clearRect(-translate.x, -translate.y, width, height)
 
+  if (player.isMoving) {
+    breadcrumbTrail(player.path, 'lime', false, ctxMid)
+    breadcrumbTrail(player.path, 'rgba(200, 200, 200, 0.8)', true, ctxTop)
+  }
+
+  if (tileIndex) {
     if (player.isMoving) {
-      breadcrumbTrail(player.path, 'lime', false, ctxMid)
-      breadcrumbTrail(player.path, 'rgba(200, 200, 200, 0.8)', true, ctxTop)
-    }
-
-    if (tileIndex) {
-      if (player.isMoving) {
-        if (isWalkable(tileIndex)) {
-          const position = tileIndexToPosition(tileIndex)
-          drawEllipse(position, hoveredTileOutlineColor, baseMarkerSize, ctxTop)
-        } else {
-          highlightTile(tileIndex, hoveredTileOutlineColor)
-        }
+      if (isWalkable(tileIndex)) {
+        const position = tileIndexToPosition(tileIndex)
+        drawEllipse(position, hoveredTileOutlineColor, baseMarkerSize, ctxTop)
       } else {
-        breadcrumbTrail(pathToTile, 'lime', false, ctxMid)
-        breadcrumbTrail(pathToTile, 'rgba(200, 200, 200, 0.8)', false, ctxTop)
-        if (isWalkable(tileIndex)) {
-          const position = tileIndexToPosition(tileIndex)
-          drawEllipse(position, 'lime', baseMarkerSize, ctxTop)
-        } else {
-          highlightTile(tileIndex, hoveredTileOutlineColor)
-        }
+        highlightTile(tileIndex, hoveredTileOutlineColor)
+      }
+    } else {
+      breadcrumbTrail(pathToTile, 'lime', false, ctxMid)
+      breadcrumbTrail(pathToTile, 'rgba(200, 200, 200, 0.8)', false, ctxTop)
+      if (isWalkable(tileIndex)) {
+        const position = tileIndexToPosition(tileIndex)
+        drawEllipse(position, 'lime', baseMarkerSize, ctxTop)
+      } else {
+        highlightTile(tileIndex, hoveredTileOutlineColor)
       }
     }
   }

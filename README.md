@@ -43,5 +43,4 @@ npm run lint
 - Make the editor tabs accesible, maybe more the sections up a level, re-use CSS,
 they should poobably have a consistant width most of the time at least
 - Move about the edit UI to be more sensible before it gets oot of control
-- Move Math.round into draw functions
-- Fix wobble on the breadcrumb trail when moving map with keysd
+- Move Math.round into common draw function?
