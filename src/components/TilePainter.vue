@@ -68,10 +68,12 @@
 </script>
 
 <template>
-  <section class="tile-painter">
-    <select class="terrain-type" :value="selectedTileSetKey"
+  <div class=tile-painter>
+    <select :value="selectedTileSetKey"
       v-model="selectedTileSetKey"
-      @change="setSelectedTileSet()">
+      @change="setSelectedTileSet()"
+      aria-label="Select tile set"
+      >
       <option 
         v-for="tileSet in tileTypes"
         :key="tileSet.key"
@@ -152,33 +154,11 @@
       </div>
 
     </div>
-  </section>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-  button, input, select, label {
-    margin: 2px;
-  }
-
-  .tile-painter {
-    margin: 10px;
-    min-width: 250px;
-  
-    .terrain-type {
-      font-family: var(--font);
-      font-weight: 500;
-      font-size: 16px;
-      border-radius: 2px;
-    }
-  
-    select {
-      padding: 2px;
-    }
-  
-    label {
-      text-transform: capitalize;
-    }
-  
+  .tile-painter {  
     .sprite-brushes {
       display: flex;
       margin: 5px 0;

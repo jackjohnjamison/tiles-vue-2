@@ -20,13 +20,18 @@
 
 <template>
   <div class="edit-mode">
-    <div class="tablist" role="tablist">
-      <button role="tab" @click="setActivePanel('tiles')" :class="{ deselected: tilesDeselected }">Tile Painter</button>
-      <button role="tab" @click="setActivePanel('entities')" :class="{ deselected: entitiesDeselected }">Entities</button>
+    <div class="tablist" role="tablist" aria-label="Edit mode tabs">
+      <button role="tab" @click="setActivePanel('tiles')" :aria-selected="panel.activePanel === 'tiles'" :class="{ deselected: tilesDeselected }">Tile Painter</button>
+      <button role="tab" @click="setActivePanel('entities')" :aria-selected="panel.activePanel === 'entities'" :class="{ deselected: entitiesDeselected }">Entities</button>
     </div>
 
-    <TilePainter v-if="panel.activePanel === 'tiles'" />
-    <EntityDialog v-else-if="panel.activePanel === 'entities'" />
+    <section v-if="panel.activePanel === 'tiles'" >
+      <TilePainter/>
+    </section>
+
+    <section v-else-if="panel.activePanel === 'entities'">
+      <EntityDialog />
+    </section>
   </div>
 </template>
 
@@ -45,6 +50,9 @@
 
   .tablist {
     display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 
     button {
       flex-grow: 1;
@@ -59,6 +67,49 @@
       &.deselected {
         background: rgba(0,0,0,.4);
       }
+    }
+  }
+
+  section {
+    margin: 10px;
+    min-width: 250px;
+  }
+
+  // Deep selects all componenets under this one
+  :deep() {
+    .select-wrapper {
+      display: flex;
+
+      label {
+        text-align: center;
+      }
+
+      select {
+        min-width: 50%;
+      }
+    }
+
+    // select {
+    //   font-family: var(--font);
+    //   border-radius: 2px;
+    //   padding: 2px;
+    //   margin: 2px;
+    //   margin-bottom: 6px;
+    // }
+
+    select,
+    input {
+      font-weight: 500;
+      font-size: 16px;
+      font-family: var(--font);
+      border-radius: 2px;
+      padding: 2px;
+      margin: 2px;
+      margin-bottom: 6px;
+    }
+
+    button, input, select, label {
+      margin: 2px;
     }
   }
 </style>
