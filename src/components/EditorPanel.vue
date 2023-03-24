@@ -31,7 +31,7 @@
 </template>
 
 <style lang="scss" scoped>
-  @import '@/mixins/px-to-rem.scss';
+  @import '@/scss/px-to-rem.scss';
 
   .edit-mode {
     position: absolute;

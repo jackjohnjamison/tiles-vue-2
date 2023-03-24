@@ -43,3 +43,4 @@ npm run lint
 they should poobably have a consistant width most of the time at least
 - Move about the edit UI to be more sensible before it gets oot of control
 - Move Math.round into common draw function?
+- Add TypeScript, maybe just for the pinia stores to begin with?
