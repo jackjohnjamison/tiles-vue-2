@@ -45,8 +45,6 @@ const movementMarkers = () => {
         }
       }
     }
-
-    scene.redrawEffects = false
   }
 }
 

@@ -22,7 +22,7 @@ scene.start = async (canvases, map) => {
   scene.entityCtx = scene.entityCanvas.getContext('2d')
   scene.ctxTop = scene.canvasTop.getContext('2d')
   scene.mouse = mouseTracker(scene.canvasTop)
-  scene.redrawEffects = true
+  scene.redrawEffects = false
   scene.view = setView({
     xTiles: mapSize,
     yTiles: mapSize

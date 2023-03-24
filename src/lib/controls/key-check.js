@@ -1,4 +1,5 @@
 let pressedKeys = {}
+
 const keyEventFunctions = {
   keyDown: () => {}
 }

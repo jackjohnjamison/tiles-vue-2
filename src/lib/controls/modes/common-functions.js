@@ -6,15 +6,19 @@ import { hoveredTileStore } from '@/stores/hovered-tile'
 let mousePrevious = { x: null, y: null }
 
 const commonOnFrameControls = (delta) => {
-  const { mouse, canvasTop, redrawEffects } = scene
+  const { mouse, canvasTop } = scene
   const hoveredTile = hoveredTileStore()
   const mouseMoved = mouse.x !== mousePrevious.x || mouse.y !== mousePrevious.y
 
   panCameraKeys(delta)
 
-  if (mouseMoved) {
+  if (mouseMoved || scene.redrawEffects) {
     hoveredTile.updateHoveredTile({ x: mouse.x, y: mouse.y })
+    movementMarkers()
+    scene.redrawEffects = false
+  }
 
+  if (mouseMoved) {
     if (hoveredTile.tileIndex) {
       // Cursor state
       if (mouse.isDragged) {
@@ -28,10 +32,6 @@ const commonOnFrameControls = (delta) => {
 
     mousePrevious.x = mouse.x
     mousePrevious.y = mouse.y
-  }
-
-  if (mouseMoved || redrawEffects) {
-    movementMarkers()
   }
 }
 

@@ -38,14 +38,14 @@ const panCameraKeys = (delta) => {
     translatePrevious.y = translate.y
 
     scene.redrawEffects = true
-  }
 
-  velocityX *= friction
-  velocityY *= friction
+    velocityX *= friction
+    velocityY *= friction
+  }
 }
 
-// TODO auto scroll function for when the player nears the edges of the map
 // THIS FUNCTION WORKS BECAUSE THE FUNCTION ABOVE IS RUN ON EVERY FRAME
+// (Which is fine)
 const panCameraTo = (x, y) => {
   const {
     view: { translate }
