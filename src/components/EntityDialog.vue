@@ -40,10 +40,12 @@
       </div>
     </div>
 
+    <!-- NPC Dialog -->
     <div v-else-if="entityAction.action === 'addNpc'">
       <p>Add an NPC</p>
     </div>
 
+    <!-- Delete entity -->
     <div v-else-if="entityAction.action === 'delete'">
       <p>Delete an entity</p>
     </div>
