@@ -42,7 +42,7 @@
             :min=1
             :max=maxTiles
             :step=1
-            v-model="pause.xTiles"
+            v-model.number="pause.xTiles"
           />
           <label for=yTiles>Y Tiles: {{pause.yTiles}}</label>
           <input
@@ -52,7 +52,7 @@
             :min=1
             :max=maxTiles
             :step=1
-            v-model="pause.yTiles"
+            v-model.number="pause.yTiles"
           />
         </li>
       </ul>
