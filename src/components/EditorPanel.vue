@@ -89,14 +89,6 @@
       }
     }
 
-    // select {
-    //   font-family: var(--font);
-    //   border-radius: 2px;
-    //   padding: 2px;
-    //   margin: 2px;
-    //   margin-bottom: 6px;
-    // }
-
     select,
     input {
       font-weight: 500;
@@ -110,6 +102,10 @@
 
     button, input, select, label {
       margin: 2px;
+    }
+
+    label {
+      margin-left: 4px;
     }
   }
 </style>

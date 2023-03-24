@@ -39,6 +39,14 @@
         <label for=destinationY>Entry point Y</label>
       </div>
     </div>
+
+    <div v-else-if="entityAction.action === 'addNpc'">
+      <p>Add an NPC</p>
+    </div>
+
+    <div v-else-if="entityAction.action === 'delete'">
+      <p>Delete an entity</p>
+    </div>
   </div>
 </template>
 
@@ -50,10 +58,6 @@
       min-width: calc(50% - 10px);
       padding-left: 4px;
     }
-  }
-
-  label {
-    margin-left: 4px;
   }
 
   .select-wrapper--entity {
