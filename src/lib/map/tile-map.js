@@ -143,11 +143,10 @@ const loadMapFromImport = async (map) => {
   return loadTileMapFromJSON(mapJSON)
 }
 
-const loadMapAtLocation = async (mapName, destinationIndex) => {
+const loadMapAtLocation = async (mapName, entryPointName) => {
   const mapData = await loadMapFromImport(mapName)
 
-  mapData.unitStart = destinationIndex
-  reloadScene(mapData)
+  reloadScene(mapData, entryPointName)
 }
 
 const loadTileMapFromJSON = (json) => {

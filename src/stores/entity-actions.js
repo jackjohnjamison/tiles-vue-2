@@ -6,9 +6,7 @@ export const entityActionStore = defineStore('entityAction', {
     return {
       action: 'addNpc',
       mapName: 'windows',
-      destinationX: 0,
-      destinationY: 0,
-      entryPointName: 'Default',
+      entryPointName: 'default',
       entryPoints: scene.tileMap.entryPoints
     }
   },

@@ -50,8 +50,8 @@ scene.start = async (canvases, map) => {
   renderLoop.start(onFrameFunctions)
 }
 
-scene.loadMap = (tileMap) => {
-  const { entityList, xTiles, yTiles, unitStart = { x: 1, y: 1 } } = tileMap
+scene.loadMap = (tileMap, entryPointName = null) => {
+  const { entityList, xTiles, yTiles, entryPoints } = tileMap
 
   scene.view = setView({
     xTiles,
@@ -64,7 +64,17 @@ scene.loadMap = (tileMap) => {
   scene.entities = []
   scene.player = new unit()
 
-  scene.player.addToScene(unitStart)
+  let startLocation = { x: 0, y: 0 }
+
+  console.log(entryPoints)
+
+  if (entryPointName && entryPoints?.[entryPointName]) {
+    startLocation = entryPoints[entryPointName]
+  } else if (entryPoints?.default) {
+    startLocation = entryPoints.default
+  }
+
+  scene.player.addToScene(startLocation)
 
   if (entityList) {
     entityList.forEach((item) => {

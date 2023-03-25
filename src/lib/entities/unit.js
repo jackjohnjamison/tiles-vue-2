@@ -25,8 +25,9 @@ class unit extends entity {
       const currentTile = tileMap.tiles[x][y]
       const { travelPoint } = currentTile
 
-      if (travelPoint) {
-        loadMapAtLocation(travelPoint.mapName, travelPoint.destinationIndex)
+      if (travelPoint && !this.travelTriggered) {
+        this.travelTriggered = true
+        loadMapAtLocation(travelPoint.mapName, travelPoint.entryPointName)
       }
 
       pathFinder.move(delta)

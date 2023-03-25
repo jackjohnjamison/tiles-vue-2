@@ -2,12 +2,13 @@ import { resetMousePosition } from '@/lib/controls'
 import { pauseStore } from '@/stores/pause'
 import { scene, renderLoop } from '.'
 
-const reloadScene = (tileMap) => {
+const reloadScene = (tileMap, entryPointName = null) => {
   renderLoop.stop()
 
   delete scene.entites
   delete scene.tileMap
   delete scene.entityMap
+  delete scene.player
 
   const { xTiles, yTiles } = tileMap
 
@@ -16,7 +17,7 @@ const reloadScene = (tileMap) => {
     yTiles
   })
 
-  scene.loadMap(tileMap)
+  scene.loadMap(tileMap, entryPointName)
   pauseStore().unpause()
   resetMousePosition()
 }

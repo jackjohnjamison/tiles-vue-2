@@ -28,7 +28,7 @@
         <label for=map>Map Name</label>
       </div>
 
-      <div class=destination-input>
+      <!-- <div class=destination-input>
         <input id=destinationX v-model=entityAction.destinationX type=number min=0 max=32 />
         <label for=destinationX>Entry point X</label>
       </div>
@@ -36,7 +36,7 @@
       <div class=destination-input>
         <input id=destinationY v-model=entityAction.destinationY type=number min=0 max=32 />
         <label for=destinationY>Entry point Y</label>
-      </div>
+      </div> -->
     </div>
 
     <!-- Entry Point Dialog -->
@@ -75,14 +75,14 @@
     }
   }
 
-  .destination-input {
-    display: flex;
+  // .destination-input {
+  //   display: flex;
 
-    input[type=number] {
-      min-width: calc(50% - 10px);
-      padding-left: 4px;
-    }
-  }
+  //   input[type=number] {
+  //     min-width: calc(50% - 10px);
+  //     padding-left: 4px;
+  //   }
+  // }
 
   .select-wrapper--entity {
     margin-bottom: 4px;
