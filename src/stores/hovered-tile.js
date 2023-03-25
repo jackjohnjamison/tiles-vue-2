@@ -9,8 +9,7 @@ export const hoveredTileStore = defineStore('hoveredTile', {
       tileIsHovered: false,
       tileIndex: { x: null, y: null },
       tileIndexPrevious: null,
-      pathToTile: [],
-      tileChangedThisFrame: true
+      pathToTile: []
     }
   },
 
@@ -28,7 +27,9 @@ export const hoveredTileStore = defineStore('hoveredTile', {
         this.pathToTile = []
       }
 
-      this.tileChangedThisFrame = JSON.stringify(this.tileIndex) !== this.tileIndexPrevious
+      if (JSON.stringify(this.tileIndex) !== this.tileIndexPrevious) {
+        scene.requestRedrawEffects()
+      }
     }
   }
 })

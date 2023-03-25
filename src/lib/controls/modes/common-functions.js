@@ -20,7 +20,7 @@ const commonOnFrameControls = (delta) => {
     hoveredTile.updateHoveredTile({ x: mouse.x, y: mouse.y })
   }
 
-  if (hoveredTile.tileChangedThisFrame || scene.isRedrawEffectsRequested()) {
+  if (scene.isRedrawEffectsRequested()) {
     const {
       canvasTop,
       ctxMid,
@@ -34,6 +34,8 @@ const commonOnFrameControls = (delta) => {
 
     movementMarkers()
 
+    // Decide how to refactor this out as it is edit mode only and not a common function
+    // Also it runs on play mode if you leave entry points on in edit mode
     if (entityAction.action === 'entryPoint' || entityAction.action === 'travelPoint') {
       const { entryPoints } = scene.tileMap
       Object.keys(entryPoints).forEach((entryPointKey) => {
