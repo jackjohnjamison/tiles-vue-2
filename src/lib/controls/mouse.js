@@ -36,6 +36,8 @@ const mouseTracker = (element) => {
 
   element.onmousedown = (e) => {
     e.preventDefault()
+    // The current targeted element still needs to lose focus
+    document.activeElement.blur()
     mouse.buttonCode = e.which
 
     mouse.dragStart.x = mouse.x

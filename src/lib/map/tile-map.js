@@ -22,6 +22,8 @@ const createTileMapFromParams = ({ xTiles, yTiles }) => {
     yTiles
   }
 
+  tileMap.entryPoints = {}
+
   // Initializes every tile as an empty object
   for (let x = 0; x < xTiles; x++) {
     tileMap.tiles[x] = []

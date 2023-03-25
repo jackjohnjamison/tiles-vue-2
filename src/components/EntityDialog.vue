@@ -45,6 +45,15 @@
     <!-- Entry Point Dialog -->
     <div v-else-if="entityAction.action === 'entryPoint'">
       <p>Add an Entry Point</p>
+      <input type=text maxlength=128 v-model=entityAction.entryPointName />
+      <div v-if=entityAction.entryPoints>
+        <p>Exisiting Entry Points</p>
+        <ul>
+          <li v-for="(entryPoint, name) in entityAction.entryPoints" :key=name>
+            {{ name }} ( X: {{ entryPoint.x}} Y: {{ entryPoint.y }} )
+          </li>
+        </ul>
+      </div>
     </div>
 
     <!-- NPC Dialog -->

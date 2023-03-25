@@ -13,7 +13,6 @@ const scene = {}
 // Sets parts of the scene that don't change between map loads
 scene.start = async (canvases, map) => {
   Object.assign(scene, canvases)
-
   scene.ctxFloor = scene.canvasFloor.getContext('2d', { alpha: false })
   scene.ctxMid = scene.canvasMid.getContext('2d')
   scene.ctxEntity = scene.canvasEntity.getContext('2d')

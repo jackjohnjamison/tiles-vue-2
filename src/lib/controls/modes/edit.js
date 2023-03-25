@@ -16,6 +16,7 @@ const addNpc = (tileIndex) => {
   _npc.addToScene(tileIndex)
 }
 
+// This should probably be moved
 const addTravelPoint = (tileIndex) => {
   const { x, y } = tileIndex
   const { mapName, destinationX, destinationY } = entityActionStore()
@@ -26,6 +27,19 @@ const addTravelPoint = (tileIndex) => {
   }
 
   addTileMarker(x, y, 'rgba(250, 227, 17, .8)', 'rgba(255, 248, 184, .3)')
+}
+
+// This also should probably be moved
+const addEntryPoint = (tileIndex) => {
+  const { x, y } = tileIndex
+  const { entryPointName, updateEntryPoints } = entityActionStore()
+
+  scene.tileMap.entryPoints[entryPointName] = {
+    x,
+    y
+  }
+
+  updateEntryPoints()
 }
 
 const rightClickAction = (tileIndex, action) => {
@@ -40,6 +54,10 @@ const rightClickAction = (tileIndex, action) => {
 
     case 'delete':
       deleteEntity(tileIndex)
+      break
+
+    case 'entryPoint':
+      addEntryPoint(tileIndex)
       break
 
     default:

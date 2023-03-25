@@ -16,16 +16,18 @@ const panCameraKeys = (delta) => {
     view: { translate }
   } = scene
 
-  const arrowUp = keyCheck('KeyW')
-  const arrowDown = keyCheck('KeyS')
-  const arrowRight = keyCheck('KeyD')
-  const arrowLeft = keyCheck('KeyA')
+  if (document.activeElement.type !== 'text') {
+    const arrowUp = keyCheck('KeyW')
+    const arrowDown = keyCheck('KeyS')
+    const arrowRight = keyCheck('KeyD')
+    const arrowLeft = keyCheck('KeyA')
 
-  velocityX += cameraAcceleration * delta * (arrowRight - arrowLeft)
-  velocityY += cameraAcceleration * delta * (arrowDown - arrowUp)
+    velocityX += cameraAcceleration * delta * (arrowRight - arrowLeft)
+    velocityY += cameraAcceleration * delta * (arrowDown - arrowUp)
 
-  translate.x = Math.round(translate.x - velocityX)
-  translate.y = Math.round(translate.y - velocityY)
+    translate.x = Math.round(translate.x - velocityX)
+    translate.y = Math.round(translate.y - velocityY)
+  }
 
   if (translate.x !== translatePrevious.x || translate.y !== translatePrevious.y) {
     canvasFloor.style.left = canvasEntity.style.left = `${translate.x}px`
