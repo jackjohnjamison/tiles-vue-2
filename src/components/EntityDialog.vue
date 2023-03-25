@@ -1,10 +1,7 @@
 <script setup>
+  import { scene } from '@/lib/scene'
+  import { maxMapNameLength } from '@/lib/constants'
   import { entityActionStore } from '@/stores/entity-actions'
-
-  const mapList = [
-    { name: 'windows', displayName: 'Windows' },
-    { name: 'lake', displayName: 'The Lake' },
-  ]
 
   const entityAction = entityActionStore()
 </script>
@@ -25,8 +22,8 @@
     <div v-if="entityAction.action === 'travelPoint'">
       <p>Add a Travel Point</p>
       <div class=select-wrapper>
-        <select v-model="entityAction.mapName" id=map>
-          <option v-for="map in mapList" :key="map.name" :value="map.name">{{ map.displayName }}</option>
+        <select v-model=entityAction.mapName id=map>
+          <option v-for="map in scene.mapConfig.mapList" :key=map.name :value=map.name>{{ map.displayName }}</option>
         </select>
         <label for=map>Map Name</label>
       </div>
@@ -45,12 +42,12 @@
     <!-- Entry Point Dialog -->
     <div v-else-if="entityAction.action === 'entryPoint'">
       <p>Add an Entry Point</p>
-      <input type=text maxlength=128 v-model=entityAction.entryPointName />
-      <div v-if=entityAction.entryPoints>
+      <input type=text :maxlength=maxMapNameLength v-model=entityAction.entryPointName />
+      <div v-if=Object.keys(entityAction.entryPoints).length>
         <p>Exisiting Entry Points</p>
         <ul>
-          <li v-for="(entryPoint, name) in entityAction.entryPoints" :key=name>
-            {{ name }} ( X: {{ entryPoint.x}} Y: {{ entryPoint.y }} )
+          <li v-for="(entryPoint, name) in entityAction.entryPoints" :key=name class=entry-point>
+            {{ name }} ( X: {{ entryPoint.x}} Y: {{ entryPoint.y }} ) <button class=delete-entry-point>&#x1f5d1;</button>
           </li>
         </ul>
       </div>
@@ -69,6 +66,8 @@
 </template>
 
 <style lang="scss" scoped>
+  @import '@/scss/px-to-rem.scss';
+  
   .entity-dialog {
     p {
       margin: 8px 2px;
@@ -88,5 +87,24 @@
     margin-bottom: 4px;
     padding-bottom: 4px;
     border-bottom: solid 1px #1b1b1b;
+  }
+
+  .entry-point {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .delete-entry-point {
+      border: none;
+      background: none;
+      color: inherit;
+      font-size: 24px;
+    }
+  }
+
+  ul {
+    padding-left: 0;
+    margin: 0;
+    margin-left: 4px;
   }
 </style>

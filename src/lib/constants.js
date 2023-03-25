@@ -6,6 +6,7 @@ export const //
   maxTiles = 64, // Maximum number of tiles on the x or y axis
   minTiles = 2,
   defaultMapSize = maxTiles / 2,
+  maxMapNameLength = 32,
   //
   defaultMapName = 'Uncharted Lands',
   //

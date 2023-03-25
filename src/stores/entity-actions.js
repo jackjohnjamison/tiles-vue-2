@@ -15,8 +15,8 @@ export const entityActionStore = defineStore('entityAction', {
 
   actions: {
     updateEntryPoints() {
-      // Setting this as null first is a dirty hack to force the v-for to re-render
-      this.entryPoints = null
+      // Setting this as empty first is a dirty hack to force the v-for to re-render
+      this.entryPoints = {}
       this.entryPoints = scene.tileMap.entryPoints
       console.log(this.entryPoints)
     }
