@@ -12,47 +12,22 @@
     map.name = mapKeys[i]
     return map.id !== id
   })
-
-  entityAction.setInitialMap(filteredMapList[0].name)
-  console.log(entityAction.mapName);
 </script>
 
 <template>
   <div class=entity-dialog>
     <div class="select-wrapper select-wrapper--entity">
       <select v-model=entityAction.action id=entity-type @change=scene.requestRedrawEffects>
-        <option value=travelPoint>Travel Point</option>
         <option value=entryPoint>Entry Point</option>
+        <option value=travelPoint>Travel Point</option>
         <option value=addNpc>Add NPC</option>
         <option value=delete>Delete Entity</option>
       </select>
       <label for=entity-type>Entity type</label>
     </div>
 
-    <!-- Travel Point Dialog -->
-    <div v-if="entityAction.action === 'travelPoint'">
-      <p>Add a Travel Point to:</p>
-      <div class=select-wrapper>
-        <select v-model=entityAction.mapName id=map>
-          <option
-            v-for="map in filteredMapList"
-            :key=map.name
-            :value=map.name
-          >
-            {{ map.displayName }}
-          </option>
-        </select>
-        <label for=map>Map Name</label>
-      </div>
-      <div v-for="(entryPoint, name) in entityAction.entryPoints" :key=name>
-        {{ name }}
-      </div>
-      <!-- <input type=radio> -->
-      
-    </div>
-
     <!-- Entry Point Dialog -->
-    <div v-else-if="entityAction.action === 'entryPoint'">
+    <div v-if="entityAction.action === 'entryPoint'">
       <p>Add an Entry Point</p>
       <input type=text :maxlength=maxMapNameLength v-model=entityAction.entryPointName />
       <div v-if=Object.keys(entityAction.entryPoints).length>
@@ -63,6 +38,26 @@
             <button class=delete-entry-point @click=entityAction.deleteEntryPoint(name)>&#x1f5d1;</button>
           </li>
         </ul>
+      </div>
+    </div>
+
+    <!-- Travel Point Dialog -->
+    <div v-else-if="entityAction.action === 'travelPoint'">
+      <p>Add a Travel Point to:</p>
+      <div>
+        <input type=text v-model=entityAction.mapName id=mapName :maxlength=maxMapNameLength>
+        <label for=mapName>Map name</label>
+      </div>
+      <div>
+        <input type=text v-model=entityAction.travelPoint id=entryPointName :maxlength=maxMapNameLength>
+        <label for=mapName>Entry Point Name</label>
+      </div>
+      <p>Exisiting Entry Points in maps:</p>
+      <div v-for="(map) in filteredMapList" :key=map.name class=entry-point-map>
+        <p>{{ map.displayName }}</p>
+        <button v-for="(entryPoints, entryPointName) in map.entryPoints" :key=entryPointName>
+          {{ entryPointName }}
+        </button>
       </div>
     </div>
 
@@ -87,14 +82,9 @@
     }
   }
 
-  // .destination-input {
-  //   display: flex;
-
-  //   input[type=number] {
-  //     min-width: calc(50% - 10px);
-  //     padding-left: 4px;
-  //   }
-  // }
+  .entry-point-map {
+    border-top:  solid 1px #1b1b1b;
+  }
 
   .select-wrapper--entity {
     margin-bottom: 4px;

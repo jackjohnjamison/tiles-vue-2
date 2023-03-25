@@ -5,11 +5,14 @@ export const entityActionStore = defineStore('entityAction', {
   state: () => {
     return {
       action: 'addNpc',
-      mapName: null,
-      map: null,
+
+      // For entry points
       entryPointName: 'default',
       entryPoints: scene.tileMap.entryPoints,
-      filteredMapList: null
+
+      // For travel points
+      mapName: null,
+      travelPoint: null
     }
   },
 
@@ -24,11 +27,6 @@ export const entityActionStore = defineStore('entityAction', {
       delete scene.tileMap.entryPoints[name]
       this.updateEntryPoints()
       scene.requestRedrawEffects()
-    },
-
-    setInitialMap(mapName) {
-      this.map = scene.mapConfig.mapList[mapName]
-      this.mapName = this.map.name
     }
   }
 })
