@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { renderLoop, reloadScene } from '@/lib/scene'
+import { renderLoop } from '@/lib/scene'
 import { defaultMapName, defaultMapSize } from '@/lib/constants'
 
 export const pauseStore = defineStore('pause', {
