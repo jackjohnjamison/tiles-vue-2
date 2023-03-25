@@ -1,51 +1,19 @@
 import { scene } from '@/lib/scene'
 import { panCameraKeys } from '@/lib/scene'
-import { movementMarkers } from '@/lib/controls'
-import { tileIndexToPosition } from '@/lib/map'
-import { drawEllipse } from '@/lib/effects'
 import { hoveredTileStore } from '@/stores/hovered-tile'
-import { entityActionStore } from '@/stores/entity-actions'
+import { noop } from '@/lib/constants'
 
 let mousePrevious = { x: null, y: null }
 
 const commonOnFrameControls = (delta) => {
   const { mouse, canvasTop } = scene
   const hoveredTile = hoveredTileStore()
-  const entityAction = entityActionStore()
   const mouseMoved = mouse.x !== mousePrevious.x || mouse.y !== mousePrevious.y
 
   panCameraKeys(delta)
 
   if (mouseMoved || scene.isRedrawEffectsRequested()) {
     hoveredTile.updateHoveredTile({ x: mouse.x, y: mouse.y })
-  }
-
-  if (scene.isRedrawEffectsRequested()) {
-    const {
-      canvasTop,
-      ctxMid,
-      ctxTop,
-      view: { translate }
-    } = scene
-
-    const { width, height } = canvasTop
-    ctxMid.clearRect(-translate.x, -translate.y, width, height)
-    ctxTop.clearRect(-translate.x, -translate.y, width, height)
-
-    movementMarkers()
-
-    // Decide how to refactor this out as it is edit mode only and not a common function
-    // Also it runs on play mode if you leave entry points on in edit mode
-    if (entityAction.action === 'entryPoint' || entityAction.action === 'travelPoint') {
-      const { entryPoints } = scene.tileMap
-      Object.keys(entryPoints).forEach((entryPointKey) => {
-        const entryPoint = entryPoints[entryPointKey]
-        const position = tileIndexToPosition({ x: entryPoint.x, y: entryPoint.y })
-        drawEllipse(position, 'aqua', 20, ctxMid)
-      })
-    }
-
-    scene.RedrawEffectsDone()
   }
 
   if (mouseMoved) {
@@ -65,4 +33,14 @@ const commonOnFrameControls = (delta) => {
   }
 }
 
-export { commonOnFrameControls }
+const commonUnset = () => {
+  const { mouse, player } = scene
+  player.unsetPath()
+  scene.onFrameControls = noop
+  scene.effectsFunctions = noop
+  mouse.onMouseMove = noop
+  mouse.onMouseUp = noop
+  scene.requestRedrawEffects()
+}
+
+export { commonOnFrameControls, commonUnset }

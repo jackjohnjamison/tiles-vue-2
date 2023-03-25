@@ -1,10 +1,11 @@
 import { scene, panCameraTo } from '@/lib/scene'
-import { paintTile, unsetTileLock, addTileMarker } from '@/lib/map'
-import { noop } from '@/lib/constants'
+import { paintTile, unsetTileLock, addTileMarker, tileIndexToPosition } from '@/lib/map'
+import { drawEllipse } from '@/lib/effects'
+import { movementMarkers } from '@/lib/controls'
 import { sprites } from '@/lib/sprites'
 import { npc, deleteEntity } from '@/lib/entities'
 import { panelStore } from '@/stores/editor-panel'
-import { commonOnFrameControls } from './common-functions'
+import { commonOnFrameControls, commonUnset } from './common-functions'
 import { entityActionStore } from '@/stores/entity-actions'
 import { hoveredTileStore } from '@/stores/hovered-tile'
 
@@ -69,7 +70,7 @@ const rightClickAction = (tileIndex, action) => {
 const editMode = {}
 
 editMode.set = () => {
-  const { mouse, player } = scene
+  const { mouse, player, ctxMid } = scene
   const panel = panelStore()
   const hoveredTile = hoveredTileStore()
   const entityAction = entityActionStore()
@@ -103,13 +104,26 @@ editMode.set = () => {
       if (mouse.buttonCode === 3) paintTile(hoveredTile.tileIndex)
     }
   }
+
+  scene.effectsFunctions = () => {
+    movementMarkers()
+
+    // Adds Entry point markers but only if on a relivent entity selection
+    if (panel.activePanel === 'entities') {
+      if (entityAction.action === 'entryPoint' || entityAction.action === 'travelPoint') {
+        const { entryPoints } = scene.tileMap
+        Object.keys(entryPoints).forEach((entryPointKey) => {
+          const entryPoint = entryPoints[entryPointKey]
+          const position = tileIndexToPosition({ x: entryPoint.x, y: entryPoint.y })
+          drawEllipse(position, 'aqua', 20, ctxMid)
+        })
+      }
+    }
+  }
 }
 
 editMode.unset = () => {
-  const { mouse, player } = scene
-  player.unsetPath()
-  mouse.onMouseMove = noop
-  mouse.onMouseUp = noop
+  commonUnset()
 }
 
 export { editMode }

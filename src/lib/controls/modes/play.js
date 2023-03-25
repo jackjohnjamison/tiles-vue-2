@@ -1,6 +1,6 @@
 import { scene, panCameraTo } from '@/lib/scene'
-import { commonOnFrameControls } from './common-functions'
-import { noop } from '@/lib/constants'
+import { movementMarkers } from '@/lib/controls'
+import { commonOnFrameControls, commonUnset } from './common-functions'
 import { hoveredTileStore } from '@/stores/hovered-tile'
 
 const playMode = {}
@@ -22,16 +22,17 @@ playMode.set = () => {
     }
   }
 
+  scene.effectsFunctions = () => {
+    movementMarkers()
+  }
+
   scene.onFrameControls = (delta) => {
     commonOnFrameControls(delta)
   }
 }
 
 playMode.unset = () => {
-  const { mouse, player } = scene
-  player.unsetPath()
-  mouse.onMouseMove = noop
-  mouse.onMouseUp = noop
+  commonUnset()
 }
 
 export { playMode }

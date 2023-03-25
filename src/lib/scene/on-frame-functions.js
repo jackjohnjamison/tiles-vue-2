@@ -11,6 +11,23 @@ const onFrameFunctions = (delta) => {
     onFrameControls(delta)
   }
 
+  if (scene.isRedrawEffectsRequested()) {
+    const {
+      ctxMid,
+      ctxTop,
+      view: { translate },
+      canvasTop: { width, height },
+      effectsFunctions
+    } = scene
+
+    ctxMid.clearRect(-translate.x, -translate.y, width, height)
+    ctxTop.clearRect(-translate.x, -translate.y, width, height)
+
+    effectsFunctions()
+
+    scene.RedrawEffectsDone()
+  }
+
   additionalFunctions.forEach((func) => {
     func(delta)
   })

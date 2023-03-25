@@ -1,4 +1,5 @@
 <script setup>
+  import { scene } from '@/lib/scene'
   import { panelStore } from '@/stores/editor-panel'
   import TilePainter from '@/components/TilePainter.vue'
   import EntityDialog from '@/components/EntityDialog.vue'
@@ -13,6 +14,8 @@
     // This could use some work
     tilesDeselected = panelName === 'tiles' ? false : true
     entitiesDeselected = panelName === 'entities' ? false : true
+
+    scene.requestRedrawEffects()
   }
 
   setActivePanel(panel.activePanel)
