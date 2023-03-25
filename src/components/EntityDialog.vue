@@ -54,10 +54,15 @@
       </div>
       <p>Exisiting Entry Points in maps:</p>
       <div v-for="(map) in filteredMapList" :key=map.name class=entry-point-map>
-        <p>{{ map.displayName }}</p>
-        <button v-for="(entryPoints, entryPointName) in map.entryPoints" :key=entryPointName>
-          {{ entryPointName }}
-        </button>
+        <p>{{ map.displayName }} ({{ map.name }})</p>
+        <ul class=entry-points-in-map>
+          <li v-for="(entryPoints, entryPointName) in map.entryPoints" :key=entryPointName>
+            {{ entryPointName }}
+            <button @click="entityAction.fillEntityPoint(map.name, entryPointName)">
+              Fill
+            </button>
+          </li>
+        </ul>
       </div>
     </div>
 
@@ -102,6 +107,25 @@
       background: none;
       color: inherit;
       font-size: 24px;
+    }
+  }
+
+  .entry-points-in-map {
+    padding-left: 18px;
+
+    button {
+      border: none;
+      background: #1b1b1b;
+      font-family: inherit;
+      color: inherit;
+      border: none;
+      background: #1b1b1b;
+      font-family: inherit;
+      color: inherit;
+      font-size: 16px;
+      padding: 1px 8px;
+      border-radius: 3px;
+      margin-left: 3px;
     }
   }
 

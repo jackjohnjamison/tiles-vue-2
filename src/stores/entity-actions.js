@@ -27,6 +27,11 @@ export const entityActionStore = defineStore('entityAction', {
       delete scene.tileMap.entryPoints[name]
       this.updateEntryPoints()
       scene.requestRedrawEffects()
+    },
+
+    fillEntityPoint(mapName, travelPoint) {
+      this.mapName = mapName
+      this.travelPoint = travelPoint
     }
   }
 })
