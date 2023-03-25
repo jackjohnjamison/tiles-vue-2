@@ -103,6 +103,10 @@
       margin-bottom: 6px;
     }
 
+    input[type="text"] {
+      padding-left: 5px;
+    }
+
     button, input, select, label {
       margin: 2px;
     }
