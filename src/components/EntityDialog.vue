@@ -13,8 +13,9 @@
   <div class=entity-dialog>
     <div class="select-wrapper select-wrapper--entity">
       <select v-model=entityAction.action id=entity-type>
-        <option value=addNpc>Add NPC</option>
         <option value=travelPoint>Travel Point</option>
+        <option value=entryPoint>Entry Point</option>
+        <option value=addNpc>Add NPC</option>
         <option value=delete>Delete Entity</option>
       </select>
       <label for=entity-type>Entity type</label>
@@ -22,6 +23,7 @@
 
     <!-- Travel Point Dialog -->
     <div v-if="entityAction.action === 'travelPoint'">
+      <p>Add a Travel Point</p>
       <div class=select-wrapper>
         <select v-model="entityAction.mapName" id=map>
           <option v-for="map in mapList" :key="map.name" :value="map.name">{{ map.displayName }}</option>
@@ -40,6 +42,11 @@
       </div>
     </div>
 
+    <!-- Entry Point Dialog -->
+    <div v-else-if="entityAction.action === 'entryPoint'">
+      <p>Add an Entry Point</p>
+    </div>
+
     <!-- NPC Dialog -->
     <div v-else-if="entityAction.action === 'addNpc'">
       <p>Add an NPC</p>
@@ -53,6 +60,12 @@
 </template>
 
 <style lang="scss" scoped>
+  .entity-dialog {
+    p {
+      margin: 8px 2px;
+    }
+  }
+
   .destination-input {
     display: flex;
 

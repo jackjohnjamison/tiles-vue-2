@@ -5,14 +5,11 @@ const path = require('path')
 const mapsDirectory = path.resolve(__dirname, './src/maps')
 const configPath = path.resolve(__dirname, './src/configs/map-config.json')
 
-let mapList
-const maps = []
-
 const getMaps = () => {
-  const files = fs.readdirSync(mapsDirectory, { withFileTypes: false })
-  mapList = files
+  const maps = []
+  const mapFiles = fs.readdirSync(mapsDirectory, { withFileTypes: false })
 
-  files.forEach((file) => {
+  mapFiles.forEach((file) => {
     const filePath = path.resolve(mapsDirectory, file)
     const jsonString = fs.readFileSync(filePath, {
       encoding: 'utf8',
@@ -23,19 +20,19 @@ const getMaps = () => {
     maps.push(mapJSON)
   })
 
-  return maps
+  return { maps, mapFiles }
 }
 
-const createConfig = (maps) => {
+const createConfig = ({ maps, mapFiles }) => {
   const mapConfigJSON = {
     mapList: []
   }
 
   maps.forEach((map, i) => {
     const mapData = {
-      name: mapList[i].replace('.json', ''),
-      defaultEntryPoint: map?.unitStart,
+      name: mapFiles[i].replace('.json', ''),
       displayName: map?.displayName,
+      entryPoints: map?.entryPoints,
       xTiles: map.xTiles,
       yTiles: map.yTiles
     }

@@ -35,6 +35,7 @@ npm run lint
 ```
 
 ## TODO
+- Add entry points to maps!
 - Organise CSS, sass of css variables? Organise colours
 - Think about prettier and css linting
 - Switch to enums for game modes, maybe

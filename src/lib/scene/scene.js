@@ -20,16 +20,7 @@ scene.start = async (canvases, map) => {
   scene.ctxTop = scene.canvasTop.getContext('2d')
   scene.mouse = mouseTracker(scene.canvasTop)
   scene.redrawEffects = false
-  scene.view = setView({
-    xTiles: defaultMapSize,
-    yTiles: defaultMapSize
-  })
-  scene.hoveredTile = {
-    path: null,
-    tileIndex: null
-  }
-
-  initControls()
+  scene.mapConfig = await import('../../configs/map-config.json')
 
   try {
     const mapData = await loadMapFromImport(map)
@@ -44,11 +35,17 @@ scene.start = async (canvases, map) => {
     scene.loadMap(startingMap)
   }
 
+  initControls()
   renderLoop.start(onFrameFunctions)
 }
 
 scene.loadMap = (tileMap) => {
-  const { entityList, unitStart = { x: 1, y: 1 } } = tileMap
+  const { entityList, xTiles, yTiles, unitStart = { x: 1, y: 1 } } = tileMap
+
+  scene.view = setView({
+    xTiles,
+    yTiles
+  })
 
   scene.tileMap = tileMap
   scene.entityMap = createEntityMap(tileMap)
