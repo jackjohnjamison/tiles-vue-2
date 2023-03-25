@@ -1,8 +1,9 @@
 import { scene, panCameraTo } from '@/lib/scene'
 import { paintTile, unsetTileLock, addTileMarker, tileIndexToPosition } from '@/lib/map'
-import { drawEllipse } from '@/lib/effects'
+import { drawEllipse, drawPin } from '@/lib/effects'
 import { movementMarkers } from '@/lib/controls'
 import { sprites } from '@/lib/sprites'
+import { entryPointPinColor } from '@/lib/constants'
 import { npc, deleteEntity } from '@/lib/entities'
 import { panelStore } from '@/stores/editor-panel'
 import { commonOnFrameControls, commonUnset } from './common-functions'
@@ -70,7 +71,7 @@ const rightClickAction = (tileIndex, action) => {
 const editMode = {}
 
 editMode.set = () => {
-  const { mouse, player, ctxMid } = scene
+  const { mouse, player, ctxMid, ctxTop } = scene
   const panel = panelStore()
   const hoveredTile = hoveredTileStore()
   const entityAction = entityActionStore()
@@ -115,7 +116,8 @@ editMode.set = () => {
         Object.keys(entryPoints).forEach((entryPointKey) => {
           const entryPoint = entryPoints[entryPointKey]
           const position = tileIndexToPosition({ x: entryPoint.x, y: entryPoint.y })
-          drawEllipse(position, 'aqua', 20, ctxMid)
+          drawEllipse(position, entryPointPinColor, 20, ctxMid)
+          drawPin(entryPointPinColor, entryPointPinColor, ctxTop, position)
         })
       }
     }

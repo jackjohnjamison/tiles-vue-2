@@ -34,6 +34,7 @@ export const //
   crumbWidth = 16, // For breadcrumb trails
   pinProportion = 0.86,
   pinColor = 'lime',
+  entryPointPinColor = 'lime',
   //
   // No operation dummy function
   noop = () => {}
