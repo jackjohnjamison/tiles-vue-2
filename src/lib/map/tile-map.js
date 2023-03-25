@@ -127,14 +127,10 @@ const saveTileMaptoJSON = () => {
       tileIndex
     } = entity
 
-    if (name === 'unit') {
-      tileMap.unitStart = tileIndex
-    } else {
-      tileMap.entityList.push({
-        name,
-        tileIndex
-      })
-    }
+    tileMap.entityList.push({
+      name,
+      tileIndex
+    })
   })
 
   return 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(tileMap, JSONReplacer))

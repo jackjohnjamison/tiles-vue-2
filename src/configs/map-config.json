@@ -1,5 +1,32 @@
 {
   "mapList": {
+    "hub": {
+      "entryPoints": {
+        "default": {
+          "x": 8,
+          "y": 6
+        },
+        "NW": {
+          "x": 7,
+          "y": 1
+        },
+        "NE": {
+          "x": 14,
+          "y": 7
+        },
+        "SE": {
+          "x": 8,
+          "y": 14
+        },
+        "SW": {
+          "x": 1,
+          "y": 8
+        }
+      },
+      "xTiles": 16,
+      "yTiles": 16,
+      "id": "0a30c00f-fb06-4f74-ba23-d58be3287346"
+    },
     "lake": {
       "displayName": "The Lake",
       "entryPoints": {
@@ -11,18 +38,6 @@
       "xTiles": 32,
       "yTiles": 32,
       "id": 2
-    },
-    "windows": {
-      "displayName": "The Windows Vista",
-      "entryPoints": {
-        "default": {
-          "x": 6,
-          "y": 6
-        }
-      },
-      "xTiles": 32,
-      "yTiles": 32,
-      "id": 1
     }
   }
 }

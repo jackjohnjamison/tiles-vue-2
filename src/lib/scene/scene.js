@@ -66,8 +66,6 @@ scene.loadMap = (tileMap, entryPointName = null) => {
 
   let startLocation = { x: 0, y: 0 }
 
-  console.log(entryPoints)
-
   if (entryPointName && entryPoints?.[entryPointName]) {
     startLocation = entryPoints[entryPointName]
   } else if (entryPoints?.default) {
