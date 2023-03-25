@@ -10,6 +10,7 @@
 
 <template>
   <aside v-if="mode.mode === 'editMode' && hoveredTile.tileIsHovered" class="tile-info">
+    Current tile ( x: {{ hoveredTile.tileIndex.x }} y: {{ hoveredTile.tileIndex.y }})
     <div v-if="keyCheck('ControlLeft')">
       {{JSON.stringify(
         scene.tileMap.tiles[hoveredTile.tileIndex.x][hoveredTile.tileIndex.y],
@@ -17,7 +18,6 @@
         2
       )}}
     </div>
-    Current tile ( x: {{ hoveredTile.tileIndex.x }} y: {{ hoveredTile.tileIndex.y }})
   </aside>
 </template>
 

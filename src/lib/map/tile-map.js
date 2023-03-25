@@ -25,7 +25,7 @@ const createTileMapFromParams = ({ xTiles, yTiles }, dsiplayName) => {
 
   tileMap.entryPoints = {}
   tileMap.id = uuid()
-  tileMap.dsiplayName = dsiplayName
+  tileMap.displayName = dsiplayName
 
   // Initializes every tile as an empty object
   for (let x = 0; x < xTiles; x++) {
@@ -127,10 +127,12 @@ const saveTileMaptoJSON = () => {
       tileIndex
     } = entity
 
-    tileMap.entityList.push({
-      name,
-      tileIndex
-    })
+    if (name !== 'unit') {
+      tileMap.entityList.push({
+        name,
+        tileIndex
+      })
+    }
   })
 
   return 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(tileMap, JSONReplacer))
