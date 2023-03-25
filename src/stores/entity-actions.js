@@ -15,10 +15,14 @@ export const entityActionStore = defineStore('entityAction', {
 
   actions: {
     updateEntryPoints() {
-      // Setting this as empty first is a dirty hack to force the v-for to re-render
+      // Setting entryPoints as empty first is a dirty hack to force the v-for to re-render
       this.entryPoints = {}
       this.entryPoints = scene.tileMap.entryPoints
-      console.log(this.entryPoints)
+    },
+
+    deleteEntryPoint(name) {
+      delete scene.tileMap.entryPoints[name]
+      this.updateEntryPoints()
     }
   }
 })

@@ -47,7 +47,8 @@
         <p>Exisiting Entry Points</p>
         <ul>
           <li v-for="(entryPoint, name) in entityAction.entryPoints" :key=name class=entry-point>
-            {{ name }} ( X: {{ entryPoint.x}} Y: {{ entryPoint.y }} ) <button class=delete-entry-point>&#x1f5d1;</button>
+            {{ name }} ( X: {{ entryPoint.x}} Y: {{ entryPoint.y }} )
+            <button class=delete-entry-point @click=entityAction.deleteEntryPoint(name)>&#x1f5d1;</button>
           </li>
         </ul>
       </div>
