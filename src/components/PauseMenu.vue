@@ -9,10 +9,10 @@
   // Move this into lib
   const generateMap = () => {
     const { xTiles, yTiles } = pause
-    const newMap = createTileMapFromParams({
-      xTiles,
-      yTiles
-    })
+    const newMap = createTileMapFromParams(
+      { xTiles, yTiles },
+      pause.mapDisplayName
+    )
 
     reloadScene(newMap)
     return

@@ -25,19 +25,19 @@ const getMaps = () => {
 
 const createConfig = ({ maps, mapFiles }) => {
   const mapConfigJSON = {
-    mapList: []
+    mapList: {}
   }
 
   maps.forEach((map, i) => {
-    const mapData = {
-      name: mapFiles[i].replace('.json', ''),
-      displayName: map?.displayName,
-      entryPoints: map?.entryPoints,
-      xTiles: map.xTiles,
-      yTiles: map.yTiles
-    }
+    const { displayName, entryPoints, xTiles, yTiles, id } = map
 
-    mapConfigJSON.mapList.push(mapData)
+    mapConfigJSON.mapList[mapFiles[i].replace('.json', '')] = {
+      displayName,
+      entryPoints,
+      xTiles,
+      yTiles,
+      id
+    }
   })
 
   fs.writeFile(configPath, JSON.stringify(mapConfigJSON, null, 2), 'utf8', () => {

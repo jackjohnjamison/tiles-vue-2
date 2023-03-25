@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid'
 import pathfinding from 'pathfinding'
 import { scene, reloadScene } from '@/lib/scene'
 import { sprites } from '@/lib/sprites'
@@ -14,7 +15,7 @@ const defaultTile = {
   variant: null
 }
 
-const createTileMapFromParams = ({ xTiles, yTiles }) => {
+const createTileMapFromParams = ({ xTiles, yTiles }, dsiplayName) => {
   const tileMap = {
     tiles: [],
     pathGrid: new pathfinding.Grid(xTiles, yTiles),
@@ -23,6 +24,8 @@ const createTileMapFromParams = ({ xTiles, yTiles }) => {
   }
 
   tileMap.entryPoints = {}
+  tileMap.id = uuid()
+  tileMap.dsiplayName = dsiplayName
 
   // Initializes every tile as an empty object
   for (let x = 0; x < xTiles; x++) {

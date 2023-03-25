@@ -7,7 +7,8 @@ export const entityActionStore = defineStore('entityAction', {
       action: 'addNpc',
       mapName: 'windows',
       entryPointName: 'default',
-      entryPoints: scene.tileMap.entryPoints
+      entryPoints: scene.tileMap.entryPoints,
+      selectedMapForTravelPoints: null
     }
   },
 
@@ -22,6 +23,8 @@ export const entityActionStore = defineStore('entityAction', {
       delete scene.tileMap.entryPoints[name]
       this.updateEntryPoints()
       scene.requestRedrawEffects()
-    }
+    },
+
+    selectMapForTravelPoints() {}
   }
 })

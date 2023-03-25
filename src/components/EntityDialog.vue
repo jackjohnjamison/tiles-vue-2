@@ -4,6 +4,7 @@
   import { entityActionStore } from '@/stores/entity-actions'
 
   const entityAction = entityActionStore()
+  console.log(scene.mapConfig.mapList);
 </script>
 
 <template>
@@ -22,21 +23,20 @@
     <div v-if="entityAction.action === 'travelPoint'">
       <p>Add a Travel Point</p>
       <div class=select-wrapper>
-        <select v-model=entityAction.mapName id=map>
-          <option v-for="map in scene.mapConfig.mapList" :key=map.name :value=map.name>{{ map.displayName }}</option>
+        <select v-model=entityAction.mapName id=map @change=entityAction.selectMapForTravelPoints>
+          <option
+            v-for="map in scene.mapConfig.mapList"
+            :key=map.name
+            :value=map.name
+          >
+            {{ map.displayName }}
+          </option>
         </select>
         <label for=map>Map Name</label>
       </div>
-
-      <!-- <div class=destination-input>
-        <input id=destinationX v-model=entityAction.destinationX type=number min=0 max=32 />
-        <label for=destinationX>Entry point X</label>
-      </div>
-
-      <div class=destination-input>
-        <input id=destinationY v-model=entityAction.destinationY type=number min=0 max=32 />
-        <label for=destinationY>Entry point Y</label>
-      </div> -->
+      <!-- <div v-for="entryPoint in scene.mapConfig.mapList"
+      <input type=radio> -->
+      
     </div>
 
     <!-- Entry Point Dialog -->
