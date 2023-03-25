@@ -5,21 +5,11 @@ import { baseMarkerSize, hoveredTileOutlineColor } from '@/lib/constants'
 import { hoveredTileStore } from '@/stores/hovered-tile'
 
 const movementMarkers = () => {
-  const {
-    player,
-    ctxMid,
-    ctxTop,
-    canvasTop,
-    view: { translate }
-  } = scene
+  const { player, ctxMid, ctxTop } = scene
 
   const { tileIndex, pathToTile } = hoveredTileStore()
 
   // Breadcrumb state
-  const { width, height } = canvasTop
-  ctxMid.clearRect(-translate.x, -translate.y, width, height)
-  ctxTop.clearRect(-translate.x, -translate.y, width, height)
-
   if (player.isMoving) {
     breadcrumbTrail(player.path, 'lime', false, ctxMid)
     breadcrumbTrail(player.path, 'rgba(200, 200, 200, 0.8)', true, ctxTop)

@@ -40,6 +40,7 @@ const addEntryPoint = (tileIndex) => {
   }
 
   updateEntryPoints()
+  scene.redrawEffects = true
 }
 
 const rightClickAction = (tileIndex, action) => {

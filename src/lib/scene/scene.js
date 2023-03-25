@@ -17,9 +17,9 @@ scene.start = async (canvases, map) => {
   scene.ctxMid = scene.canvasMid.getContext('2d')
   scene.ctxEntity = scene.canvasEntity.getContext('2d')
   scene.ctxTop = scene.canvasTop.getContext('2d')
-  scene.mouse = mouseTracker(scene.canvasTop)
   scene.redrawEffects = false
   scene.mapConfig = await import('../../configs/map-config.json')
+  scene.mouse = mouseTracker(scene.canvasTop)
 
   try {
     const mapData = await loadMapFromImport(map)

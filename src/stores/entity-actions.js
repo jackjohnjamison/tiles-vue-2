@@ -23,6 +23,7 @@ export const entityActionStore = defineStore('entityAction', {
     deleteEntryPoint(name) {
       delete scene.tileMap.entryPoints[name]
       this.updateEntryPoints()
+      scene.redrawEffects = true
     }
   }
 })
