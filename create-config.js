@@ -1,0 +1,51 @@
+/* eslint-disable no-undef */ // This was writen in a hurry. Sorry you had to read it.
+const fs = require('fs')
+const path = require('path')
+
+const mapsDirectory = path.resolve(__dirname, './src/maps')
+const configPath = path.resolve(__dirname, './src/configs/map-config.json')
+
+let mapList
+const maps = []
+
+const getMaps = () => {
+  const files = fs.readdirSync(mapsDirectory, { withFileTypes: false })
+  mapList = files
+
+  files.forEach((file) => {
+    const filePath = path.resolve(mapsDirectory, file)
+    const jsonString = fs.readFileSync(filePath, {
+      encoding: 'utf8',
+      flag: 'r'
+    })
+    const mapJSON = JSON.parse(jsonString)
+
+    maps.push(mapJSON)
+  })
+
+  return maps
+}
+
+const createConfig = (maps) => {
+  const mapConfigJSON = {
+    mapList: []
+  }
+
+  maps.forEach((map, i) => {
+    const mapData = {
+      name: mapList[i].replace('.json', ''),
+      defaultEntryPoint: map?.unitStart,
+      displayName: map?.displayName,
+      xTiles: map.xTiles,
+      yTiles: map.yTiles
+    }
+
+    mapConfigJSON.mapList.push(mapData)
+  })
+
+  fs.writeFile(configPath, JSON.stringify(mapConfigJSON, null, 2), 'utf8', () => {
+    console.log('mapConfig JSON saved')
+  })
+}
+
+createConfig(getMaps())

@@ -6,6 +6,7 @@ import { onFrameFunctions, additionalFunctions } from './on-frame-functions'
 import { reloadScene } from './reload-scene'
 import { renderFrame } from './render-frame'
 import { firstRender } from './first-render'
+import { save, load } from './save-load'
 
 export {
   scene,
@@ -18,5 +19,7 @@ export {
   additionalFunctions,
   renderFrame,
   firstRender,
-  onFrameFunctions
+  onFrameFunctions,
+  save,
+  load
 }

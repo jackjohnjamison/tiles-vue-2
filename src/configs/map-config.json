@@ -1,0 +1,24 @@
+{
+  "mapList": [
+    {
+      "name": "lake",
+      "defaultEntryPoint": {
+        "x": 10,
+        "y": 30
+      },
+      "displayName": "The Lake",
+      "xTiles": 32,
+      "yTiles": 32
+    },
+    {
+      "name": "windows",
+      "defaultEntryPoint": {
+        "x": 6,
+        "y": 8
+      },
+      "displayName": "The Windows Vista",
+      "xTiles": 32,
+      "yTiles": 32
+    }
+  ]
+}

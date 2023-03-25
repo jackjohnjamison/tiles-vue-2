@@ -1,6 +1,5 @@
 <script setup>
-  import { reloadScene } from '@/lib/scene'
-  import { save, load } from "@/lib/scene/save-load"
+  import { reloadScene, save, load } from '@/lib/scene'
   import { createTileMapFromParams } from '@/lib/map'
   import { maxTiles, minTiles } from '@/lib/constants'
   import { pauseStore } from '@/stores/pause'
