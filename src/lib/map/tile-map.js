@@ -1,7 +1,6 @@
 import pathfinding from 'pathfinding'
 import { scene, reloadScene } from '@/lib/scene'
 import { sprites } from '@/lib/sprites'
-import { tileIndexToPosition } from '.'
 import { tileTypes } from './tile-types'
 
 const getVariant = (set) => {
@@ -47,8 +46,6 @@ const setTile = (tileIndex, tileMap, brush) => {
   const { x, y } = tileIndex
 
   const tile = tileMap.tiles[x][y]
-
-  tile.position = tileIndexToPosition(tileIndex)
 
   switch (type) {
     case 'void':
@@ -139,6 +136,7 @@ const saveTileMaptoJSON = () => {
 }
 
 const loadMapFromImport = async (map) => {
+  // Converting the import to JSON and back again create an object which isn't immutable
   const mapJSON = JSON.stringify(await import(`../../maps/${map}.json`))
   return loadTileMapFromJSON(mapJSON)
 }

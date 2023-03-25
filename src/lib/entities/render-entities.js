@@ -1,11 +1,11 @@
 import { scene } from '@/lib/scene'
 import { getSpriteImage } from '@/lib/sprites'
-import { drawLineTileMarker } from '@/lib/map'
+import { drawLineTileMarker, tileIndexToPosition } from '@/lib/map'
 
 const renderEntities = (x, y) => {
   const { tileMap, entityMap } = scene
   const tile = tileMap.tiles[x][y]
-  const { feature, position } = tile
+  const { feature } = tile
   const entityMapLocation = entityMap.entities[x][y]
 
   if (tile.marker) {
@@ -21,6 +21,7 @@ const renderEntities = (x, y) => {
   if (feature) {
     const { set, color, variant } = feature
     const image = getSpriteImage(set, color, variant)
+    const position = tileIndexToPosition({ x, y })
     scene.ctxEntity.drawImage(image.data, position.x, position.y - image.yOffset)
 
     if (entityMapLocation) {
