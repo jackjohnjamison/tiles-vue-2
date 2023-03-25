@@ -18,7 +18,7 @@ playMode.set = () => {
   mouse.onMouseUp = () => {
     if (mouse.buttonCode === 1 && hoveredTile.tileIndex && !mouse.isDragged) {
       player.requestMove(hoveredTile.tileIndex)
-      scene.redrawEffects = true
+      scene.requestRedrawEffects()
     }
   }
 

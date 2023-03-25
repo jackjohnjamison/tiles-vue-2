@@ -16,11 +16,11 @@ const commonOnFrameControls = (delta) => {
 
   panCameraKeys(delta)
 
-  if (mouseMoved || scene.redrawEffects) {
+  if (mouseMoved || scene.isRedrawEffectsRequested()) {
     hoveredTile.updateHoveredTile({ x: mouse.x, y: mouse.y })
   }
 
-  if (hoveredTile.tileChangedThisFrame || scene.redrawEffects) {
+  if (hoveredTile.tileChangedThisFrame || scene.isRedrawEffectsRequested()) {
     const {
       canvasTop,
       ctxMid,
@@ -43,7 +43,7 @@ const commonOnFrameControls = (delta) => {
       })
     }
 
-    scene.redrawEffects = false
+    scene.RedrawEffectsDone()
   }
 
   if (mouseMoved) {

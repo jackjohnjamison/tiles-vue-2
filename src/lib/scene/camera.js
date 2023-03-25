@@ -39,7 +39,7 @@ const panCameraKeys = (delta) => {
     translatePrevious.x = translate.x
     translatePrevious.y = translate.y
 
-    scene.redrawEffects = true
+    scene.requestRedrawEffects()
 
     velocityX *= friction
     velocityY *= friction

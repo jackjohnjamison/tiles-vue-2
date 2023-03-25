@@ -50,7 +50,7 @@ const setView = ({ xTiles, yTiles }) => {
 
     ctxFloor.imageSmoothingEnabled = false
     ctxEntity.imageSmoothingEnabled = false
-    scene.redrawEffects = true
+    scene.requestRedrawEffects()
   }
 
   onresize = () => {

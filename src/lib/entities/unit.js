@@ -13,7 +13,7 @@ class unit extends entity {
     this.path = []
 
     const movementStep = () => {
-      scene.redrawEffects = true
+      scene.requestRedrawEffects()
     }
 
     const pathFinder = pathfinding(this, pathMovementSpeed, movementStep)

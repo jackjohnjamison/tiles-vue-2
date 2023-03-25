@@ -9,6 +9,7 @@ import { setView } from './set-view'
 import { firstRender, onFrameFunctions, panCameraTo, renderLoop } from '.'
 
 const scene = {}
+let redrawEffects = false
 
 // Sets parts of the scene that don't change between map loads
 scene.start = async (canvases, map) => {
@@ -17,9 +18,20 @@ scene.start = async (canvases, map) => {
   scene.ctxMid = scene.canvasMid.getContext('2d')
   scene.ctxEntity = scene.canvasEntity.getContext('2d')
   scene.ctxTop = scene.canvasTop.getContext('2d')
-  scene.redrawEffects = false
   scene.mapConfig = await import('../../configs/map-config.json')
   scene.mouse = mouseTracker(scene.canvasTop)
+
+  scene.requestRedrawEffects = () => {
+    redrawEffects = true
+  }
+
+  scene.isRedrawEffectsRequested = () => {
+    return redrawEffects
+  }
+
+  scene.RedrawEffectsDone = () => {
+    redrawEffects = false
+  }
 
   try {
     const mapData = await loadMapFromImport(map)

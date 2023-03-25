@@ -9,7 +9,7 @@
 <template>
   <div class=entity-dialog>
     <div class="select-wrapper select-wrapper--entity">
-      <select v-model=entityAction.action id=entity-type>
+      <select v-model=entityAction.action id=entity-type @change=scene.requestRedrawEffects>
         <option value=travelPoint>Travel Point</option>
         <option value=entryPoint>Entry Point</option>
         <option value=addNpc>Add NPC</option>
