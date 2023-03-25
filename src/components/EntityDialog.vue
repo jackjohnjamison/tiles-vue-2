@@ -31,7 +31,7 @@
 
     <!-- Travel Point Dialog -->
     <div v-if="entityAction.action === 'travelPoint'">
-      <p>Add a Travel Point</p>
+      <p>Add a Travel Point to:</p>
       <div class=select-wrapper>
         <select v-model=entityAction.mapName id=map>
           <option
@@ -44,8 +44,10 @@
         </select>
         <label for=map>Map Name</label>
       </div>
-      <!-- <div v-for="entryPoint in scene.mapConfig.mapList"
-      <input type=radio> -->
+      <div v-for="(entryPoint, name) in entityAction.entryPoints" :key=name>
+        {{ name }}
+      </div>
+      <!-- <input type=radio> -->
       
     </div>
 

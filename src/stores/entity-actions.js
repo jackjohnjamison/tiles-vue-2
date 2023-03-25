@@ -6,6 +6,7 @@ export const entityActionStore = defineStore('entityAction', {
     return {
       action: 'addNpc',
       mapName: null,
+      map: null,
       entryPointName: 'default',
       entryPoints: scene.tileMap.entryPoints,
       filteredMapList: null
@@ -26,8 +27,8 @@ export const entityActionStore = defineStore('entityAction', {
     },
 
     setInitialMap(mapName) {
-      this.mapName = scene.mapConfig.mapList[mapName].name
-      console.log('SET AS THIS', this.mapName)
+      this.map = scene.mapConfig.mapList[mapName]
+      this.mapName = this.map.name
     }
   }
 })
