@@ -35,7 +35,9 @@ npm run lint
 ```
 
 ## TODO
-- Add entry points to maps!
+- Move entry point markers out of common functions
+- Make entry points work
+- Make draw pin its own effect
 - Organise CSS, sass of css variables? Organise colours
 - Think about prettier and css linting
 - Switch to enums for game modes, maybe
