@@ -31,6 +31,9 @@ export const //
   tileRatio = tileHeight / tileWidth,
   radians360 = 6.28319,
   baseMarkerSize = 20,
+  crumbWidth = 16, // For breadcrumb trails
+  pinProportion = 0.86,
+  pinColor = 'lime',
   //
   // No operation dummy function
   noop = () => {}

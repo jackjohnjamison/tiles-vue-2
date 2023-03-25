@@ -1,10 +1,6 @@
-import { tileHeight, centerOffsetX, centerOffsetY } from '@/lib/constants'
+import { crumbWidth, pinColor } from '@/lib/constants'
 import { tileIndexToPosition } from '@/lib/map'
-import { drawEllipse } from '.'
-
-const crumbWidth = 16
-const pinProportion = 0.86
-const pinColor = 'lime'
+import { drawEllipse, drawPin } from '.'
 
 const transparentFill = 'rgba(150, 150, 150, 0.8)'
 
@@ -18,21 +14,7 @@ const breadcrumbTrail = (path, color, pin, ctx) => {
     drawEllipse(position, color, crumbWidth, ctx)
 
     if (pin && i === pathLength - 1) {
-      const centerX = position.x + centerOffsetX
-      const centerY = position.y + centerOffsetY
-
-      ctx.beginPath()
-      ctx.moveTo(centerX, centerY)
-      ctx.lineTo(centerX - crumbWidth / 3, centerY - tileHeight * pinProportion * 1.5)
-      ctx.lineTo(centerX, centerY - tileHeight * 1.5)
-      ctx.lineTo(centerX + crumbWidth / 3, centerY - tileHeight * pinProportion * 1.5)
-      ctx.closePath()
-
-      ctx.fillStyle = transparentFill
-      ctx.strokeStyle = pinColor
-
-      ctx.fill()
-      ctx.stroke()
+      drawPin(pinColor, transparentFill, ctx, position)
     }
   })
 }
