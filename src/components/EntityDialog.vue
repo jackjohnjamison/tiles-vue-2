@@ -3,8 +3,18 @@
   import { maxMapNameLength } from '@/lib/constants'
   import { entityActionStore } from '@/stores/entity-actions'
 
+  const { mapConfig: { mapList }, tileMap: { id } } = scene
   const entityAction = entityActionStore()
-  console.log(scene.mapConfig.mapList);
+
+  const mapKeys = Object.keys(mapList)
+  const mapArray = Object.values(mapList)
+  const filteredMapList = mapArray.filter((map, i) => {
+    map.name = mapKeys[i]
+    return map.id !== id
+  })
+
+  entityAction.setInitialMap(filteredMapList[0].name)
+  console.log(entityAction.mapName);
 </script>
 
 <template>
@@ -23,9 +33,9 @@
     <div v-if="entityAction.action === 'travelPoint'">
       <p>Add a Travel Point</p>
       <div class=select-wrapper>
-        <select v-model=entityAction.mapName id=map @change=entityAction.selectMapForTravelPoints>
+        <select v-model=entityAction.mapName id=map>
           <option
-            v-for="map in scene.mapConfig.mapList"
+            v-for="map in filteredMapList"
             :key=map.name
             :value=map.name
           >

@@ -16,8 +16,10 @@ const mouseTracker = (element) => {
   element.addEventListener('contextmenu', (e) => e.preventDefault())
 
   element.onmousemove = (e) => {
-    // Sets a default as this sometimes runs before the view is set
-    const { translate = { x: 0, y: 0 } } = scene.view
+    const translate = {
+      x: scene?.view.translate.x || 0,
+      y: scene?.view.translate.y || 0
+    }
 
     const { left, top } = e.target.getBoundingClientRect()
 
