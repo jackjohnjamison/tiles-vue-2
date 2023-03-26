@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
 import { renderLoop } from '@/lib/scene'
-import { defaultMapName, defaultMapSize } from '@/lib/constants'
+import { defaultMapTitle, defaultMapSize } from '@/lib/constants'
 
 export const pauseStore = defineStore('pause', {
   state: () => {
     return {
       isPaused: false,
-      mapDisplayName: defaultMapName,
+      mapDisplayName: defaultMapTitle,
       xTiles: defaultMapSize,
       yTiles: defaultMapSize
     }

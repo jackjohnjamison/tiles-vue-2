@@ -1,7 +1,7 @@
 import { createTileMapFromParams, loadMapFromImport } from '@/lib/map'
 import { createEntityMap, entity, unit, npc } from '@/lib/entities'
 import { mouseTracker } from '@/lib/controls'
-import { defaultMapSize, defaultMapName } from '@/lib/constants'
+import { defaultMapSize, defaultMapTitle } from '@/lib/constants'
 import { sprites } from '@/lib/sprites'
 import { initControls } from '@/lib/controls'
 import { modeStore } from '@/stores/mode'
@@ -40,7 +40,7 @@ scene.start = async (canvases, map) => {
   } catch {
     const startingMap = createTileMapFromParams(
       { xTiles: defaultMapSize, yTiles: defaultMapSize },
-      defaultMapName
+      defaultMapTitle
     )
 
     scene.loadMap(startingMap)

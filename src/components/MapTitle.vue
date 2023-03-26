@@ -1,14 +1,11 @@
 <script setup>
-  import { reactive } from 'vue'
-  import { scene } from '@/lib/scene'
+  import { mapTitleStore } from '@/stores/map-title'
 
-  const mapDisplayName = reactive({
-    name: scene?.tileMap?.displayName
-  })
+  const mapTitle = mapTitleStore()
 </script>
 
 <template>
-  <h1 class=map-name>{{ mapDisplayName.name }}</h1>
+  <h1 class=map-name>{{ mapTitle.title }}</h1>
 </template>
 
 <style lang="scss" scoped>

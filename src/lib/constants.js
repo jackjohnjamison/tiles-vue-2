@@ -8,7 +8,7 @@ export const //
   defaultMapSize = maxTiles / 2,
   maxMapNameLength = 32,
   //
-  defaultMapName = 'Uncharted Lands',
+  defaultMapTitle = 'Uncharted Lands',
   //
   // Thickness of padding at canvas bottomd
   paddingBottom = 32,

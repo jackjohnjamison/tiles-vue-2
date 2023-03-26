@@ -2,7 +2,7 @@
   import { modeStore } from "@/stores/mode"
   import { pauseStore } from '@/stores/pause'
   import EditorPanel from '@/components/EditorPanel.vue'
-  import MapDisplayName from '@/components/MapNameDisplay.vue'
+  import MapTitle from '@/components/MapTitle.vue'
 
   const pause = pauseStore()
   const mode = modeStore()
@@ -10,7 +10,7 @@
 
 <template>
   <div v-if="!pause.isPaused">
-    <MapDisplayName />
+    <MapTitle />
     <div v-if="mode.mode === 'playMode'">
       <!-- h2>Play mode</h2 -->
     </div>
