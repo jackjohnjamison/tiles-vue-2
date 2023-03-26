@@ -133,10 +133,6 @@
         background: #1b1b1b;
         font-family: inherit;
         color: inherit;
-        border: none;
-        background: #1b1b1b;
-        font-family: inherit;
-        color: inherit;
         font-size: 16px;
         padding: 1px 8px;
         border-radius: 3px;

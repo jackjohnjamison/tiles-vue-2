@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node ./create-config.js && vite",
+    "update-maps": "node ./create-config.js",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",

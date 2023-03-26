@@ -43,6 +43,15 @@
 
     button {
       pointer-events: all;
+      
+      // Maybe inherit a common button style?
+      border: none;
+      background: #1b1b1b;
+      font-family: inherit;
+      color: inherit;
+      font-size: 24px;
+      padding: 0 10px;
+      border-radius: 3px;
     }
   }
 </style>
