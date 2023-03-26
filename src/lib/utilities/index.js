@@ -1,4 +1,5 @@
-import { getId } from "./get-id";
-import { randomVariationInt } from "./random-variation";
+import { getId } from './get-id'
+import { randomVariationInt } from './random-variation'
+import { query } from './query-params'
 
-export { getId, randomVariationInt };
+export { getId, randomVariationInt, query }
