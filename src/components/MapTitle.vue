@@ -1,11 +1,20 @@
 <script setup>
   import { mapTitleStore } from '@/stores/map-title'
+  import { modeStore } from "@/stores/mode"
 
+  const mode = modeStore()
   const mapTitle = mapTitleStore()
 </script>
 
 <template>
-  <h1 class=map-title>{{ mapTitle.title }}</h1>
+  <div class=map-title>
+    <div v-if="mode.mode === 'editMode'" class=title-wrapper>
+      <h1>{{ mapTitle.title }}</h1><button>&#x1F589;</button>
+    </div>
+    <div v-else class=title-wrapper>
+      <h1>{{ mapTitle.title }}</h1>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -13,12 +22,27 @@
     position: absolute;
     right: 0;
     left: 0;
-    margin: -4px auto 0 auto;
+    margin: 0 auto 0 auto;
     width: fit-content;
-    padding: 0 16px 6px;
     pointer-events: none;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    background: rgba(100, 100, 100, 0.4);
+
+    .title-wrapper {
+      display: flex;
+      width: fit-content;
+      padding: 0 16px 6px;
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+      background: rgba(100, 100, 100, 0.4);
+    }
+
+    h1 {
+      width: fit-content;
+      padding: 0 16px 6px;
+      margin: 0;
+    }
+
+    button {
+      pointer-events: all;
+    }
   }
 </style>

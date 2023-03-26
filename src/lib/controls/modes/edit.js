@@ -75,6 +75,7 @@ editMode.set = () => {
   const panel = panelStore()
   const hoveredTile = hoveredTileStore()
   const entityAction = entityActionStore()
+  entityAction.updateEntryPoints()
 
   mouse.onMouseMove = () => {
     if (mouse.buttonCode === 1) {

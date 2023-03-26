@@ -29,7 +29,7 @@ export const entityActionStore = defineStore('entityAction', {
       scene.requestRedrawEffects()
     },
 
-    fillEntityPoint(mapName, travelPoint) {
+    fillTravelPoint(mapName, travelPoint) {
       this.mapName = mapName
       this.travelPoint = travelPoint
     }

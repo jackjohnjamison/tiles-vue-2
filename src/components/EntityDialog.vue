@@ -53,12 +53,12 @@
         <label for=mapName>Entry Point Name</label>
       </div>
       <p>Exisiting Entry Points in maps:</p>
-      <div v-for="(map) in filteredMapList" :key=map.name class=entry-point-map>
+      <div v-for="(map) in filteredMapList" :key=map.name class=entry-point-list>
         <p>{{ map.mapTitle }} ({{ map.name }})</p>
         <ul class=entry-points-in-map>
           <li v-for="(entryPoints, entryPointName) in map.entryPoints" :key=entryPointName>
             {{ entryPointName }}
-            <button @click="entityAction.fillEntityPoint(map.name, entryPointName)">
+            <button @click="entityAction.fillTravelPoint(map.name, entryPointName)">
               Fill
             </button>
           </li>
@@ -87,10 +87,6 @@
     }
   }
 
-  .entry-point-map {
-    border-top:  solid 1px #1b1b1b;
-  }
-
   .select-wrapper--entity {
     margin-bottom: 4px;
     padding-bottom: 4px;
@@ -110,22 +106,42 @@
     }
   }
 
-  .entry-points-in-map {
-    padding-left: 18px;
+  .entry-point-list {
+    border-top:  solid 1px #1b1b1b;
 
-    button {
-      border: none;
-      background: #1b1b1b;
-      font-family: inherit;
-      color: inherit;
-      border: none;
-      background: #1b1b1b;
-      font-family: inherit;
-      color: inherit;
-      font-size: 16px;
-      padding: 1px 8px;
-      border-radius: 3px;
-      margin-left: 3px;
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+
+    .entry-points-in-map {
+      padding-left: 18px;
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &:before {
+          content: '•'; 
+            position:absolute; 
+            left:10px;
+        }
+      }
+
+      button {
+        border: none;
+        background: #1b1b1b;
+        font-family: inherit;
+        color: inherit;
+        border: none;
+        background: #1b1b1b;
+        font-family: inherit;
+        color: inherit;
+        font-size: 16px;
+        padding: 1px 8px;
+        border-radius: 3px;
+        margin-left: 3px;
+      }
     }
   }
 
