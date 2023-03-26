@@ -71,8 +71,8 @@ scene.loadMap = (tileMap, entryPointName = null) => {
 
   if (entryPointName && entryPoints?.[entryPointName]) {
     startLocation = entryPoints[entryPointName]
-  } else if (entryPoints?.default) {
-    startLocation = entryPoints.default
+  } else {
+    startLocation = Object.values(entryPoints)[0]
   }
 
   scene.player.addToScene(startLocation)
