@@ -5,13 +5,18 @@
 
   const mode = modeStore()
   const mapTitle = mapTitleStore()
+  let newTitle
+
+  const setMapTitle = () => {
+    mapTitle.saveEdit(newTitle.value)
+  }
 </script>
 
 <template>
   <div class=map-title>
     <div v-if="mode.mode === 'editMode' && mapTitle.isEditing" class=title-wrapper>
       <input type=text :maxlength=maxMapNameLength ref=newTitle :value=mapTitle.title />
-      <button @click=mapTitle.saveEdit(this.$refs.newTitle.value)>&#x2714;</button>
+      <button @click=setMapTitle>&#x2714;</button>
     </div>
 
     <div v-else-if="mode.mode === 'editMode'" class=title-wrapper>
