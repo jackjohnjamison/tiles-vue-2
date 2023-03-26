@@ -15,7 +15,7 @@ const initControls = () => {
     const pause = pauseStore()
 
     switch (keyCode) {
-      case 'Space':
+      case 'Pause':
         pause.toggle()
         break
 

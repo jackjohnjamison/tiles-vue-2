@@ -1,6 +1,7 @@
 {
   "mapList": {
     "hub": {
+      "mapTitle": "Hub",
       "entryPoints": {
         "default": {
           "x": 8,
@@ -28,7 +29,7 @@
       "id": "0a30c00f-fb06-4f74-ba23-d58be3287346"
     },
     "lake": {
-      "displayName": "The Lake",
+      "mapTitle": "The Lake",
       "entryPoints": {
         "default": {
           "x": 10,

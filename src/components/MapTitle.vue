@@ -13,9 +13,9 @@
     position: absolute;
     right: 0;
     left: 0;
-    margin: 0 auto 0 auto;
+    margin: -4px auto 0 auto;
     width: fit-content;
-    padding: 0 18px;
+    padding: 0 16px 6px;
     pointer-events: none;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
