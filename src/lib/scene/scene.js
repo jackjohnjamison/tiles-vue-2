@@ -21,6 +21,7 @@ scene.start = async (canvases, map) => {
   scene.ctxTop = scene.canvasTop.getContext('2d')
   scene.mapConfig = await import('../../configs/map-config.json')
   scene.mouse = mouseTracker(scene.canvasTop)
+  scene.setView = setView
 
   scene.requestRedrawEffects = () => {
     redrawEffects = true
@@ -112,7 +113,5 @@ scene.loadMap = (tileMap, entryPointName = null) => {
   const camerCentreY = Math.round(scene.canvasTop.height / 2 - scene.player.position.y)
   panCameraTo(camerCentreX, camerCentreY)
 }
-
-scene.setView = setView
 
 export { scene }

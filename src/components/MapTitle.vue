@@ -5,17 +5,20 @@
 </script>
 
 <template>
-  <h1 class=map-name>{{ mapTitle.title }}</h1>
+  <h1 class=map-title>{{ mapTitle.title }}</h1>
 </template>
 
 <style lang="scss" scoped>
-  .map-name {
+  .map-title {
     position: absolute;
-    text-align: center;
     right: 0;
     left: 0;
+    margin: 0 auto 0 auto;
+    width: fit-content;
+    padding: 0 18px;
     pointer-events: none;
-    margin: 0;
-    background: rgba(100,100,100,.4);
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background: rgba(100, 100, 100, 0.4);
   }
 </style>

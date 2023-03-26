@@ -45,5 +45,9 @@ they should poobably have a consistant width most of the time at least
 - Move Math.round into common draw function?
 - Add TypeScript, maybe just for the pinia stores to begin with?
 
+## Bugs
+- Sometimes when transitioning levels the movement markers are set from and origin that is not under the player
+- Handle transitions to maps which do not exist
+
 ## Referance
 https://www.w3.org/WAI/ARIA/apg/patterns/tabs/examples/tabs-automatic/
