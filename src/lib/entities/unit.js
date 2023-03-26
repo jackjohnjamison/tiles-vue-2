@@ -35,6 +35,10 @@ class unit extends entity {
       this.redraw()
     }
 
+    this.resetTravel = () => {
+      setTimeout(() => (this.travelTriggered = false), 5000)
+    }
+
     this.requestMove = pathFinder.requestMove
     this.unsetPath = pathFinder.unsetPath
 
