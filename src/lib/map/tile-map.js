@@ -143,9 +143,15 @@ const loadMapFromImport = async (map) => {
 }
 
 const loadMapAtLocation = async (mapName, entryPointName) => {
-  const mapData = await loadMapFromImport(mapName)
+  try {
+    const mapData = await loadMapFromImport(mapName)
 
-  reloadScene(mapData, entryPointName)
+    reloadScene(mapData, entryPointName)
+  } catch (error) {
+    console.warn(`Map "${mapName}" failed to load`)
+    console.error(error, error.stack)
+    setTimeout(() => (scene.player.travelTriggered = false), 5000)
+  }
 }
 
 const loadTileMapFromJSON = (json) => {

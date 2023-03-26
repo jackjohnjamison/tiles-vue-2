@@ -17,8 +17,8 @@ const mouseTracker = (element) => {
 
   element.onmousemove = (e) => {
     const translate = {
-      x: scene?.view.translate.x || 0,
-      y: scene?.view.translate.y || 0
+      x: scene?.view?.translate.x || 0,
+      y: scene?.view?.translate.y || 0
     }
 
     const { left, top } = e.target.getBoundingClientRect()

@@ -11,6 +11,7 @@ class unit extends entity {
       haloColor: 'lime'
     })
     this.path = []
+    this.travelTriggered = false
 
     const movementStep = () => {
       scene.requestRedrawEffects()
