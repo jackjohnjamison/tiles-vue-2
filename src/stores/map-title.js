@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { scene } from '@/lib/scene'
+import { defaultMapTitle } from '@/lib/constants'
 
 export const mapTitleStore = defineStore('mapTitle', {
   state: () => {
@@ -19,7 +20,7 @@ export const mapTitleStore = defineStore('mapTitle', {
     },
 
     saveEdit(newTitle) {
-      this.title = scene.tileMap.mapTitle = newTitle
+      this.title = scene.tileMap.mapTitle = newTitle || defaultMapTitle
       this.isEditing = false
     }
   }

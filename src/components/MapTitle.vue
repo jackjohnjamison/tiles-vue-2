@@ -1,4 +1,5 @@
 <script setup>
+  import { maxMapNameLength } from '@/lib/constants'
   import { mapTitleStore } from '@/stores/map-title'
   import { modeStore } from "@/stores/mode"
 
@@ -8,9 +9,15 @@
 
 <template>
   <div class=map-title>
-    <div v-if="mode.mode === 'editMode'" class=title-wrapper>
-      <h1>{{ mapTitle.title }}</h1><button>&#x1F589;</button>
+    <div v-if="mode.mode === 'editMode' && mapTitle.isEditing" class=title-wrapper>
+      <input type=text :maxlength=maxMapNameLength ref=newTitle :value=mapTitle.title />
+      <button @click=mapTitle.saveEdit(this.$refs.newTitle.value)>&#x2714;</button>
     </div>
+
+    <div v-else-if="mode.mode === 'editMode'" class=title-wrapper>
+      <h1>{{ mapTitle.title }}</h1><button @click=mapTitle.toEditMode>&#x1F589;</button>
+    </div>
+
     <div v-else class=title-wrapper>
       <h1>{{ mapTitle.title }}</h1>
     </div>
@@ -18,6 +25,8 @@
 </template>
 
 <style lang="scss" scoped>
+  @import '@/scss/px-to-rem.scss';
+
   .map-title {
     position: absolute;
     right: 0;
@@ -28,6 +37,7 @@
 
     .title-wrapper {
       display: flex;
+      align-items: center;
       width: fit-content;
       padding: 0 16px 6px;
       border-bottom-right-radius: 10px;
@@ -49,9 +59,17 @@
       background: #1b1b1b;
       font-family: inherit;
       color: inherit;
-      font-size: 24px;
-      padding: 0 10px;
+      font-size: pxToRem(24);
+      height: pxToRem(40);
+      width: pxToRem(40);
       border-radius: 3px;
+    }
+
+    input {
+      pointer-events: all;
+      font-size: pxToRem(32);
+      font-weight: 700;
+      width: fit-content;
     }
   }
 </style>
