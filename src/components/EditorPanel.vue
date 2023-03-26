@@ -49,6 +49,13 @@
     border-radius: 2px;
     backdrop-filter: var(--frostedFilter);
     min-width: 300px;
+    overflow-y: auto;
+    max-height: 100%;
+    direction:rtl;
+
+    > * {
+      direction:ltr;
+    }
   }
 
   .tablist {

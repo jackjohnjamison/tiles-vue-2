@@ -1,5 +1,21 @@
 {
   "mapList": {
+    "bridge": {
+      "mapTitle": "The Bridge",
+      "entryPoints": {
+        "lake": {
+          "x": 3,
+          "y": 1
+        },
+        "NE": {
+          "x": 2,
+          "y": 29
+        }
+      },
+      "xTiles": 6,
+      "yTiles": 32,
+      "id": "85dc01d8-d3fb-4bf4-a653-56831c4c7391"
+    },
     "hub": {
       "mapTitle": "Hub",
       "entryPoints": {
