@@ -1,20 +1,17 @@
 import { loadTileMapFromJSON, saveTileMaptoJSON } from '@/lib/map'
 import { reloadScene } from '.'
 
-const save = (refs) => {
-  const { saveName, saveButton } = refs
+const save = (saveButton, saveLink) => {
   const mapData = saveTileMaptoJSON()
-  const downloadNode = document.createElement('a')
+  const downloadNode = saveLink
   downloadNode.setAttribute('href', mapData)
-  downloadNode.setAttribute('download', saveName.value + '.json')
+  downloadNode.setAttribute('download', 'tile-map.json')
+  downloadNode.setAttribute('id', 'saveLink')
+  downloadNode.innerText = '- Save link -'
   saveButton.after(downloadNode)
-
-  downloadNode.click()
-  downloadNode.remove()
 }
 
-const load = (refs) => {
-  const { loadButton } = refs
+const load = (loadButton) => {
   const loadNode = document.createElement('input')
   loadNode.type = 'file'
 

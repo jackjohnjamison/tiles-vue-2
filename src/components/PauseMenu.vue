@@ -25,10 +25,10 @@
       <p>Paused</p>
       <ul>
         <li><button @click=pause.toggle>Resume</button></li>
-        <li><button @click=load(this.$refs) ref=loadButton>Load</button></li>
+        <li><button @click=load(this.$refs.loadButton) ref=loadButton>Load</button></li>
         <li class=group-wrapper>
-          <button @click=save(this.$refs) class=save ref=saveButton>Save</button>
-          <input type=text ref=saveName value=tile-map />
+          <button @click="save(this.$refs.saveButton, this.$refs.saveLink)" class=save ref=saveButton>Save</button>
+          <a class=save-link ref=saveLink />
         </li>
         <li class=group-wrapper>
           <button class=generate-map @click=generateMap>Generate New Map</button>
@@ -96,6 +96,12 @@
       label {
         font-size: pxToRem(16);
       }
+    }
+
+    .save-link {
+      color: #fff;
+      font-size: 20px;
+      text-decoration: none;
     }
 
     ul {
