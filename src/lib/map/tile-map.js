@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid'
 import pathfinding from 'pathfinding'
 import { scene, reloadScene } from '@/lib/scene'
 import { sprites } from '@/lib/sprites'
@@ -115,6 +116,7 @@ const saveTileMaptoJSON = () => {
   delete saveData?.default
   delete saveData?.pathGrid
 
+  saveData.id = uuid()
   saveData.entityList = []
   entities.forEach((entity) => {
     const {
@@ -136,8 +138,6 @@ const saveTileMaptoJSON = () => {
 const loadMapFromFetch = async (map) => {
   const response = await fetch(`../../maps/${map}.json`)
   const mapJSON = await response.json()
-
-  console.log(mapJSON)
 
   return loadTileMap(mapJSON)
 }

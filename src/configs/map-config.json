@@ -25,7 +25,8 @@
         }
       },
       "xTiles": 16,
-      "yTiles": 16
+      "yTiles": 16,
+      "id": "61620a6d-5632-44b4-9e81-e8a81ca9ae27"
     },
     "lake": {
       "mapTitle": "The Lake",
@@ -33,10 +34,15 @@
         "default": {
           "x": 10,
           "y": 30
+        },
+        "bridge": {
+          "x": 30,
+          "y": 19
         }
       },
       "xTiles": 32,
-      "yTiles": 32
+      "yTiles": 32,
+      "id": "5c1a395c-1968-4940-a195-365d0a3fea00"
     }
   }
 }
