@@ -149,7 +149,7 @@ const loadMapAtLocation = async (mapName, entryPointName) => {
     reloadScene(mapData, entryPointName)
   } catch (error) {
     console.warn(`Map "${mapName}" failed to load`)
-    console.error(error, error.stack)
+    console.error(error)
     setTimeout(() => (scene.player.travelTriggered = false), 5000)
   }
 }
