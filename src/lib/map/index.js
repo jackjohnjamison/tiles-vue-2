@@ -3,9 +3,9 @@ import { paintTile, unsetTileLock } from './paint-tile'
 import { drawLineTile, drawLineTileMarker } from './draw-line-tile'
 import {
   createTileMapFromParams,
-  loadMapFromImport,
+  loadMapFromFetch,
   saveTileMaptoJSON,
-  loadTileMapFromJSON,
+  loadTileMap,
   loadMapAtLocation,
   setTile
 } from './tile-map'
@@ -29,8 +29,8 @@ export {
   tileIndexToPosition,
   drawLineTile,
   createTileMapFromParams,
-  loadMapFromImport,
-  loadTileMapFromJSON,
+  loadMapFromFetch,
+  loadTileMap,
   saveTileMaptoJSON,
   isWalkable,
   setWalkable,

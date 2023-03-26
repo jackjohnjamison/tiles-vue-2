@@ -25,8 +25,7 @@
         }
       },
       "xTiles": 16,
-      "yTiles": 16,
-      "id": "0a30c00f-fb06-4f74-ba23-d58be3287346"
+      "yTiles": 16
     },
     "lake": {
       "mapTitle": "The Lake",
@@ -37,8 +36,7 @@
         }
       },
       "xTiles": 32,
-      "yTiles": 32,
-      "id": 2
+      "yTiles": 32
     }
   }
 }

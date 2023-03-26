@@ -1,4 +1,4 @@
-import { createTileMapFromParams, loadMapFromImport } from '@/lib/map'
+import { createTileMapFromParams, loadMapFromFetch } from '@/lib/map'
 import { createEntityMap, entity, unit, npc } from '@/lib/entities'
 import { mouseTracker } from '@/lib/controls'
 import { defaultMapSize, defaultMapTitle } from '@/lib/constants'
@@ -36,10 +36,11 @@ scene.start = async (canvases, map) => {
   }
 
   try {
-    const mapData = await loadMapFromImport(map)
+    const mapData = await loadMapFromFetch(map)
 
     scene.loadMap(mapData)
-  } catch {
+  } catch (error) {
+    console.log(error)
     const startingMap = createTileMapFromParams(
       { xTiles: defaultMapSize, yTiles: defaultMapSize },
       defaultMapTitle

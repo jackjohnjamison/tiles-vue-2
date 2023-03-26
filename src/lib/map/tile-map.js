@@ -107,18 +107,15 @@ const setTile = (tileIndex, tileMap, brush) => {
   tile.walkable = walkable
 }
 
-const JSONReplacer = (key, value) => {
-  if (key === 'pathGrid') {
-    return
-  }
-
-  return value
-}
-
 const saveTileMaptoJSON = () => {
   const { tileMap, entities } = scene
 
-  tileMap.entityList = []
+  const saveData = { ...tileMap }
+
+  delete saveData?.default
+  delete saveData?.pathGrid
+
+  saveData.entityList = []
   entities.forEach((entity) => {
     const {
       constructor: { name },
@@ -126,25 +123,28 @@ const saveTileMaptoJSON = () => {
     } = entity
 
     if (name !== 'unit') {
-      tileMap.entityList.push({
+      saveData.entityList.push({
         name,
         tileIndex
       })
     }
   })
 
-  return 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(tileMap, JSONReplacer))
+  return 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(saveData))
 }
 
-const loadMapFromImport = async (map) => {
-  // Converting the import to JSON and back again create an object which isn't immutable
-  const mapJSON = JSON.stringify(await import(`../../maps/${map}.json`))
-  return loadTileMapFromJSON(mapJSON)
+const loadMapFromFetch = async (map) => {
+  const response = await fetch(`../../maps/${map}.json`)
+  const mapJSON = await response.json()
+
+  console.log(mapJSON)
+
+  return loadTileMap(mapJSON)
 }
 
 const loadMapAtLocation = async (mapName, entryPointName) => {
   try {
-    const mapData = await loadMapFromImport(mapName)
+    const mapData = await loadMapFromFetch(mapName)
 
     reloadScene(mapData, entryPointName)
   } catch (error) {
@@ -154,8 +154,7 @@ const loadMapAtLocation = async (mapName, entryPointName) => {
   }
 }
 
-const loadTileMapFromJSON = (json) => {
-  const mapObject = JSON.parse(json)
+const loadTileMap = (mapObject) => {
   mapObject.pathGrid = new pathfinding.Grid(mapObject.xTiles, mapObject.yTiles)
 
   for (let x = 0; x < mapObject.xTiles; x++) {
@@ -170,8 +169,8 @@ const loadTileMapFromJSON = (json) => {
 
 export {
   createTileMapFromParams,
-  loadMapFromImport,
-  loadTileMapFromJSON,
+  loadMapFromFetch,
+  loadTileMap,
   saveTileMaptoJSON,
   loadMapAtLocation,
   setTile

@@ -1,4 +1,4 @@
-import { loadTileMapFromJSON, saveTileMaptoJSON } from '@/lib/map'
+import { loadTileMap, saveTileMaptoJSON } from '@/lib/map'
 import { reloadScene } from '.'
 
 const save = (saveButton, saveLink) => {
@@ -20,7 +20,9 @@ const load = (loadButton) => {
     const reader = new FileReader()
 
     reader.onload = (e) => {
-      const tileMap = loadTileMapFromJSON(e.target.result)
+      const mapObject = JSON.parse(e.target.result)
+      const tileMap = loadTileMap(mapObject)
+
       reloadScene(tileMap)
     }
 
