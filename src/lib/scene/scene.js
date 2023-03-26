@@ -5,6 +5,7 @@ import { defaultMapSize, defaultMapTitle } from '@/lib/constants'
 import { sprites } from '@/lib/sprites'
 import { initControls } from '@/lib/controls'
 import { modeStore } from '@/stores/mode'
+import { mapTitleStore } from '@/stores/map-title'
 import { setView } from './set-view'
 import { firstRender, onFrameFunctions, panCameraTo, renderLoop } from '.'
 
@@ -51,7 +52,7 @@ scene.start = async (canvases, map) => {
 }
 
 scene.loadMap = (tileMap, entryPointName = null) => {
-  const { entityList, xTiles, yTiles, entryPoints } = tileMap
+  const { entityList, xTiles, yTiles, entryPoints, mapTitle } = tileMap
 
   scene.view = setView({
     xTiles,
@@ -59,8 +60,8 @@ scene.loadMap = (tileMap, entryPointName = null) => {
   })
 
   scene.tileMap = tileMap
+  mapTitleStore().updateMapTitle(mapTitle)
   scene.entityMap = createEntityMap(tileMap)
-
   scene.entities = []
   scene.player = new unit()
 
@@ -101,8 +102,8 @@ scene.loadMap = (tileMap, entryPointName = null) => {
   }
 
   const mode = modeStore()
-  mode.set('playMode')
 
+  mode.set('playMode')
   scene.view.setApertureSize()
   firstRender()
 

@@ -29,10 +29,10 @@ const createConfig = ({ maps, mapFiles }) => {
   }
 
   maps.forEach((map, i) => {
-    const { displayName, entryPoints, xTiles, yTiles, id } = map
+    const { mapTitle, entryPoints, xTiles, yTiles, id } = map
 
     mapConfigJSON.mapList[mapFiles[i].replace('.json', '')] = {
-      displayName,
+      mapTitle,
       entryPoints,
       xTiles,
       yTiles,

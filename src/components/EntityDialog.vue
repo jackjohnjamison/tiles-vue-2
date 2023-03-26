@@ -54,7 +54,7 @@
       </div>
       <p>Exisiting Entry Points in maps:</p>
       <div v-for="(map) in filteredMapList" :key=map.name class=entry-point-map>
-        <p>{{ map.displayName }} ({{ map.name }})</p>
+        <p>{{ map.mapTitle }} ({{ map.name }})</p>
         <ul class=entry-points-in-map>
           <li v-for="(entryPoints, entryPointName) in map.entryPoints" :key=entryPointName>
             {{ entryPointName }}

@@ -6,7 +6,7 @@ export const pauseStore = defineStore('pause', {
   state: () => {
     return {
       isPaused: false,
-      mapDisplayName: defaultMapTitle,
+      mapTitle: defaultMapTitle,
       xTiles: defaultMapSize,
       yTiles: defaultMapSize
     }

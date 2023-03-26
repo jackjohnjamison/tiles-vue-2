@@ -11,7 +11,7 @@
     const { xTiles, yTiles } = pause
     const newMap = createTileMapFromParams(
       { xTiles, yTiles },
-      pause.mapDisplayName
+      pause.mapTitle
     )
 
     reloadScene(newMap)
@@ -32,7 +32,7 @@
         </li>
         <li class=group-wrapper>
           <button class=generate-map @click=generateMap>Generate New Map</button>
-          <input type=text ref=displayName v-model=pause.mapDisplayName />
+          <input type=text ref=mapTitle v-model=pause.mapTitle />
           <label for=xTiles>X Tiles: {{pause.xTiles}}</label>
           <input
             class=tile-slider
