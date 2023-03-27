@@ -3,6 +3,7 @@
   import { pauseStore } from '@/stores/pause'
   import EditorPanel from '@/components/EditorPanel.vue'
   import MapTitle from '@/components/MapTitle.vue'
+  import CharacterDialog from '@/components/CharacterDialog.vue'
 
   const pause = pauseStore()
   const mode = modeStore()
@@ -12,7 +13,7 @@
   <div v-if="!pause.isPaused">
     <MapTitle />
     <div v-if="mode.mode === 'playMode'">
-      <!-- h2>Play mode</h2 -->
+      <CharacterDialog />
     </div>
 
     <EditorPanel v-else-if="mode.mode === 'editMode'" />

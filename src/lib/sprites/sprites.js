@@ -1,48 +1,47 @@
+import { imageAssetPath } from '@/lib/constants'
 import { loadImage } from '.'
 
 const sprites = {}
 
-const imageAssetPath = '/images/'
-
 sprites.load = async () => {
-  const terracotta1 = loadImage(`${imageAssetPath}terracotta1.png`)
-  const terracotta2 = loadImage(`${imageAssetPath}terracotta2.png`)
-  const terracotta3 = loadImage(`${imageAssetPath}terracotta3.png`)
-  const terracotta4 = loadImage(`${imageAssetPath}terracotta4.png`)
+  const terracotta1 = loadImage(`${imageAssetPath}tiles/terracotta1.png`)
+  const terracotta2 = loadImage(`${imageAssetPath}tiles/terracotta2.png`)
+  const terracotta3 = loadImage(`${imageAssetPath}tiles/terracotta3.png`)
+  const terracotta4 = loadImage(`${imageAssetPath}tiles/terracotta4.png`)
 
-  const cube1 = loadImage(`${imageAssetPath}cube1.png`)
-  const cube2 = loadImage(`${imageAssetPath}cube2.png`)
-  const cube3 = loadImage(`${imageAssetPath}cube3.png`)
+  const cube1 = loadImage(`${imageAssetPath}tiles/cube1.png`)
+  const cube2 = loadImage(`${imageAssetPath}tiles/cube2.png`)
+  const cube3 = loadImage(`${imageAssetPath}tiles/cube3.png`)
 
-  const grass1 = loadImage(`${imageAssetPath}grass1.png`)
-  const grass2 = loadImage(`${imageAssetPath}grass2.png`)
-  const grass3 = loadImage(`${imageAssetPath}grass3.png`)
-  const grass4 = loadImage(`${imageAssetPath}grass4.png`)
+  const grass1 = loadImage(`${imageAssetPath}tiles/grass1.png`)
+  const grass2 = loadImage(`${imageAssetPath}tiles/grass2.png`)
+  const grass3 = loadImage(`${imageAssetPath}tiles/grass3.png`)
+  const grass4 = loadImage(`${imageAssetPath}tiles/grass4.png`)
 
-  const water1 = loadImage(`${imageAssetPath}water1.png`)
-  const water2 = loadImage(`${imageAssetPath}water2.png`)
+  const water1 = loadImage(`${imageAssetPath}tiles/water1.png`)
+  const water2 = loadImage(`${imageAssetPath}tiles/water2.png`)
 
-  const mountain1 = loadImage(`${imageAssetPath}mountain1.png`)
-  const mountain2 = loadImage(`${imageAssetPath}mountain2.png`)
-  const mountain3 = loadImage(`${imageAssetPath}mountain3.png`)
+  const mountain1 = loadImage(`${imageAssetPath}tiles/mountain1.png`)
+  const mountain2 = loadImage(`${imageAssetPath}tiles/mountain2.png`)
+  const mountain3 = loadImage(`${imageAssetPath}tiles/mountain3.png`)
 
-  const mountainTop1 = loadImage(`${imageAssetPath}mountain1-top.png`)
-  const mountainTop2 = loadImage(`${imageAssetPath}mountain2-top.png`)
-  const mountainTop3 = loadImage(`${imageAssetPath}mountain3-top.png`)
+  const mountainTop1 = loadImage(`${imageAssetPath}tiles/mountain1-top.png`)
+  const mountainTop2 = loadImage(`${imageAssetPath}tiles/mountain2-top.png`)
+  const mountainTop3 = loadImage(`${imageAssetPath}tiles/mountain3-top.png`)
 
-  const forest1 = loadImage(`${imageAssetPath}trees1.png`)
-  const forest2 = loadImage(`${imageAssetPath}trees2.png`)
-  const forest3 = loadImage(`${imageAssetPath}trees3.png`)
-  const forest4 = loadImage(`${imageAssetPath}trees4.png`)
+  const forest1 = loadImage(`${imageAssetPath}tiles/trees1.png`)
+  const forest2 = loadImage(`${imageAssetPath}tiles/trees2.png`)
+  const forest3 = loadImage(`${imageAssetPath}tiles/trees3.png`)
+  const forest4 = loadImage(`${imageAssetPath}tiles/trees4.png`)
 
-  const forestTop1 = loadImage(`${imageAssetPath}trees1-top.png`)
-  const forestTop2 = loadImage(`${imageAssetPath}trees2-top.png`)
-  const forestTop3 = loadImage(`${imageAssetPath}trees3-top.png`)
-  const forestTop4 = loadImage(`${imageAssetPath}trees4-top.png`)
+  const forestTop1 = loadImage(`${imageAssetPath}tiles/trees1-top.png`)
+  const forestTop2 = loadImage(`${imageAssetPath}tiles/trees2-top.png`)
+  const forestTop3 = loadImage(`${imageAssetPath}tiles/trees3-top.png`)
+  const forestTop4 = loadImage(`${imageAssetPath}tiles/trees4-top.png`)
 
-  const angel = loadImage(`${imageAssetPath}pt-angel.png`)
-  const despoiler = loadImage(`${imageAssetPath}pt-despoiler.png`)
-  const sheild = loadImage(`${imageAssetPath}pt-sheild.png`)
+  const angel = loadImage(`${imageAssetPath}tokens/pt-angel.png`)
+  const despoiler = loadImage(`${imageAssetPath}tokens/pt-despoiler.png`)
+  const sheild = loadImage(`${imageAssetPath}tokens/pt-sheild.png`)
 
   sprites.terracotta = [
     {

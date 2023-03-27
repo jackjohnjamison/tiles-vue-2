@@ -38,3 +38,5 @@ export const //
   //
   // No operation dummy function
   noop = () => {}
+
+export const imageAssetPath = '/images/'
