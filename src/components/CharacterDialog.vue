@@ -14,5 +14,11 @@
   .character-dialog {
     position: absolute;
     bottom: 0;
+
+    img {
+      display: block;
+      margin: 2px;
+      border: solid 1px #639;
+    }
   }
 </style>
