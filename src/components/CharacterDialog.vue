@@ -7,6 +7,11 @@
 <template>
   <section class=character-dialog>
     <img :src=portraitSrc />
+    <div class=character-controls>
+      <p>Kobol the knight</p>
+      <button>&#x2694;</button>
+      <button>&#x1F3F9;</button>
+    </div>
   </section>
 </template>
 
@@ -14,11 +19,20 @@
   .character-dialog {
     position: absolute;
     bottom: 0;
+    display: flex;
+    margin: 5px;
+    padding: 10px;
+    background-color: rgba(80, 80, 80, 0.8);
+    backdrop-filter: var(--frostedFilter);
+    border-radius: 2px;
 
     img {
       display: block;
-      margin: 2px;
       border: solid 1px #639;
+    }
+
+    p {
+      margin: 0;
     }
   }
 </style>
