@@ -19,7 +19,7 @@ scene.start = async (canvases, map) => {
   scene.ctxMid = scene.canvasMid.getContext('2d')
   scene.ctxEntity = scene.canvasEntity.getContext('2d')
   scene.ctxTop = scene.canvasTop.getContext('2d')
-  scene.mapConfig = await import('../../configs/map-config.json')
+  scene.mapConfig = await import('../../config/map-config.json')
   scene.mouse = mouseTracker(scene.canvasTop)
   scene.setView = setView
 

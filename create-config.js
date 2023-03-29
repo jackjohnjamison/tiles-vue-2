@@ -3,7 +3,7 @@ const fs = require('fs')
 const path = require('path')
 
 const mapsDirectory = path.resolve(__dirname, './public/maps')
-const configPath = path.resolve(__dirname, './src/configs/map-config.json')
+const configPath = path.resolve(__dirname, './src/config/map-config.json')
 
 const getMaps = () => {
   const maps = []
