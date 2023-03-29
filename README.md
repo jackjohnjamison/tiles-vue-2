@@ -48,6 +48,9 @@ they should poobably have a consistant width most of the time at least
 https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint
 https://stylelint.io/user-guide/get-started/
 
+- try mix-blend mode with isolate to remove the need for two UI canvases
+https://stackoverflow.com/questions/47203122/css-apply-mix-blend-mode-property-to-specific-elements-only
+
 ## Bugs
 - Sometimes when transitioning levels the movement markers are set from and origin that is not under the player
 

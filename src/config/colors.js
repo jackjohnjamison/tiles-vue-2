@@ -17,6 +17,9 @@ export const color = {
   pinColor = 'lime',
   entryPointPinColor = 'aqua',
 
+  // #cab6cd thistle
+  // #252422 Eerie black
+
   // Breadcrums, edit, movement markers
 
 
