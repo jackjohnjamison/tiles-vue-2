@@ -1,6 +1,6 @@
 import { scene } from '@/lib/scene'
 import { sprites } from '@/lib/sprites'
-import { query } from '@/lib/utilities'
+import { query } from '@/lib/utils'
 
 // Move this to a config
 const defaultMap = 'hub'

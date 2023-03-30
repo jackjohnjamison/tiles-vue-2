@@ -1,5 +1,5 @@
 import { isWalkable } from '@/lib/map'
-import { randomVariationInt } from '@/lib/utilities'
+import { randomVariationInt } from '@/lib/utils'
 import { pathfinding } from './movement/pathfinding'
 import { npcPatrolSpeed } from '@/lib/constants'
 import { modeStore } from '@/stores/mode'

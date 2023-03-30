@@ -1,5 +1,5 @@
 import { scene, redrawEntities } from '@/lib/scene'
-import { getId } from '@/lib/utilities'
+import { getId } from '@/lib/utils'
 import { tileIndexToPosition, setWalkable } from '@/lib/map'
 import { sprites } from '@/lib/sprites'
 import { drawEllipse } from '@/lib/effects'

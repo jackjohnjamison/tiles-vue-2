@@ -1,3 +1,5 @@
+import { hexToRGBA } from '@/lib/utils'
+
 export const color = {
   // Theme colors
   primary: '#663399',    // Rebecca Purple
@@ -19,6 +21,8 @@ export const color = {
 
   // #cab6cd thistle
   // #252422 Eerie black
+  // #e8e9f3 Ghost white 
+  // #e9f1f7 Alice Blue
 
   // Breadcrums, edit, movement markers
 

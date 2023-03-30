@@ -18,7 +18,7 @@ import {
   positionToTileIndex,
   tileIndexToPosition,
   addTileMarker
-} from './map-utilities'
+} from './map-utils'
 
 export {
   drawImageTile,
