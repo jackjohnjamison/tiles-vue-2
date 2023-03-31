@@ -6,6 +6,10 @@
   import FrameRateMonitor from '@/components/FrameRateMonitor.vue'
   import TileInfo from '@/components/TileInfo.vue'
 
+  import { primaryDark } from '@/scss/main.module.scss'
+
+  console.log(primaryDark);
+
   const canvases = {}
 
   start(canvases)

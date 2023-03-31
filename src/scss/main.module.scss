@@ -1,4 +1,12 @@
-@value larry: (max-width: 599px);
+// $primary: #639;
+
+// @value colorAccent: $primary;
+// @value colorAccentDark #{darken($primary, 10%)};
+
+:export { // THIS IS THE WAY
+  primary: #639;
+  primaryDark: darken(#639, 10%)
+}
 
 :root {
   --font: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
@@ -6,7 +14,7 @@
   --font-weight: 400;
 
   --font-color-light: #e3e3e3;
-  --color-accent: #639;
+  --color-accent: colorAccent;
   --color-dark: #242424;
 
   --frostedFilter: grayscale(0.5) blur(1px);
