@@ -33,7 +33,7 @@ export const //
   baseMarkerSize = 20,
   crumbWidth = 16, // For breadcrumb trails
   pinProportion = 0.86,
-  pinColor = 'lime',
+  // pinColor = 'lime',
   entryPointPinColor = 'aqua',
   //
   // No operation dummy function

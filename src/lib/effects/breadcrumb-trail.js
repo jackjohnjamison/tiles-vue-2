@@ -1,4 +1,4 @@
-import { crumbWidth, pinColor } from '@/lib/constants'
+import { crumbWidth } from '@/lib/constants'
 import { tileIndexToPosition } from '@/lib/map'
 import { drawEllipse, drawPin } from '.'
 
@@ -14,7 +14,7 @@ const breadcrumbTrail = (path, color, pin, ctx) => {
     drawEllipse(position, color, crumbWidth, ctx)
 
     if (pin && i === pathLength - 1) {
-      drawPin(pinColor, transparentFill, ctx, position)
+      drawPin(color, transparentFill, ctx, position)
     }
   })
 }

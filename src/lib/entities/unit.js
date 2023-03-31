@@ -3,12 +3,13 @@ import { sprites } from '@/lib/sprites'
 import { pathMovementSpeed } from '@/lib/constants'
 import { loadMapAtLocation } from '@/lib/map'
 import { entity, pathfinding } from '.'
+import { success } from '@/config/colors'
 
 class unit extends entity {
   constructor() {
     super({
       sprite: sprites.playerTokens.angel,
-      haloColor: 'lime'
+      haloColor: success
     })
     this.path = []
     this.travelTriggered = false

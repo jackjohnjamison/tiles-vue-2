@@ -48,7 +48,7 @@ they should poobably have a consistant width most of the time at least
 https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint
 https://stylelint.io/user-guide/get-started/
 
-- try mix-blend mode with isolate to remove the need for two UI canvases
+- try mix-blend mode with isolate to reduce the use of canvas top or mid
 https://stackoverflow.com/questions/47203122/css-apply-mix-blend-mode-property-to-specific-elements-only
 
 ## Bugs
