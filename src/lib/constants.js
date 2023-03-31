@@ -14,11 +14,6 @@ export const //
   paddingBottom = 32,
   paddingTop = 128,
   //
-  // Colours
-  hoveredTileColor = 'rgba(255,255,255,0.1)',
-  hoveredTileOutlineColor = 'rgba(255,255,0,0.6)',
-  defaultHaloColor = 'yellow',
-  //
   // Physics variables
   friction = 0.8,
   cameraAcceleration = 0.12,
@@ -33,8 +28,6 @@ export const //
   baseMarkerSize = 20,
   crumbWidth = 16, // For breadcrumb trails
   pinProportion = 0.86,
-  // pinColor = 'lime',
-  entryPointPinColor = 'aqua',
   //
   // No operation dummy function
   noop = () => {}

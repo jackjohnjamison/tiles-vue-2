@@ -1,14 +1,13 @@
 import { scene, redrawEntities } from '@/lib/scene'
 import { getId } from '@/lib/utils'
 import { tileIndexToPosition, setWalkable } from '@/lib/map'
-import { sprites } from '@/lib/sprites'
 import { drawEllipse } from '@/lib/effects'
-import { defaultHaloColor, baseMarkerSize } from '@/lib/constants'
+import { baseMarkerSize } from '@/lib/constants'
 
 class entity {
   constructor({ sprite, haloColor }) {
-    this.sprite = sprite || sprites.playerTokens.sheild
-    this.haloColor = haloColor || defaultHaloColor
+    this.sprite = sprite
+    this.haloColor = haloColor
     this.id = getId()
     this.position = {
       x: 0,

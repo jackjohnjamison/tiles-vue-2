@@ -3,7 +3,7 @@ import { paintTile, unsetTileLock, addTileMarker, tileIndexToPosition } from '@/
 import { drawEllipse, drawPin } from '@/lib/effects'
 import { movementMarkers } from '@/lib/controls'
 import { sprites } from '@/lib/sprites'
-import { entryPointPinColor } from '@/lib/constants'
+import { color } from '@/config/colors'
 import { npc, deleteEntity } from '@/lib/entities'
 import { panelStore } from '@/stores/editor-panel'
 import { commonOnFrameControls, commonUnset } from './common-functions'
@@ -117,8 +117,8 @@ editMode.set = () => {
         Object.keys(entryPoints).forEach((entryPointKey) => {
           const entryPoint = entryPoints[entryPointKey]
           const position = tileIndexToPosition({ x: entryPoint.x, y: entryPoint.y })
-          drawEllipse(position, entryPointPinColor, 20, ctxMid)
-          drawPin(entryPointPinColor, entryPointPinColor, ctxTop, position)
+          drawEllipse(position, color.info, 20, ctxMid)
+          drawPin(color.info, color.info, ctxTop, position)
         })
       }
     }

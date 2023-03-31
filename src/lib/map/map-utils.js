@@ -1,7 +1,8 @@
 import { scene, redrawTile } from '@/lib/scene'
 import { getSpriteImage } from '@/lib/sprites'
-import { hoveredTileColor, tileWidth, tileHeight } from '@/lib/constants'
+import { tileWidth, tileHeight } from '@/lib/constants'
 import { drawLineTile } from '.'
+import { color } from '@/config/colors'
 
 const drawImageTile = ({ x, y, image }) => {
   const { ctxFloor } = scene
@@ -54,14 +55,14 @@ const findHoveredTile = (position) => {
   }
 }
 
-const highlightTile = (tileIndex, strokeColor) => {
+const highlightTile = (tileIndex, strokeColor, fillColor) => {
   const { x, y } = tileIndex
 
   drawLineTile({
     x,
     y,
     strokeColor: strokeColor,
-    fillColor: hoveredTileColor
+    fillColor: fillColor
   })
 }
 

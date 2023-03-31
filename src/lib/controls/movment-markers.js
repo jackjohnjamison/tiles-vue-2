@@ -1,9 +1,9 @@
 import { scene } from '@/lib/scene'
 import { tileIndexToPosition, isWalkable, highlightTile } from '@/lib/map'
 import { breadcrumbTrail, drawEllipse } from '@/lib/effects'
-import { baseMarkerSize, hoveredTileOutlineColor } from '@/lib/constants'
+import { baseMarkerSize } from '@/lib/constants'
 import { hoveredTileStore } from '@/stores/hovered-tile'
-import { success } from '@/config/colors'
+import { color } from '@/config/colors'
 
 const movementMarkers = () => {
   const { player, ctxMid, ctxTop } = scene
@@ -12,26 +12,26 @@ const movementMarkers = () => {
 
   // Breadcrumb state
   if (player.isMoving) {
-    breadcrumbTrail(player.path, success, false, ctxMid)
-    breadcrumbTrail(player.path, success, true, ctxTop)
+    breadcrumbTrail(player.path, color.success, color.warnTrans, false, ctxMid)
+    breadcrumbTrail(player.path, color.success, color.warnTrans, true, ctxTop)
   }
 
   if (tileIndex) {
     if (player.isMoving) {
       if (isWalkable(tileIndex)) {
         const position = tileIndexToPosition(tileIndex)
-        drawEllipse(position, hoveredTileOutlineColor, baseMarkerSize, ctxTop)
+        drawEllipse(position, color.warn, baseMarkerSize, ctxTop)
       } else {
-        highlightTile(tileIndex, hoveredTileOutlineColor)
+        highlightTile(tileIndex, color.warn, color.warnTrans)
       }
     } else {
-      breadcrumbTrail(pathToTile, success, false, ctxMid)
-      breadcrumbTrail(pathToTile, success, false, ctxTop)
+      breadcrumbTrail(pathToTile, color.success, color.warnTrans, false, ctxMid)
+      breadcrumbTrail(pathToTile, color.success, color.warnTrans, false, ctxTop)
       if (isWalkable(tileIndex)) {
         const position = tileIndexToPosition(tileIndex)
-        drawEllipse(position, success, baseMarkerSize, ctxTop)
+        drawEllipse(position, color.success, baseMarkerSize, ctxTop)
       } else {
-        highlightTile(tileIndex, hoveredTileOutlineColor)
+        highlightTile(tileIndex, color.warn)
       }
     }
   }
