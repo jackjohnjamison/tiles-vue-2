@@ -37,9 +37,5 @@
     .layer-canvas {
       position: absolute;
     }
-
-    .canvas-top {
-      mix-blend-mode: hard-light;
-    }
   }
 </style>

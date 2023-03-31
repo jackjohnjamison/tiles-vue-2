@@ -6,14 +6,15 @@ export const color = {
   secondary: '#F98948', // Atomic Tangerine
 
   // Signal  colors
-  success: '#60D394', // Emerald
+  success: '#9FFE36', // Lime
   info: '#758BFD', // Cornflower Blue
   warn: '#FCDC4D', // Mustard
   alert: '#9A031E' // Carmine
 }
 
 // Derived colours
-color.warnTrans = hexToRGBA(color.warn, 0.1) // Transparent verson of warn
+color.warnTrans = hexToRGBA(color.warn, 0.2) // Transparent verson of warn
+color.panelTrans = hexToRGBA('#CAB6CD', 0.5) // Thistle transparent
 
 /*
   // #cab6cd thistle

@@ -2,12 +2,10 @@
   import { imageAssetPath } from '@/lib/constants'
 
   const portraitSrc = `${imageAssetPath}portraits/knight-sm.jpg`
-
-  const color_UIPanel = 'rgba(80, 80, 80, 0.8)' // Test color
 </script>
 
 <template>
-  <section class=character-dialog>
+  <section class="character-dialog panel">
     <img :src=portraitSrc />
     <div class=character-controls>
       <p>Kobol the knight</p>
@@ -22,11 +20,6 @@
     position: absolute;
     bottom: 0;
     display: flex;
-    margin: 5px;
-    padding: 10px;
-    background-color: v-bind(color_UIPanel); // Proposition for colours
-    backdrop-filter: var(--frostedFilter);
-    border-radius: 2px;
 
     img {
       display: block;

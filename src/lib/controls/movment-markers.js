@@ -31,7 +31,7 @@ const movementMarkers = () => {
         const position = tileIndexToPosition(tileIndex)
         drawEllipse(position, color.success, baseMarkerSize, ctxTop)
       } else {
-        highlightTile(tileIndex, color.warn)
+        highlightTile(tileIndex, color.warn, color.warnTrans)
       }
     }
   }

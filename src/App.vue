@@ -1,8 +1,8 @@
 <script setup>
   import GamePort from '@/components/GamePort.vue'
-  // import { color } from '@/config/colors'
+  import { color } from '@/config/colors'
 
-
+  const { panelTrans } = color
 </script>
 
 <template>
@@ -32,6 +32,13 @@
 
   input[type="text"] {
     cursor: text;
+  }
+
+  .panel {
+    background-color: v-bind(panelTrans);
+    backdrop-filter: var(--frostedFilter);
+    margin: 4px;
+    border-radius: 3px;
   }
 
   // Do I really need these classes?

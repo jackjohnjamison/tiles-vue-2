@@ -22,7 +22,7 @@
 </script>
 
 <template>
-  <div class="edit-mode">
+  <div class="edit-mode panel">
     <div class="tablist" role="tablist" aria-label="Edit mode tabs">
       <button role="tab" @click="setActivePanel('tiles')" :aria-selected="panel.activePanel === 'tiles'" :class="{ deselected: tilesDeselected }">Tile Painter</button>
       <button role="tab" @click="setActivePanel('entities')" :aria-selected="panel.activePanel === 'entities'" :class="{ deselected: entitiesDeselected }">Entities</button>
@@ -44,10 +44,6 @@
   .edit-mode {
     position: absolute;
     left: 0;
-    background-color: rgba(80,80,80,.8);
-    margin: 5px;
-    border-radius: 2px;
-    backdrop-filter: var(--frostedFilter);
     min-width: 300px;
     overflow-y: auto;
     max-height: 100%;

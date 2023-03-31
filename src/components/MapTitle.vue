@@ -13,7 +13,7 @@
 </script>
 
 <template>
-  <div class=map-title>
+  <div class="map-title panel">
     <div v-if="mode.mode === 'editMode' && mapTitle.isEditing" class=title-wrapper>
       <input type=text :maxlength=maxMapNameLength ref=newTitle :value=mapTitle.title />
       <button @click=setMapTitle>&#x2714;</button>
@@ -32,22 +32,20 @@
 <style lang="scss" scoped>
   @import '@/scss/px-to-rem.scss';
 
-  .map-title {
+  .panel.map-title {
     position: absolute;
     right: 0;
     left: 0;
     margin: 0 auto 0 auto;
     width: fit-content;
     pointer-events: none;
+    border-radius: 0 0 10px 10px;
 
     .title-wrapper {
       display: flex;
       align-items: center;
       width: fit-content;
       padding: 0 16px 6px;
-      border-bottom-right-radius: 10px;
-      border-bottom-left-radius: 10px;
-      background: rgba(100, 100, 100, 0.4);
     }
 
     h1 {
