@@ -55,6 +55,7 @@ https://stackoverflow.com/questions/47203122/css-apply-mix-blend-mode-property-t
 - Sometimes when transitioning levels the movement markers are set from and origin that is not under the player
 - Investigate unresponsive clicks
 - NPC movement kills the frame rate in FF
+- Work out what to do with on frame and on click controls in edit mode. It works now but it is dirty.
 
 
 ## Referance
