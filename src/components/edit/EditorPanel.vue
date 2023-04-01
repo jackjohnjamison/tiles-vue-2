@@ -1,8 +1,8 @@
 <script setup>
   import { scene } from '@/lib/scene'
   import { panelStore } from '@/stores/editor-panel'
-  import TilePainter from '@/components/TilePainter.vue'
-  import EntityDialog from '@/components/EntityDialog.vue'
+  import TilePainter from '@/components/edit/TilePainter.vue'
+  import EntityDialog from '@/components/edit/EntityDialog.vue'
 
   const panel = panelStore()
   let tilesDeselected
