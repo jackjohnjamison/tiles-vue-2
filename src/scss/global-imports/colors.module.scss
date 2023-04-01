@@ -6,14 +6,16 @@ $secondary: #F98948; // Atomic Tangerine
 
 // Signal  colors
 $success: #9FFE36; // Lime
-$successTrans: rgba($success, .2);
+$successTrans: rgba($success, .4);
 
 $warn: #FCDC4D; // Mustard
-$warnTrans: rgba($warn, .2);
+$warnTrans: rgba($warn, .4);
 
 $info: #758BFD; // Cornflower Blue
+$infoTrans: rgba($info, .4);
 
 $alert: #EE2B2B; // Bright red
+$alertTrans: rgba($alert, .4);
 
 
 // Page colours
@@ -32,10 +34,14 @@ $mask: rgba(100,100,100,.4);
 // Export to JS
 :export {
   success: $success;
-  info: $info;
-  warn: $warn;
-  alert: $alert;
-
   successTrans: $successTrans; 
+
+  info: $info;
+  infoTrans: $infoTrans; 
+
+  warn: $warn;
   warnTrans: $warnTrans;
+
+  alert: $alert;
+  alertTrans: $alertTrans; 
 }

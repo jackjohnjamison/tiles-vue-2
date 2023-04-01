@@ -12,7 +12,7 @@ const movementMarkers = () => {
   // Breadcrumb state
   if (player.isMoving) {
     breadcrumbTrail(player.path, color.success, color.warnTrans, false, ctxMid)
-    breadcrumbTrail(player.path, color.success, color.warnTrans, true, ctxTop)
+    breadcrumbTrail(player.path, color.success, color.infoTrans, true, ctxTop)
   }
 
   if (tileIndex) {
@@ -25,10 +25,10 @@ const movementMarkers = () => {
       }
     } else {
       breadcrumbTrail(pathToTile, color.success, color.warnTrans, false, ctxMid)
-      breadcrumbTrail(pathToTile, color.success, color.warnTrans, false, ctxTop)
+      breadcrumbTrail(pathToTile, color.successTrans, color.warnTrans, false, ctxTop)
       if (isWalkable(tileIndex)) {
         const position = tileIndexToPosition(tileIndex)
-        drawEllipse(position, color.success, baseMarkerSize, ctxTop)
+        drawEllipse(position, color.successTrans, baseMarkerSize, ctxTop)
       } else {
         highlightTile(tileIndex, color.warn, color.warnTrans)
       }
