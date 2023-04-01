@@ -174,6 +174,10 @@
       canvas {
         background-color: $darkTrans;
         margin-left: $spaceSM;
+      }
+
+      .random-tile-brush,
+      canvas {
         margin-top: - $spaceSM;
       } 
   
@@ -186,11 +190,10 @@
   
       .void-brush {
         width: 48px;
-        line-height: 1.4;
         border: solid 1px $primary;
         text-align: center;
         font-size: $fontSizeL;
-        margin: $spaceSM $spaceL 0 0;
+        margin-right: $spaceL;
         outline: 1px solid $dark;
         border-radius: 3px;
         cursor: pointer;
