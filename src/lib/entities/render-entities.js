@@ -8,6 +8,7 @@ const renderEntities = (x, y) => {
   const { feature } = tile
   const entityMapLocation = entityMap.entities[x][y]
 
+  // This can be improved but first I need to know what tile markers I will need
   if (tile.marker) {
     const { strokeColor, fillColor } = tile.marker
 

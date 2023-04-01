@@ -29,7 +29,7 @@ const addTravelPoint = (tileIndex) => {
   }
 
   // Change to use config colors
-  addTileMarker(x, y, 'rgba(250, 227, 17, .8)', 'rgba(255, 248, 184, .3)')
+  addTileMarker(x, y, color.warn, color.warnTrans)
 }
 
 // This also should probably be moved
