@@ -79,8 +79,6 @@
 </template>
 
 <style lang="scss" scoped>
-  @import '@/scss/px-to-rem.scss';
-  
   .entity-dialog {
     p {
       margin: 8px 2px;

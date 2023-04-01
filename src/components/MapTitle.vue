@@ -30,8 +30,6 @@
 </template>
 
 <style lang="scss" scoped>
-  @import '@/scss/px-to-rem.scss';
-
   .map-title {
     position: absolute;
     right: 0;

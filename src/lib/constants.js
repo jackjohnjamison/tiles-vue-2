@@ -1,4 +1,4 @@
-import * as color from '@/scss/colors.module.scss'
+import * as color from '@/scss/global-imports/colors.module.scss'
 
 export { color }
 

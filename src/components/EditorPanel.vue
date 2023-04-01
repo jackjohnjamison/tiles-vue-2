@@ -39,8 +39,6 @@
 </template>
 
 <style lang="scss" scoped>
-  @import '@/scss/px-to-rem.scss';
-
   .edit-mode {
     position: absolute;
     left: 0;

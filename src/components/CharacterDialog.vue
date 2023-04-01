@@ -16,14 +16,14 @@
 </template>
 
 <style lang="scss" scoped>
-  .character-dialog {
+   .character-dialog {
     position: absolute;
     bottom: 0;
     display: flex;
 
     img {
       display: block;
-      border: solid 1px #639;
+      border: solid 1px #666;
     }
 
     p {

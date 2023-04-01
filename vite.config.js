@@ -10,5 +10,21 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData(source, fp) {
+          // Exclude global imports from including themselves
+          if (fp.includes('/scss/global-imports/')) return source
+
+          return `
+            @import "@/scss/global-imports/colors.module.scss";
+            @import "@/scss/global-imports/px-to-rem.scss";
+            ${source}`
+        }
+      }
+    }
   }
 })

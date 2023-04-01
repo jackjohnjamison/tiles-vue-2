@@ -60,9 +60,6 @@
 </template>
 
 <style lang="scss" scoped>
-  @import '@/scss/colors.module.scss';
-  @import '@/scss/px-to-rem.scss';
-
   .pauseMenu {
     position: absolute;
     width: 100%;
