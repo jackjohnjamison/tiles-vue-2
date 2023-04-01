@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <section class="character-dialog panel">
+  <section class="character-dialog pane">
     <img :src=portraitSrc />
     <div class=character-controls>
       <p>Kobol the knight</p>

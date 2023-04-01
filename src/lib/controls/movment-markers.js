@@ -1,9 +1,8 @@
 import { scene } from '@/lib/scene'
 import { tileIndexToPosition, isWalkable, highlightTile } from '@/lib/map'
 import { breadcrumbTrail, drawEllipse } from '@/lib/effects'
-import { baseMarkerSize } from '@/lib/constants'
+import { baseMarkerSize, color } from '@/lib/constants'
 import { hoveredTileStore } from '@/stores/hovered-tile'
-import { color } from '@/config/colors'
 
 const movementMarkers = () => {
   const { player, ctxMid, ctxTop } = scene

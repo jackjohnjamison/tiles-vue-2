@@ -10,13 +10,12 @@
 
 <template>
   <div class="toolbar">
-    <div @change="switchMode($event)" class="margin-right-10">
+    <div @change="switchMode($event)">
       <input
         v-model=mode.mode
         type=radio
         id=playRadio
         value=playMode
-        class=margin-right-10
         name=mode
         checked
       />
@@ -26,7 +25,6 @@
         type=radio
         id=editModeRadio
         value=editMode
-        class="margin-left-10 margin-right-10"
         name=mode
       />
       <label for=editModeRadio>Edit Mode</label>

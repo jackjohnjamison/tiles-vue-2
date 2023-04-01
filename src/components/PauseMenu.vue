@@ -21,7 +21,7 @@
 
 <template>
   <div v-if="pause.isPaused" class="pauseMenu">
-    <div class="pause-menu-items">
+    <div class="pause-menu-items pane">
       <p>Paused</p>
       <ul>
         <li><button @click=pause.toggle>Resume</button></li>
@@ -60,6 +60,7 @@
 </template>
 
 <style lang="scss" scoped>
+  @import '@/scss/colors.module.scss';
   @import '@/scss/px-to-rem.scss';
 
   .pauseMenu {
@@ -67,27 +68,28 @@
     width: 100%;
     height: 100%;
     display: flex;
-    color: #fff;
+    color: $light;
     font-size: pxToRem(32);
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: rgba(100,100,100,.4);
+    background-color: $mask;
 
     .pause-menu-items {
       text-align: center;
       padding: 20px;
-      background-color: rgba(102, 51, 153, .8);
+      background-color: $panePrimary;
       border-radius: 3px;
-      border: solid 2px #000;
-      text-shadow: 0px 0px 4px #000000, 0px 0px 2px #000000;
-      backdrop-filter: var(--frostedFilter);
+      border: solid 2px $dark;
+
+      // Create common text shadow
+      text-shadow: 0px 0px 4px $dark, 0px 0px 2px $dark;
     }
 
     .group-wrapper {
       display: flex;
       flex-direction: column;
-      border: solid 1px #1b1b1b;
+      border: solid 1px $dark;
       padding: 6px;
       padding-right: 0;
       margin: 4px;
@@ -100,7 +102,7 @@
 
     .save-link {
       color: #fff;
-      font-size: 20px;
+      font-size: pxToRem(20);
       text-decoration: none;
     }
 
@@ -120,25 +122,28 @@
     }
 
     button, input {
-      font-size: 20px;
+      font-size: pxToRem(20);
       width: 96%;
       box-sizing:border-box;
       text-align: center;
+
+      // Common boarder radius
       border-radius: 3px;
     }
 
     input {
-      background-color: rgba(255,255,255,.9);
+      background-color: $light;
     }
 
     button {
       padding: 4px;
       color: #fff;
-      background-color: var(--color-accent);
+      background-color: $primary;
+      // Common button transitions
       transition: background-color .2s;
 
       &:hover {
-        background-color: #8040bf;
+        background-color: $primaryLight;
       }
     }
   }

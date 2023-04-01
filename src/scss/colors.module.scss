@@ -1,0 +1,38 @@
+
+// Main colours
+$primary: #663399; // Rebecca Purple
+$secondary: #F98948; // Atomic Tangerine
+
+
+// Signal  colors
+$success: #9FFE36; // Lime
+$info: #758BFD; // Cornflower Blue
+$warn: #FCDC4D; // Mustard
+$alert: #9A031E; // Carmine
+
+
+// Derived colours
+$successTrans: rgba($success, .2);
+$warnTrans: rgba($warn, .2);
+
+// Page colours
+$light: #e3e3e3;
+$dark: #242424;
+
+$primaryLight: lighten($primary, 10%);
+
+$pane: rgba(80, 80, 80, .8);
+$panePrimary: rgba($primary, .8);
+
+$mask: rgba(100,100,100,.4);
+
+// Export to JS
+:export {
+  success: $success;
+  info: $info;
+  warn: $warn;
+  alert: $alert;
+
+  successTrans: $successTrans; 
+  warnTrans: $warnTrans;
+}

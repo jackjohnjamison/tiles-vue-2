@@ -22,7 +22,7 @@
 </script>
 
 <template>
-  <div class="edit-mode panel">
+  <div class="edit-mode pane">
     <div class="tablist" role="tablist" aria-label="Edit mode tabs">
       <button role="tab" @click="setActivePanel('tiles')" :aria-selected="panel.activePanel === 'tiles'" :class="{ deselected: tilesDeselected }">Tile Painter</button>
       <button role="tab" @click="setActivePanel('entities')" :aria-selected="panel.activePanel === 'entities'" :class="{ deselected: entitiesDeselected }">Entities</button>

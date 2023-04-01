@@ -13,7 +13,7 @@
 </script>
 
 <template>
-  <div class="map-title panel">
+  <div class="map-title pane">
     <div v-if="mode.mode === 'editMode' && mapTitle.isEditing" class=title-wrapper>
       <input type=text :maxlength=maxMapNameLength ref=newTitle :value=mapTitle.title />
       <button @click=setMapTitle>&#x2714;</button>
@@ -32,7 +32,7 @@
 <style lang="scss" scoped>
   @import '@/scss/px-to-rem.scss';
 
-  .panel.map-title {
+  .map-title {
     position: absolute;
     right: 0;
     left: 0;

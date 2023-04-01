@@ -1,0 +1,26 @@
+@import '@/scss/colors.module.scss';
+@import '@/scss/px-to-rem.scss';
+
+:root {
+  font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+  font-weight: 400;
+  font-size: pxToRem(16);
+  color: $light;
+
+  background-color: $dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+.no-app-message {
+  text-align: center;
+  font-size: pxToRem(64);
+  padding: 20px;
+}
+
+.js .no-js {
+  display: none;
+}

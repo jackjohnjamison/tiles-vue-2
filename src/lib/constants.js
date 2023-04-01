@@ -1,3 +1,9 @@
+import * as color from '@/scss/colors.module.scss'
+
+export { color }
+
+// Sort this file out and give it some consistancy
+
 // Scene constants
 export const //
   // Tile dimensions

@@ -3,12 +3,12 @@ import { paintTile, unsetTileLock, addTileMarker, tileIndexToPosition } from '@/
 import { drawEllipse, drawPin } from '@/lib/effects'
 import { movementMarkers } from '@/lib/controls'
 import { sprites } from '@/lib/sprites'
-import { color } from '@/config/colors'
 import { npc, deleteEntity } from '@/lib/entities'
 import { panelStore } from '@/stores/editor-panel'
 import { commonOnFrameControls, commonUnset } from './common-functions'
 import { entityActionStore } from '@/stores/entity-actions'
 import { hoveredTileStore } from '@/stores/hovered-tile'
+import { color } from '@/lib/constants'
 
 const addNpc = (tileIndex) => {
   const _npc = new npc({

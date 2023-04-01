@@ -2,7 +2,6 @@ import { scene, redrawTile } from '@/lib/scene'
 import { getSpriteImage } from '@/lib/sprites'
 import { tileWidth, tileHeight } from '@/lib/constants'
 import { drawLineTile } from '.'
-import { color } from '@/config/colors'
 
 const drawImageTile = ({ x, y, image }) => {
   const { ctxFloor } = scene

@@ -3,7 +3,7 @@ import { sprites } from '@/lib/sprites'
 import { pathMovementSpeed } from '@/lib/constants'
 import { loadMapAtLocation } from '@/lib/map'
 import { entity, pathfinding } from '.'
-import { color } from '@/config/colors'
+import { color } from '@/lib/constants'
 
 class unit extends entity {
   constructor() {
