@@ -132,8 +132,6 @@
       padding: 4px;
       color: #fff;
       background-color: $primary;
-
-      // Create common button transitions
       transition: background-color .2s;
 
       &:hover {

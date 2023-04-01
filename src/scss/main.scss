@@ -26,4 +26,19 @@ input[type="text"] {
 }
 
 // Add me
-.button {}
+.button--dialog {
+  background: $dark;
+  color: $light;
+  font-size: $fontSizeSM;
+  padding: $spaceSM $spaceL;
+  border-radius: $borderRadius;
+  border: solid 2px $primary;
+
+  &:hover {
+    border-color: $primaryLight;
+  }
+
+  &:active {
+    border-color: $secondary;
+  }
+}

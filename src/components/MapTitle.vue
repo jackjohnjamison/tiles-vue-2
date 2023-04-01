@@ -16,11 +16,12 @@
   <div class="map-title pane">
     <div v-if="mode.mode === 'editMode' && mapTitle.isEditing" class=title-wrapper>
       <input type=text :maxlength=maxMapNameLength ref=newTitle :value=mapTitle.title />
-      <button @click=setMapTitle>&#x2714;</button>
+      <button class=button--dialog @click=setMapTitle>&#x2714;</button>
     </div>
 
     <div v-else-if="mode.mode === 'editMode'" class=title-wrapper>
-      <h1>{{ mapTitle.title }}</h1><button @click=mapTitle.toEditMode>&#x1F589;</button>
+      <h1>{{ mapTitle.title }}</h1>
+      <button class=button--dialog @click=mapTitle.toEditMode>&#x1F589;</button>
     </div>
 
     <div v-else class=title-wrapper>
@@ -53,16 +54,11 @@
 
     button {
       pointer-events: all;
-      margin-right: $spaceL;
-      
-      // Maybe inherit a common button style?
-      border: none;
-      background: $dark;
-      color: inherit;
       font-size: $fontSizeM;
+      margin-right: $spaceL;
       height: pxToRem(40);
       width: pxToRem(40);
-      border-radius: $borderRadius;
+      padding: 0;
     }
 
     input {

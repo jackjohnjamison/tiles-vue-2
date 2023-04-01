@@ -35,7 +35,7 @@
         <ul>
           <li v-for="(entryPoint, name) in entityAction.entryPoints" :key=name class=entry-point>
             {{ name }} ( X: {{ entryPoint.x}} Y: {{ entryPoint.y }} )
-            <button class=delete-entry-point @click=entityAction.deleteEntryPoint(name)>&#x1f5d1;</button>
+            <button class="delete-entry-point button--dialog" @click=entityAction.deleteEntryPoint(name)>&#x1f5d1;</button>
           </li>
         </ul>
       </div>
@@ -58,7 +58,7 @@
         <ul class=entry-points-in-map>
           <li v-for="(entryPoints, entryPointName) in map.entryPoints" :key=entryPointName>
             {{ entryPointName }}
-            <button @click="entityAction.fillTravelPoint(map.name, entryPointName)">
+            <button class=button--dialog @click="entityAction.fillTravelPoint(map.name, entryPointName)">
               Fill
             </button>
           </li>
@@ -97,10 +97,9 @@
     align-items: center;
 
     .delete-entry-point {
-      border: none;
-      background: none;
-      color: inherit;
       font-size: $fontSizeM;
+      padding-top: 0;
+      padding-bottom: 0;
     }
   }
 
@@ -124,15 +123,6 @@
             position:absolute; 
             left: $spaceL;
         }
-      }
-
-      button {
-        border: none;
-        background: #1b1b1b;
-        color: inherit;
-        font-size: $fontSizeSM;
-        padding: 0 $spaceL;
-        border-radius: $borderRadius;
       }
     }
   }

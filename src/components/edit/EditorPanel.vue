@@ -85,10 +85,7 @@
   :deep() {
     .select-wrapper {
       display: flex;
-
-      label {
-        text-align: center;
-      }
+      align-items: center;
 
       select {
         min-width: 50%;
