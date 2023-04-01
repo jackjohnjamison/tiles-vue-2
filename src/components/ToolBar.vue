@@ -36,6 +36,14 @@
   .toolbar {
     flex: 0 1 auto;
     display: flex;
-    margin: 5px 10px 0;
+    margin: $spaceSM $spaceL 0;
+
+    label {
+      margin-right: $spaceL;
+    }
+
+    input {
+      margin-right: $spaceSM;
+    }
   }
 </style>

@@ -1,1 +1,5 @@
+@import './colors.module.scss';
+
 $frostedFilter: grayscale(0.5) blur(1px);
+$borderRadius: 3px;
+$textShadow: 0px 0px 4px $dark, 0px 0px 2px $dark

@@ -81,14 +81,14 @@
 <style lang="scss" scoped>
   .entity-dialog {
     p {
-      margin: 8px 2px;
+      margin: $spaceL $spaceSM;
     }
   }
 
   .select-wrapper--entity {
-    margin-bottom: 4px;
-    padding-bottom: 4px;
-    border-bottom: solid 1px #1b1b1b;
+    margin-bottom: $spaceSM;
+    padding-bottom: $spaceSM;
+    border-bottom: solid 1px $dark;
   }
 
   .entry-point {
@@ -105,14 +105,14 @@
   }
 
   .entry-point-list {
-    border-top:  solid 1px #1b1b1b;
+    border-top:  solid 1px $dark;
 
     &:not(:last-child) {
-      margin-bottom: 8px;
+      margin-bottom: $spaceL;
     }
 
     .entry-points-in-map {
-      padding-left: 18px;
+      padding-left: $spaceL;
 
       li {
         display: flex;
@@ -122,7 +122,7 @@
         &:before {
           content: '•'; 
             position:absolute; 
-            left:10px;
+            left: $spaceL;
         }
       }
 
@@ -131,9 +131,8 @@
         background: #1b1b1b;
         color: inherit;
         font-size: $fontSizeSM;
-        padding: 1px 8px;
-        border-radius: 3px;
-        margin-left: 3px;
+        padding: 0 $spaceL;
+        border-radius: $borderRadius;
       }
     }
   }
@@ -141,6 +140,6 @@
   ul {
     padding-left: 0;
     margin: 0;
-    margin-left: 4px;
+    margin-left: $spaceSM;
   }
 </style>

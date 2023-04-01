@@ -193,7 +193,7 @@
         font-size: $fontSizeL;
         margin-right: $spaceL;
         outline: 1px solid $dark;
-        border-radius: 3px;
+        border-radius: $borderRadius;
         cursor: pointer;
       }
   
@@ -210,7 +210,7 @@
     input[type="radio"] {
       appearance: none;
       border: solid 1px $dark;
-      border-radius: 3px;
+      border-radius: $borderRadius;
   
       &:checked {
         border-color: $primary;

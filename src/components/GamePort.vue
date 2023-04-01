@@ -29,7 +29,7 @@
   .canvasRoot {
     flex: 1 1 auto;
     border: solid 1px $primary;
-    margin: 5px 10px 10px;
+    margin: $spaceSM $spaceL $spaceL;
     overflow: hidden;
     background-color: #000;
     position: relative;

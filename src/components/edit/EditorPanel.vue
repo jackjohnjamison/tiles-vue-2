@@ -99,7 +99,7 @@
     input:not([type="range"]) {
       font-weight: 500;
       font-size: $fontSizeSM;
-      border-radius: 3px;
+      border-radius: $borderRadius;
       padding: $spaceSM;
       margin: $spaceSM;
       margin-bottom: $spaceL;

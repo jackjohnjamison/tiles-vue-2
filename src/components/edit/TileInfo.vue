@@ -27,7 +27,7 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    padding: 5px;
+    padding: $spaceSM;
     background: $darkTrans;
   }
 </style>

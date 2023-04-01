@@ -37,32 +37,32 @@
     margin: 0 auto 0 auto;
     width: fit-content;
     pointer-events: none;
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 $spaceL $spaceL;
 
     .title-wrapper {
       display: flex;
       align-items: center;
       width: fit-content;
-      padding: 0 16px 6px;
     }
 
     h1 {
       width: fit-content;
-      padding: 0 16px 6px;
+      padding: 0 $spaceXL $spaceSM;
       margin: 0;
     }
 
     button {
       pointer-events: all;
+      margin-right: $spaceL;
       
       // Maybe inherit a common button style?
       border: none;
-      background: #1b1b1b;
+      background: $dark;
       color: inherit;
       font-size: $fontSizeM;
       height: pxToRem(40);
       width: pxToRem(40);
-      border-radius: 3px;
+      border-radius: $borderRadius;
     }
 
     input {
@@ -70,6 +70,11 @@
       font-size: $fontSizeL;
       font-weight: 700;
       width: fit-content;
+      margin-right: $spaceL;
+      background: $light;
+      padding-left: $spaceL;
+      border: none;
+      border-bottom-left-radius: $spaceL;
     }
   }
 </style>

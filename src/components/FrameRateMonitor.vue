@@ -1,6 +1,7 @@
 <script setup>
   import { onMounted } from 'vue'
   import { additionalFunctions } from '@/lib/scene'
+  import { color } from '@/lib/constants'
 
   const monitorWidth = 150;
   const monitorHeight = 70;
@@ -10,7 +11,7 @@
   // Adds the frame rate monitor to additional functions
   onMounted(() => {
     const monitorCtx = monitor.getContext("2d")
-    monitorCtx.strokeStyle = "#ff0000";
+    monitorCtx.strokeStyle = color.alert;
 
     additionalFunctions.push((delta) => {
       monitorCtx.globalCompositeOperation = "copy";

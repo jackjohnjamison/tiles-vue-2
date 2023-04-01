@@ -74,23 +74,21 @@
 
     .pause-menu-items {
       text-align: center;
-      padding: 20px;
+      padding: $spaceXL;
       background-color: $panePrimary;
-      border-radius: 3px;
+      border-radius: $borderRadius;
       border: solid 2px $dark;
-
-      // Create common text shadow
-      text-shadow: 0px 0px 4px $dark, 0px 0px 2px $dark;
+      text-shadow: $textShadow;
     }
 
     .group-wrapper {
       display: flex;
       flex-direction: column;
       border: solid 1px $dark;
-      padding: 6px;
+      padding: $spaceL;
       padding-right: 0;
-      margin: 4px;
-      border-radius: 3px;
+      margin: $spaceSM;
+      border-radius: $borderRadius;
 
       label {
         font-size: $fontSizeSM;
@@ -98,7 +96,7 @@
     }
 
     .save-link {
-      color: #fff;
+      color: $light;
       font-size: $fontSizeM;
       text-decoration: none;
     }
@@ -114,7 +112,7 @@
 
     li {
       list-style: none;
-      margin-bottom: 10px;
+      margin-bottom: $spaceL;
       box-sizing:border-box;
     }
 
@@ -123,9 +121,7 @@
       width: 96%;
       box-sizing:border-box;
       text-align: center;
-
-      // Common boarder radius
-      border-radius: 3px;
+      border-radius: $borderRadius;
     }
 
     input {
@@ -136,7 +132,8 @@
       padding: 4px;
       color: #fff;
       background-color: $primary;
-      // Common button transitions
+
+      // Create common button transitions
       transition: background-color .2s;
 
       &:hover {
