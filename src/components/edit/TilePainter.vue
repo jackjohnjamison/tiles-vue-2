@@ -3,14 +3,12 @@
   import { brushStore } from "@/stores/brushes"
   import { tileTypes } from "@/lib/map"
   import { sprites } from "@/lib/sprites"
+  import { spaceSM, spaceL } from '@/scss/global-imports/spacing.module.scss'
 
+  const spaceSMPixels = parseInt(spaceSM, 10);
+  const spaceLPixels = parseInt(spaceL, 10);
   const brush = brushStore()
   const spriteCanvases = ref([])
-
-  // Styling pixel widths for the brush canvases
-  const paddingSides = 5
-  const paddingBottom = 6
-  const offset = 4
 
   let spriteWidth
   let spriteHeight
@@ -23,10 +21,10 @@
 
     if(selectedTileSetSprites) {
       spriteWidth = Math.max(...selectedTileSetSprites.map((sprite) => sprite.data.width))
-        + paddingSides
+        + spaceLPixels
 
       spriteHeight = Math.max(...selectedTileSetSprites.map((sprite) => sprite.data.height))
-        + paddingBottom
+        + spaceLPixels
     }
   }
 
@@ -42,13 +40,13 @@
         if(floor) {
           ctx.filter = `hue-rotate(${brush.floorHueValue}deg)`
           const image = sprites[selectedTileSetKey][i].data
-          ctx.drawImage(image, offset, offset);
+          ctx.drawImage(image, spaceSMPixels, spaceSMPixels);
         }
 
         if(feature) {
           ctx.filter = `hue-rotate(${brush.featureHueValue}deg)`
           const featureImage = sprites[brush.selectedTileSet.feature][i].data
-          ctx.drawImage(featureImage, offset, offset);
+          ctx.drawImage(featureImage, spaceSMPixels, spaceSMPixels);
         }
       }
     })
