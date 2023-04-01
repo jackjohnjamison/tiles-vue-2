@@ -106,7 +106,6 @@
         </div>
         <div v-for="(sprite, i) in selectedTileSetSprites" :key="i" class="brush">
           <canvas
-            class="sprite-canvas"
             :ref="function(el) { spriteCanvases[i] = el }"
           />
           <input
@@ -173,8 +172,9 @@
       .void-brush,
       .random-tile-brush,
       canvas {
-        margin: 1px;
         background-color: $darkTrans;
+        margin-left: $spaceSM;
+        margin-top: - $spaceSM;
       } 
   
       .random-tile-brush {
@@ -208,8 +208,8 @@
   
     input[type="radio"] {
       appearance: none;
-      border: solid 1px #000;
-      border-radius: 2px;
+      border: solid 1px $dark;
+      border-radius: 3px;
   
       &:checked {
         border-color: $primary;

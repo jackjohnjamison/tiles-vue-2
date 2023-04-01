@@ -68,7 +68,7 @@
       background: none;
       border: none;
       color: $light;
-      padding: 6px;
+      padding: $spaceL;
 
       &.deselected {
         background: $darkTrans;
@@ -77,7 +77,7 @@
   }
 
   section {
-    margin: 10px;
+    margin: $spaceL;
     min-width: 250px;
   }
 
@@ -96,25 +96,17 @@
     }
 
     select,
-    input {
+    input:not([type="range"]) {
       font-weight: 500;
       font-size: $fontSizeSM;
-      border-radius: 2px;
-      padding: 2px;
-      margin: 2px;
-      margin-bottom: 6px;
+      border-radius: 3px;
+      padding: $spaceSM;
+      margin: $spaceSM;
+      margin-bottom: $spaceL;
     }
 
-    input[type="text"] {
-      padding-left: 5px;
-    }
-
-    button, input, select, label {
-      margin: 2px;
-    }
-
-    label {
-      margin-left: 4px;
+    button, label {
+      margin: $spaceSM;
     }
   }
 </style>
