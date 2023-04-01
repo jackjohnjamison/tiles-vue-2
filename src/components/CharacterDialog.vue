@@ -20,14 +20,20 @@
     position: absolute;
     bottom: 0;
     display: flex;
+    margin: $space-small;
+    padding: $space-small;
 
     img {
       display: block;
-      border: solid 1px #666;
+      border: solid 1px $primary;
     }
 
-    p {
-      margin: 0;
+    .character-controls {
+      margin: 0 $space-small;
+
+      > * {
+        margin: 0 $space-small $space-small 0;
+      }
     }
   }
 </style>

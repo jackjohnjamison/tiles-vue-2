@@ -21,6 +21,7 @@ export default defineConfig({
 
           return `
             @import "@/scss/global-imports/colors.module.scss";
+            @import "@/scss/global-imports/spacing.scss";
             @import "@/scss/global-imports/px-to-rem.scss";
             ${source}`
         }
