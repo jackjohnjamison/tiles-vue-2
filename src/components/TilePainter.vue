@@ -161,8 +161,8 @@
   .tile-painter {  
     .sprite-brushes {
       display: flex;
-      margin: 5px 0;
-      gap: 5px;
+      margin: $spaceSM 0;
+      gap: $spaceSM;
     }
   
     .brush {
@@ -174,7 +174,7 @@
       .random-tile-brush,
       canvas {
         margin: 1px;
-        background-color: rgba(0,0,0,.4);
+        background-color: $darkTrans;
       } 
   
       .random-tile-brush {
@@ -190,9 +190,9 @@
         border: solid 1px $primary;
         text-align: center;
         font-size: $fontSizeL;
-        margin: 5px 10px 0 2px;
-        outline: 1px solid #000;
-        border-radius: 2px;
+        margin: $spaceSM $spaceL 0 0;
+        outline: 1px solid $dark;
+        border-radius: 3px;
         cursor: pointer;
       }
   

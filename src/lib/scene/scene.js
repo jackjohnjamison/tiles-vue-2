@@ -1,7 +1,7 @@
 import { createTileMapFromParams, loadMapFromFetch } from '@/lib/map'
 import { createEntityMap, entity, unit, npc } from '@/lib/entities'
 import { mouseTracker } from '@/lib/controls'
-import { defaultMapSize, defaultMapTitle } from '@/lib/constants'
+import { defaultMapSize, defaultMapTitle, color } from '@/lib/constants'
 import { sprites } from '@/lib/sprites'
 import { initControls } from '@/lib/controls'
 import { modeStore } from '@/stores/mode'
@@ -92,7 +92,7 @@ scene.loadMap = (tileMap, entryPointName = null) => {
           // eslint-disable-next-line no-case-declarations
           const _npc = new npc({
             sprite: sprites.playerTokens.despoiler,
-            haloColor: 'red'
+            haloColor: color.alert
           })
 
           _npc.addToScene(tileIndex)

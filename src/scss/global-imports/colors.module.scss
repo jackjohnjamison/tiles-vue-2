@@ -6,20 +6,21 @@ $secondary: #F98948; // Atomic Tangerine
 
 // Signal  colors
 $success: #9FFE36; // Lime
-$info: #758BFD; // Cornflower Blue
-$warn: #FCDC4D; // Mustard
-$alert: #9A031E; // Carmine
-
-
-// Derived colours
 $successTrans: rgba($success, .2);
+
+$warn: #FCDC4D; // Mustard
 $warnTrans: rgba($warn, .2);
+
+$info: #758BFD; // Cornflower Blue
+
+$alert: #EE2B2B; // Bright red
+
 
 // Page colours
 $light: #e3e3e3;
 $dark: #242424;
 
-$darkTrans: rgba(#242424, .4);
+$darkTrans: rgba($dark, .6);
 
 $primaryLight: lighten($primary, 10%);
 

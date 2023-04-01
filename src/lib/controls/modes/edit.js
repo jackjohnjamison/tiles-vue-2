@@ -13,7 +13,7 @@ import { color } from '@/lib/constants'
 const addNpc = (tileIndex) => {
   const _npc = new npc({
     sprite: sprites.playerTokens.despoiler,
-    haloColor: 'red'
+    haloColor: color.alert
   })
   _npc.addToScene(tileIndex)
 }
@@ -28,6 +28,7 @@ const addTravelPoint = (tileIndex) => {
     entryPointName: travelPoint
   }
 
+  // Change to use config colors
   addTileMarker(x, y, 'rgba(250, 227, 17, .8)', 'rgba(255, 248, 184, .3)')
 }
 
