@@ -9,8 +9,8 @@
     <img :src=portraitSrc />
     <div class=character-controls>
       <p>Kobol the knight</p>
-      <button>&#x2694;</button>
-      <button>&#x1F3F9;</button>
+      <button class=button--dialog>&#x2694;</button>
+      <button class=button--dialog>&#x1F3F9;</button>
     </div>
   </section>
 </template>
@@ -26,6 +26,8 @@
     img {
       display: block;
       border: solid 1px $primary;
+      border-top-left-radius: $borderRadius;
+      border-bottom-left-radius: $borderRadius;
     }
 
     .character-controls {
