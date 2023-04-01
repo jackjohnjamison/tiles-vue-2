@@ -5,16 +5,9 @@
   import EntityDialog from '@/components/edit/EntityDialog.vue'
 
   const panel = panelStore()
-  let tilesDeselected
-  let entitiesDeselected
 
   const setActivePanel = (panelName) => {
     panel.switchPanel(panelName)
-
-    // This could use some work
-    tilesDeselected = panelName === 'tiles' ? false : true
-    entitiesDeselected = panelName === 'entities' ? false : true
-
     scene.requestRedrawEffects()
   }
 
@@ -24,8 +17,17 @@
 <template>
   <div class="edit-mode pane">
     <div class="tablist" role="tablist" aria-label="Edit mode tabs">
-      <button role="tab" @click="setActivePanel('tiles')" :aria-selected="panel.activePanel === 'tiles'" :class="{ deselected: tilesDeselected }">Tile Painter</button>
-      <button role="tab" @click="setActivePanel('entities')" :aria-selected="panel.activePanel === 'entities'" :class="{ deselected: entitiesDeselected }">Entities</button>
+      <button role="tab" @click="setActivePanel('tiles')"
+      :aria-selected="panel.activePanel === 'tiles'"
+      :class="{ deselected: panel.activePanel !== 'tiles' }">
+        Tile Painter
+      </button>
+
+      <button role="tab" @click="setActivePanel('entities')"
+      :aria-selected="panel.activePanel === 'entities'"
+      :class="{ deselected: panel.activePanel !== 'entities' }">
+        Entities
+      </button>
     </div>
 
     <section v-if="panel.activePanel === 'tiles'" >
