@@ -58,9 +58,8 @@
       // Maybe inherit a common button style?
       border: none;
       background: #1b1b1b;
-      font-family: inherit;
       color: inherit;
-      font-size: pxToRem(24);
+      font-size: $fontSizeM;
       height: pxToRem(40);
       width: pxToRem(40);
       border-radius: 3px;
@@ -68,7 +67,7 @@
 
     input {
       pointer-events: all;
-      font-size: pxToRem(32);
+      font-size: $fontSizeL;
       font-weight: 700;
       width: fit-content;
     }

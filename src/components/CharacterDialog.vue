@@ -20,8 +20,8 @@
     position: absolute;
     bottom: 0;
     display: flex;
-    margin: $space-small;
-    padding: $space-small;
+    margin: $spaceSM;
+    padding: $spaceSM;
 
     img {
       display: block;
@@ -29,10 +29,10 @@
     }
 
     .character-controls {
-      margin: 0 $space-small;
+      margin: 0 $spaceSM;
 
       > * {
-        margin: 0 $space-small $space-small 0;
+        margin: 0 $spaceSM $spaceSM 0;
       }
     }
   }

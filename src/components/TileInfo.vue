@@ -28,6 +28,6 @@
     bottom: 0;
     right: 0;
     padding: 5px;
-    background: rgba(0,0,0,.5)
+    background: $darkTrans;
   }
 </style>

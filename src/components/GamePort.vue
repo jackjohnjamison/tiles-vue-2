@@ -28,7 +28,7 @@
 <style lang="scss" scoped>
   .canvasRoot {
     flex: 1 1 auto;
-    border: solid 1px var(--color-accent);
+    border: solid 1px $primary;
     margin: 5px 10px 10px;
     overflow: hidden;
     background-color: #000;

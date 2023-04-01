@@ -1,0 +1,10 @@
+@import './px-to-rem.scss';
+
+// Font faces
+$fontMain: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+
+// Sizes
+$fontSizeSM: pxToRem(16);
+$fontSizeM: pxToRem(24);
+$fontSizeL: pxToRem(32);
+$fontSizeXL: pxToRem(64);

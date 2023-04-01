@@ -66,7 +66,7 @@
     height: 100%;
     display: flex;
     color: $light;
-    font-size: pxToRem(32);
+    font-size: $fontSizeL;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -93,13 +93,13 @@
       border-radius: 3px;
 
       label {
-        font-size: pxToRem(16);
+        font-size: $fontSizeSM;
       }
     }
 
     .save-link {
       color: #fff;
-      font-size: pxToRem(20);
+      font-size: $fontSizeM;
       text-decoration: none;
     }
 
@@ -119,7 +119,7 @@
     }
 
     button, input {
-      font-size: pxToRem(20);
+      font-size: $fontSizeM;
       width: 96%;
       box-sizing:border-box;
       text-align: center;

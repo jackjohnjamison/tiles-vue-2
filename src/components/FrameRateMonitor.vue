@@ -35,7 +35,7 @@
   .monitor {
     position: absolute;
     right: 0;
-    background-color: rgba(100,100,100,.5);
-    backdrop-filter: var(--frostedFilter);
+    background-color: $pane;
+    backdrop-filter: $frostedFilter;
   }
 </style>

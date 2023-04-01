@@ -21,7 +21,7 @@ input[type="text"] {
 
 .pane {
   background-color: $pane;
-  backdrop-filter: grayscale(0.5) blur(1px);
+  backdrop-filter: $frostedFilter;
   border-radius: 3px;
 }
 

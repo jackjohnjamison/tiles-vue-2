@@ -20,9 +20,7 @@ export default defineConfig({
           if (fp.includes('/scss/global-imports/')) return source
 
           return `
-            @import "@/scss/global-imports/colors.module.scss";
-            @import "@/scss/global-imports/spacing.scss";
-            @import "@/scss/global-imports/px-to-rem.scss";
+            @import "@/scss/global-imports/global.scss";
             ${source}`
         }
       }

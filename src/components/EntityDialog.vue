@@ -100,7 +100,7 @@
       border: none;
       background: none;
       color: inherit;
-      font-size: 24px;
+      font-size: $fontSizeM;
     }
   }
 
@@ -129,9 +129,8 @@
       button {
         border: none;
         background: #1b1b1b;
-        font-family: inherit;
         color: inherit;
-        font-size: 16px;
+        font-size: $fontSizeSM;
         padding: 1px 8px;
         border-radius: 3px;
         margin-left: 3px;

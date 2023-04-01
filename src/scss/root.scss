@@ -1,7 +1,7 @@
 :root {
-  font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+  font-family: $fontMain; //system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
   font-weight: 400;
-  font-size: pxToRem(16);
+  font-size: $fontSizeSM;
   color: $light;
 
   background-color: $dark;
@@ -14,7 +14,7 @@
 
 .no-app-message {
   text-align: center;
-  font-size: pxToRem(64);
+  font-size: $fontSizeXL;
   padding: 20px;
 }
 

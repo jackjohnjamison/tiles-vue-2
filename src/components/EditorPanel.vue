@@ -45,6 +45,7 @@
     min-width: 300px;
     overflow-y: auto;
     max-height: 100%;
+    margin: $spaceSM;
     direction:rtl;
 
     > * {
@@ -61,15 +62,14 @@
     button {
       flex-grow: 1;
       margin: 0;
-      font-size: pxToRem(16);
-      font-family: var(--font);
+      font-size: $fontSizeSM;
       background: none;
       border: none;
-      color: var(--font-color-light);
+      color: $light;
       padding: 6px;
 
       &.deselected {
-        background: rgba(0,0,0,.4);
+        background: $darkTrans;
       }
     }
   }
@@ -96,8 +96,7 @@
     select,
     input {
       font-weight: 500;
-      font-size: 16px;
-      font-family: var(--font);
+      font-size: $fontSizeSM;
       border-radius: 2px;
       padding: 2px;
       margin: 2px;

@@ -181,16 +181,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 32px;
-        font-family: var(--font);
+        font-size: $fontSizeL;
       }
   
       .void-brush {
         width: 48px;
         line-height: 1.4;
-        border: solid 1px var(--color-accent);
+        border: solid 1px $primary;
         text-align: center;
-        font-size: 32px;
+        font-size: $fontSizeL;
         margin: 5px 10px 0 2px;
         outline: 1px solid #000;
         border-radius: 2px;
@@ -213,7 +212,7 @@
       border-radius: 2px;
   
       &:checked {
-        border-color: var(--color-accent);
+        border-color: $primary;
       }
     }
   }
