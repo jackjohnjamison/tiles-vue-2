@@ -1,13 +1,27 @@
 import { scene, panCameraTo } from '@/lib/scene'
 import { movementMarkers } from '@/lib/controls'
-import { commonOnFrameControls, commonUnset } from './common-functions'
+import {
+  commonOnFrameControls,
+  commonUnset,
+  hoverStateDefault,
+  requestMove
+} from './common-functions'
 import { hoveredTileStore } from '@/stores/hovered-tile'
+import { mouseActionStore } from '@/stores/mouse-action'
 
 const playMode = {}
 
 playMode.set = () => {
-  const { mouse, player } = scene
+  const { mouse } = scene
   const hoveredTile = hoveredTileStore()
+  const mouseAction = mouseActionStore()
+
+  const defaultmouseAction = {
+    actionOne: requestMove,
+    hoverState: hoverStateDefault
+  }
+
+  mouseAction.setMouseAction(defaultmouseAction)
 
   mouse.onMouseMove = () => {
     if (mouse.buttonCode === 1) {
@@ -17,8 +31,7 @@ playMode.set = () => {
 
   mouse.onMouseUp = () => {
     if (mouse.buttonCode === 1 && hoveredTile.tileIndex && !mouse.isDragged) {
-      player.requestMove(hoveredTile.tileIndex)
-      scene.requestRedrawEffects()
+      mouseAction.actionOne()
     }
   }
 

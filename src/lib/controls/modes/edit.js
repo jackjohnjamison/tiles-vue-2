@@ -5,9 +5,15 @@ import { movementMarkers } from '@/lib/controls'
 import { sprites } from '@/lib/sprites'
 import { npc, deleteEntity } from '@/lib/entities'
 import { panelStore } from '@/stores/editor-panel'
-import { commonOnFrameControls, commonUnset } from './common-functions'
+import {
+  commonOnFrameControls,
+  requestMove,
+  hoverStateDefault,
+  commonUnset
+} from './common-functions'
 import { entityActionStore } from '@/stores/entity-actions'
 import { hoveredTileStore } from '@/stores/hovered-tile'
+import { mouseActionStore } from '@/stores/mouse-action'
 import { color } from '@/lib/constants'
 
 const addNpc = (tileIndex) => {
@@ -56,12 +62,12 @@ const rightClickAction = (tileIndex, action) => {
       addTravelPoint(tileIndex)
       break
 
-    case 'delete':
-      deleteEntity(tileIndex)
-      break
-
     case 'entryPoint':
       addEntryPoint(tileIndex)
+      break
+
+    case 'delete':
+      deleteEntity(tileIndex)
       break
 
     default:
@@ -72,10 +78,18 @@ const rightClickAction = (tileIndex, action) => {
 const editMode = {}
 
 editMode.set = () => {
-  const { mouse, player, ctxMid, ctxTop } = scene
+  const { mouse, ctxMid, ctxTop } = scene
   const panel = panelStore()
   const hoveredTile = hoveredTileStore()
   const entityAction = entityActionStore()
+  const mouseAction = mouseActionStore()
+
+  mouseAction.setMouseAction({
+    actionOne: requestMove,
+    actionTwo: rightClickAction,
+    hoverState: hoverStateDefault
+  })
+
   entityAction.updateEntryPoints()
 
   mouse.onMouseMove = () => {
@@ -91,9 +105,9 @@ editMode.set = () => {
       const isEditingEntities = panel.activePanel === 'entities'
 
       if (mouse.buttonCode === 1) {
-        player.requestMove(hoveredTile.tileIndex)
+        mouseAction.actionOne()
       } else if (mouse.buttonCode === 3 && isEditingEntities) {
-        rightClickAction(hoveredTile.tileIndex, entityAction.action)
+        mouseAction.actionTwo(hoveredTile.tileIndex, entityAction.action)
       }
     }
 
