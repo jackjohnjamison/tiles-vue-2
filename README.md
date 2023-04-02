@@ -35,13 +35,9 @@ npm run lint
 ```
 
 ## TODO
-- Organise CSS, sass of css variables? Organise colours
 - Think about prettier and css linting
 - Switch to enums for game modes, maybe
 - Use the improved image import script from tanks - looks harder than I thought!
-- Make the editor tabs accesible, maybe more the sections up a level, re-use CSS,
-they should poobably have a consistant width most of the time at least
-- Move about the edit UI to be more sensible before it gets oot of control
 - Move Math.round into common draw function?
 - Add TypeScript, maybe just for the pinia stores to begin with?
 - CSS linting / formatting 
@@ -56,6 +52,7 @@ https://stackoverflow.com/questions/47203122/css-apply-mix-blend-mode-property-t
 - Investigate unresponsive clicks
 - NPC movement kills the frame rate in FF
 - Work out what to do with on frame and on click controls in edit mode. It works now but it is dirty.
+- Move update hovered tile into a mouse action as it is only relavent to movement selection.
 
 
 ## Referance
