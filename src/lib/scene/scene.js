@@ -71,7 +71,7 @@ scene.loadMap = (tileMap, entryPointName = null) => {
 
   if (entryPointName && entryPoints?.[entryPointName]) {
     startLocation = entryPoints[entryPointName]
-  } else {
+  } else if (Object.values(entryPoints).length) {
     startLocation = Object.values(entryPoints)[0]
   }
 
