@@ -1,5 +1,5 @@
 import { sprites } from './sprites'
-import { getSpriteImage } from './get-sprite'
+import { getSpriteImage, clearSpriteCache } from './get-sprite'
 import { loadImage } from './load-image'
 
-export { sprites, getSpriteImage, loadImage }
+export { sprites, getSpriteImage, clearSpriteCache, loadImage }

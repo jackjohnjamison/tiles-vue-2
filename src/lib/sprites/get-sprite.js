@@ -38,4 +38,8 @@ const getSpriteImage = (spriteName, color, variant) => {
   return (spriteCache[cacheId] = spriteImage)
 }
 
-export { getSpriteImage }
+const clearSpriteCache = () => {
+  Object.keys(spriteCache).forEach((key) => delete spriteCache[key])
+}
+
+export { getSpriteImage, clearSpriteCache }
