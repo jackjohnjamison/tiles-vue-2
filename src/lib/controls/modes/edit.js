@@ -99,6 +99,7 @@ editMode.set = () => {
   }
 
   mouse.onMouseUp = () => {
+    // Replace conditionals with setting mouse actions
     const validClick = hoveredTile.tileIndex && !mouse.isDragged
 
     if (validClick) {

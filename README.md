@@ -43,6 +43,8 @@ npm run lint
 - CSS linting / formatting 
 https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint
 https://stylelint.io/user-guide/get-started/
+- Move update hovered tile into a mouse action as it is only relavent to movement selection OR create a control state state store
+to replace the mouse state store.
 
 - try mix-blend mode with isolate to reduce the use of canvas top or mid
 https://stackoverflow.com/questions/47203122/css-apply-mix-blend-mode-property-to-specific-elements-only
@@ -52,7 +54,6 @@ https://stackoverflow.com/questions/47203122/css-apply-mix-blend-mode-property-t
 - Investigate unresponsive clicks
 - NPC movement kills the frame rate in FF
 - Work out what to do with on frame and on click controls in edit mode. It works now but it is dirty.
-- Move update hovered tile into a mouse action as it is only relavent to movement selection.
 
 
 ## Referance
