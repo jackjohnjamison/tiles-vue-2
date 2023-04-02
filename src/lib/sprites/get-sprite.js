@@ -1,9 +1,11 @@
 import { sprites } from '@/lib/sprites'
 
-const canvas = document.createElement('canvas')
-const ctx = canvas.getContext('2d')
+const resultCache = {}
 
 const colorize = (sprite, color) => {
+  const canvas = document.createElement('canvas')
+  const ctx = canvas.getContext('2d')
+
   const {
     data,
     data: { width, height },
@@ -24,9 +26,18 @@ const colorize = (sprite, color) => {
 }
 
 const getSpriteImage = (spriteName, color, variant) => {
-  const sprite = sprites[spriteName][variant]
+  const cacheId = `${spriteName}.${color}.${variant}`
 
-  return colorize(sprite, color)
+  if (resultCache[cacheId]) {
+    return resultCache[cacheId]
+  }
+
+  const sprite = sprites[spriteName][variant]
+  const spriteImage = colorize(sprite, color)
+
+  resultCache[cacheId] = spriteImage
+
+  return spriteImage
 }
 
 export { getSpriteImage }
