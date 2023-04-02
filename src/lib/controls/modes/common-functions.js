@@ -34,11 +34,13 @@ const commonOnMouseMove = () => {
 }
 
 const requestMove = () => {
-  const { player } = scene
   const hoveredTile = hoveredTileStore()
+  const { mouse, player } = scene
 
-  player.requestMove(hoveredTile.tileIndex)
-  scene.requestRedrawEffects()
+  if (hoveredTile.tileIndex && !mouse.isDragged) {
+    player.requestMove(hoveredTile.tileIndex)
+    scene.requestRedrawEffects()
+  }
 }
 
 const commonUnset = () => {

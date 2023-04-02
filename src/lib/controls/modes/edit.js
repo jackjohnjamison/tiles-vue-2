@@ -52,7 +52,7 @@ const addEntryPoint = (tileIndex) => {
   scene.requestRedrawEffects()
 }
 
-const rightClickAction = (tileIndex, action) => {
+const entityClickAction = (tileIndex, action) => {
   switch (action) {
     case 'addNpc':
       addNpc(tileIndex)
@@ -113,27 +113,18 @@ const setEditMode = () => {
     },
 
     onMouseMove: commonOnMouseMove,
+    leftClickAction: requestMove,
 
-    onMouseUp: () => {
-      // Replace conditionals with setting mouse actions
+    rightClickAction: () => {
       const validClick = hoveredTile.tileIndex && !mouse.isDragged
+      const isEditingEntities = panel.activePanel === 'entities'
 
-      if (validClick) {
-        const isEditingEntities = panel.activePanel === 'entities'
-
-        // Move mouse action responsabilties to the mouse controls or on frame
-        if (mouse.buttonCode === 1) {
-          mode.mouseActionOne()
-        } else if (mouse.buttonCode === 3 && isEditingEntities) {
-          mode.mouseActionTwo(hoveredTile.tileIndex, entityAction.action)
-        }
+      if (validClick && isEditingEntities) {
+        entityClickAction(hoveredTile.tileIndex, entityAction.action)
       }
 
       unsetTileLock()
     },
-
-    mouseActionOne: requestMove,
-    mouseActionTwo: rightClickAction,
 
     onUnset: commonUnset
   })

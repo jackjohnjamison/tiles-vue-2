@@ -10,9 +10,8 @@ export const modeStore = defineStore('mode', {
       effectsFunctions: noop,
 
       onMouseMove: noop,
-      onMouseUp: noop,
-      mouseActionOne: noop,
-      mouseActionTwo: noop,
+      leftClickAction: noop,
+      rightClickAction: noop,
 
       onUnset: noop
     }
@@ -24,9 +23,8 @@ export const modeStore = defineStore('mode', {
       onFrameControls = noop,
       effectsFunctions = noop,
       onMouseMove = noop,
-      onMouseUp = noop,
-      mouseActionOne = noop,
-      mouseActionTwo = noop,
+      leftClickAction = noop,
+      rightClickAction = noop,
       onUnset = noop
     }) {
       this.onUnset()
@@ -35,22 +33,15 @@ export const modeStore = defineStore('mode', {
       this.onFrameControls = onFrameControls
       this.effectsFunctions = effectsFunctions
       this.onMouseMove = onMouseMove
-      this.onMouseUp = onMouseUp
-      this.mouseActionOne = mouseActionOne
-      this.mouseActionTwo = mouseActionTwo
+      this.leftClickAction = leftClickAction
+      this.rightClickAction = rightClickAction
       this.onUnset = onUnset
     },
 
-    setMouseAction({
-      onMouseMove = noop,
-      onMouseUp = noop,
-      mouseActionOne = noop,
-      mouseActionTwo = noop
-    }) {
+    setMouseAction({ onMouseMove = noop, leftClickAction = noop, rightClickAction = noop }) {
       this.onMouseMove = onMouseMove
-      this.onMouseUp = onMouseUp
-      this.mouseActionOne = mouseActionOne
-      this.mouseActionTwo = mouseActionTwo
+      this.leftClickAction = leftClickAction
+      this.rightClickAction = rightClickAction
     }
   }
 })

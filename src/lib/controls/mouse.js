@@ -46,7 +46,11 @@ const mouseTracker = (element) => {
   }
 
   document.onmouseup = () => {
-    mode.onMouseUp()
+    if (mouse.buttonCode === 1) {
+      mode.leftClickAction()
+    } else if (mouse.buttonCode === 3) {
+      mode.rightClickAction()
+    }
 
     mouse.isDragged = false
     mouse.buttonCode = 0
