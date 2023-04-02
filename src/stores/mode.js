@@ -1,22 +1,56 @@
 import { defineStore } from 'pinia'
-import { editMode } from "@/lib/controls/modes/edit";
-import { playMode } from "@/lib/controls/modes/play";
-
-const modes = {
-  editMode,
-  playMode,
-};
+import { noop } from '@/lib/constants'
 
 export const modeStore = defineStore('mode', {
   state: () => {
-    return { mode: undefined }
+    return {
+      modeName: undefined,
+
+      onFrameControls: noop,
+      effectsFunctions: noop,
+
+      onMouseMove: noop,
+      onMouseUp: noop,
+      mouseActionOne: noop,
+      mouseActionTwo: noop,
+
+      onUnset: noop
+    }
   },
 
   actions: {
-    set(mode) {
-      modes[this.mode]?.unset();
-      this.mode = mode
-      modes[mode].set();
+    set({
+      modeName,
+      onFrameControls = noop,
+      effectsFunctions = noop,
+      onMouseMove = noop,
+      onMouseUp = noop,
+      mouseActionOne = noop,
+      mouseActionTwo = noop,
+      onUnset = noop
+    }) {
+      this.onUnset()
+
+      this.modeName = modeName
+      this.onFrameControls = onFrameControls
+      this.effectsFunctions = effectsFunctions
+      this.onMouseMove = onMouseMove
+      this.onMouseUp = onMouseUp
+      this.mouseActionOne = mouseActionOne
+      this.mouseActionTwo = mouseActionTwo
+      this.onUnset = onUnset
+    },
+
+    setMouseAction({
+      onMouseMove = noop,
+      onMouseUp = noop,
+      mouseActionOne = noop,
+      mouseActionTwo = noop
+    }) {
+      this.onMouseMove = onMouseMove
+      this.onMouseUp = onMouseUp
+      this.mouseActionOne = mouseActionOne
+      this.mouseActionTwo = mouseActionTwo
     }
   }
 })

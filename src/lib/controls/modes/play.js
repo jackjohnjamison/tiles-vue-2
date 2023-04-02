@@ -1,51 +1,36 @@
-import { scene, panCameraTo } from '@/lib/scene'
+import { scene } from '@/lib/scene'
 import { movementMarkers } from '@/lib/controls'
 import {
   commonOnFrameControls,
   commonUnset,
-  hoverStateDefault,
-  requestMove
+  requestMove,
+  commonOnMouseMove
 } from './common-functions'
 import { hoveredTileStore } from '@/stores/hovered-tile'
-import { mouseActionStore } from '@/stores/mouse-action'
+import { modeStore } from '@/stores/mode'
 
-const playMode = {}
-
-playMode.set = () => {
+const setPlayMode = () => {
   const { mouse } = scene
+  const mode = modeStore()
   const hoveredTile = hoveredTileStore()
-  const mouseAction = mouseActionStore()
 
-  const defaultmouseAction = {
-    actionOne: requestMove,
-    hoverState: hoverStateDefault
-  }
+  mode.set({
+    modeName: 'playMode',
 
-  mouseAction.setMouseAction(defaultmouseAction)
+    onFrameControls: commonOnFrameControls,
+    effectsFunctions: movementMarkers,
 
-  mouse.onMouseMove = () => {
-    if (mouse.buttonCode === 1) {
-      panCameraTo(-mouse.drag.x, -mouse.drag.y)
-    }
-  }
+    onMouseMove: commonOnMouseMove,
 
-  mouse.onMouseUp = () => {
-    if (mouse.buttonCode === 1 && hoveredTile.tileIndex && !mouse.isDragged) {
-      mouseAction.actionOne()
-    }
-  }
+    onMouseUp: () => {
+      if (mouse.buttonCode === 1 && hoveredTile.tileIndex && !mouse.isDragged) {
+        mode.mouseActionOne()
+      }
+    },
 
-  scene.effectsFunctions = () => {
-    movementMarkers()
-  }
-
-  scene.onFrameControls = (delta) => {
-    commonOnFrameControls(delta)
-  }
+    mouseActionOne: requestMove,
+    onUnset: commonUnset
+  })
 }
 
-playMode.unset = () => {
-  commonUnset()
-}
-
-export { playMode }
+export { setPlayMode }

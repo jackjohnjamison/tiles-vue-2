@@ -1,17 +1,17 @@
 import { scene } from '@/lib/scene'
+import { modeStore } from '@/stores/mode'
 
 const mouse = {
   x: null,
   y: null,
   buttonCode: 0,
-  onMouseUp: null,
-  onMouseMove: null,
   isDragged: false,
   dragStart: { x: 0, y: 0 },
   drag: { x: 0, y: 0 }
 }
 
 const mouseTracker = (element) => {
+  const mode = modeStore()
   // Disables right click on the targeted element
   element.addEventListener('contextmenu', (e) => e.preventDefault())
 
@@ -31,10 +31,6 @@ const mouseTracker = (element) => {
       mouse.drag.x = mouse.dragStart.x - mouse.x - translate.x
       mouse.drag.y = mouse.dragStart.y - mouse.y - translate.y
     }
-
-    if (mouse.onMouseMove) {
-      mouse.onMouseMove()
-    }
   }
 
   element.onmousedown = (e) => {
@@ -50,9 +46,7 @@ const mouseTracker = (element) => {
   }
 
   document.onmouseup = () => {
-    if (mouse.onMouseUp) {
-      mouse.onMouseUp()
-    }
+    mode.onMouseUp()
 
     mouse.isDragged = false
     mouse.buttonCode = 0

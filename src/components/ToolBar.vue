@@ -1,10 +1,10 @@
 <script setup>
-  import { modeStore } from "@/stores/mode";
+  import { setMode } from '@/lib/controls'
 
-  const mode = modeStore()
-  
-  const switchMode = () => {
-    mode.set(mode.mode);
+  const switchMode = (e) => {
+    const modeName = e.target.value
+
+    setMode[modeName]()
   }
 </script>
 
@@ -12,7 +12,6 @@
   <div class="toolbar">
     <div @change="switchMode($event)">
       <input
-        v-model=mode.mode
         type=radio
         id=playRadio
         value=playMode
@@ -21,7 +20,6 @@
       />
       <label for="playRadio">Play Mode</label>
       <input
-        v-model=mode.mode
         type=radio
         id=editModeRadio
         value=editMode

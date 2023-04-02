@@ -1,10 +1,9 @@
 import { createTileMapFromParams, loadMapFromFetch } from '@/lib/map'
 import { createEntityMap, entity, unit, npc } from '@/lib/entities'
-import { mouseTracker } from '@/lib/controls'
+import { mouseTracker, setMode } from '@/lib/controls'
 import { defaultMapSize, defaultMapTitle, color } from '@/lib/constants'
 import { sprites } from '@/lib/sprites'
 import { initControls } from '@/lib/controls'
-import { modeStore } from '@/stores/mode'
 import { mapTitleStore } from '@/stores/map-title'
 import { setView } from './set-view'
 import { firstRender, onFrameFunctions, panCameraTo, renderLoop } from '.'
@@ -103,9 +102,7 @@ scene.loadMap = (tileMap, entryPointName = null) => {
     })
   }
 
-  const mode = modeStore()
-
-  mode.set('playMode')
+  setMode.playMode()
   scene.view.setApertureSize()
   firstRender()
 

@@ -1,14 +1,23 @@
 import { scene, renderFrame } from '.'
+import { modeStore } from '@/stores/mode'
 
 // For additional functions like the frame rate monitor
 const additionalFunctions = []
+let mousePrevious = { x: null, y: null }
 
 // Functions fed into the render loop
 const onFrameFunctions = (delta) => {
-  const { onFrameControls } = scene
+  const { mouse } = scene
+  const mouseMoved = mouse.x !== mousePrevious.x || mouse.y !== mousePrevious.y
+  const mode = modeStore()
 
-  if (onFrameControls) {
-    onFrameControls(delta)
+  mode.onFrameControls(delta, mouseMoved)
+
+  if (mouseMoved) {
+    mode.onMouseMove()
+
+    mousePrevious.x = mouse.x
+    mousePrevious.y = mouse.y
   }
 
   if (scene.isRedrawEffectsRequested()) {
@@ -16,14 +25,13 @@ const onFrameFunctions = (delta) => {
       ctxMid,
       ctxTop,
       view: { translate },
-      canvasTop: { width, height },
-      effectsFunctions
+      canvasTop: { width, height }
     } = scene
 
     ctxMid.clearRect(-translate.x, -translate.y, width, height)
     ctxTop.clearRect(-translate.x, -translate.y, width, height)
 
-    effectsFunctions()
+    mode.effectsFunctions()
 
     scene.RedrawEffectsDone()
   }

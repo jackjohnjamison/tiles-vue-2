@@ -12,11 +12,11 @@
 <template>
   <div v-if="!pause.isPaused">
     <MapTitle />
-    <div v-if="mode.mode === 'playMode'">
+    <div v-if="mode.modeName === 'playMode'">
       <CharacterDialog />
     </div>
 
-    <EditorPanel v-else-if="mode.mode === 'editMode'" />
+    <EditorPanel v-else-if="mode.modeName === 'editMode'" />
     
   </div>
 </template>
