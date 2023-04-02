@@ -89,7 +89,7 @@ const setEditMode = () => {
     onFrameControls: (delta, mouseMoved) => {
       commonOnFrameControls(delta, mouseMoved)
 
-      if (hoveredTile.tileIsHovered && panel.activePanel === 'tiles') {
+      if (hoveredTile.tileIndex && panel.activePanel === 'tiles') {
         if (mouse.buttonCode === 3) paintTile(hoveredTile.tileIndex)
       }
     },

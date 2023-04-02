@@ -1,5 +1,4 @@
-import { scene, panCameraTo } from '@/lib/scene'
-import { panCameraKeys } from '@/lib/scene'
+import { scene, panCameraTo, panCameraKeys } from '@/lib/scene'
 import { hoveredTileStore } from '@/stores/hovered-tile'
 
 const commonOnFrameControls = (delta, mouseMoved) => {
