@@ -5,12 +5,19 @@ import { loadMapAtLocation } from '@/lib/map'
 import { entity, pathfinding } from '.'
 import { color } from '@/lib/constants'
 
+import { knight } from './unit-types/knight'
+
 class unit extends entity {
-  constructor() {
+  constructor(unitBaseClass = knight, name = 'Knight') {
     super({
       sprite: sprites.playerTokens.angel,
       haloColor: color.success
     })
+
+    this.name = name
+    this.properties = { ...unitBaseClass }
+    this.health = this.properties.maxHealth
+
     this.path = []
     this.travelTriggered = false
 

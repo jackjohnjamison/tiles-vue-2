@@ -1,8 +1,18 @@
 <script setup>
-  import { imageAssetPath } from '@/lib/constants'
+  import { scene } from '@/lib/scene'
   import { setMode } from '@/lib/controls'
 
-  const portraitSrc = `${imageAssetPath}portraits/knight-sm.jpg`
+  let selectedUnit
+
+  const setSelectedUnit = (unit) => {
+    selectedUnit = {
+      health: unit.health,
+      name: unit.name,
+      ...unit.properties,
+    }
+  }
+
+  setSelectedUnit(scene.player)
 
   const setUnitAction = (e) => {
     const actionName = e.target.value
@@ -13,17 +23,28 @@
 
 <template>
   <section class="character-dialog pane">
-    <img :src=portraitSrc />
+    <img :src=selectedUnit.portrait />
     <div class=character-controls>
-      <p>Kobol the knight</p>
+      <p>{{ selectedUnit.name }}</p>
 
-      <button class=button--dialog
+      <button
+        v-for="(attack, i) in selectedUnit.attacks"
+        :key=i
+        class=button--dialog
+        value=playModeAttack
+        @click=setUnitAction($event)
+      >
+        {{attack.name}}
+        <span v-html=attack.weapon.icon></span>
+      </button>
+
+      <!-- <button class=button--dialog
       value=playModeAttack
       @click=setUnitAction($event)>
         &#x2694;
       </button>
 
-      <button class=button--dialog>&#x1F3F9;</button>
+      <button class=button--dialog>&#x1F3F9;</button> -->
     </div>
   </section>
 </template>
