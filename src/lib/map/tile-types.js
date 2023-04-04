@@ -1,61 +1,54 @@
 const tileTypes = {
   mountain: {
-    displayName: "Mountains",
+    displayName: 'Mountains',
     walkable: false,
-    floor: "mountain",
-    feature: "mountainTop",
-    type: "linked",
+    floor: 'mountain',
+    feature: 'mountainTop',
+    type: 'linked'
   },
 
   forest: {
-    displayName: "Forest",
+    displayName: 'Forest',
     walkable: true,
-    floor: "forest",
-    feature: "forestTop",
-    type: "linked",
+    floor: 'forest',
+    feature: 'forestTop',
+    type: 'linked'
   },
 
   terracotta: {
-    displayName: "Terracotta Floor",
+    displayName: 'Terracotta Floor',
     walkable: true,
-    floor: "terracotta",
-    type: "floor",
+    floor: 'terracotta',
+    type: 'floor'
   },
 
   grass: {
-    displayName: "Grass",
+    displayName: 'Grass',
     walkable: true,
-    floor: "grass",
-    type: "floor",
+    floor: 'grass',
+    type: 'floor'
   },
 
   cube: {
-    displayName: "Cube",
+    displayName: 'Cube',
     walkable: false,
-    feature: "cube",
-    floor: "terracotta",
-    type: "feature",
+    feature: 'cube',
+    floor: 'terracotta',
+    type: 'feature'
   },
 
   water: {
-    displayName: "Water",
+    displayName: 'Water',
     walkable: false,
-    floor: "water",
-    type: "obstacle",
+    floor: 'water',
+    type: 'obstacle'
   },
 
   void: {
-    displayName: "Void",
+    displayName: 'Void',
     walkable: false,
-    type: "void",
-  },
-};
+    type: 'void'
+  }
+}
 
-const tileKeys = Object.keys(tileTypes)
-
-// Adds property keys into each object property
-tileKeys.forEach((tileKey) => {
-  tileTypes[tileKey].key = tileKey;
-})
-
-export { tileTypes };
+export { tileTypes }

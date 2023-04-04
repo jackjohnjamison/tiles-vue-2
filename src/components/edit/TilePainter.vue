@@ -73,9 +73,9 @@
       aria-label="Select tile set"
       >
       <option 
-        v-for="tileSet in tileTypes"
-        :key="tileSet.key"
-        :value="tileSet.key"
+        v-for="(tileSet, key) in tileTypes"
+        :key="key"
+        :value="key"
       >{{tileSet.displayName}}</option>
     </select>
 
