@@ -31,9 +31,12 @@ const setPlayModeAttack = () => {
   const mode = modeStore()
 
   /////////////////////////////////
+  const deg360Radians = 2 * Math.PI
+
   const particles = []
   const gravity = 0.15
   const xVariation = 2.4
+  const particleDensity = 3
 
   const createParticle = (x, y) => {
     const particle = {
@@ -54,21 +57,23 @@ const setPlayModeAttack = () => {
     effectsFunctions: () => {
       const { mouse, ctxTop } = scene
 
-      createParticle(mouse.x, mouse.y)
-      createParticle(mouse.x, mouse.y)
-      createParticle(mouse.x, mouse.y)
+      for (let i = 0; i < particleDensity; i++) {
+        createParticle(mouse.x, mouse.y)
+      }
 
       particles.forEach((particle, i) => {
         particle.lifeTime--
 
+        const { lifeTime, colorOffset, radius } = particle
+
         if (particle.lifeTime < 0) {
           particles.splice(i, 1)
         } else {
-          ctxTop.fillStyle = `rgba(${particle.lifeTime * 2 + particle.colorOffset + 20}, 0, 0, ${
+          ctxTop.fillStyle = `rgba(${lifeTime * 2 + colorOffset + 20}, 0, 0, ${
             particle.lifeTime / 100
           })`
 
-          ctxTop.strokeStyle = `rgba(${particle.lifeTime * 2 + particle.colorOffset - 20}, 0, 0, ${
+          ctxTop.strokeStyle = `rgba(${lifeTime * 2 + colorOffset - 20}, 0, 0, ${
             particle.lifeTime / 100
           })`
 
@@ -78,7 +83,7 @@ const setPlayModeAttack = () => {
           particle.y += particle.yVelocity
 
           ctxTop.beginPath()
-          ctxTop.arc(particle.x, particle.y, particle.radius, 0, 2 * Math.PI)
+          ctxTop.arc(particle.x, particle.y, radius, 0, deg360Radians)
           ctxTop.fill()
           ctxTop.stroke()
         }

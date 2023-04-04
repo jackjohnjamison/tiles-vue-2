@@ -15,8 +15,7 @@
   setSelectedUnit(scene.player)
 
   const setUnitAction = (e) => {
-    const actionName = e.target.value
-    
+    const actionName = e.target.value    
     setMode[actionName]()
   }
 </script>
@@ -33,18 +32,8 @@
         class=button--dialog
         value=playModeAttack
         @click=setUnitAction($event)
-      >
-        {{attack.name}}
-        <span v-html=attack.weapon.icon></span>
-      </button>
-
-      <!-- <button class=button--dialog
-      value=playModeAttack
-      @click=setUnitAction($event)>
-        &#x2694;
-      </button>
-
-      <button class=button--dialog>&#x1F3F9;</button> -->
+        v-html="`${attack.name} ${attack.weapon.icon}`"
+      />
     </div>
   </section>
 </template>
