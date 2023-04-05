@@ -39,13 +39,16 @@ const setPlayModeAttack = () => {
   const particleDensity = 3
 
   const createParticle = (x, y) => {
+    const yVariation = Math.random() * 10 - 5
     const particle = {
       x,
       y,
+      maxY: y + yVariation,
+      bounce: yVariation > 0,
       xVelocity: Math.random() * xVariation - xVariation / 2,
-      yVelocity: -6.5 + Math.random(),
+      yVelocity: -7 + Math.random(),
       radius: Math.random() * 6 + 1,
-      lifeTime: 100 + (Math.random() * 40 - 40),
+      lifeTime: 100 + (Math.random() * 20 - 10),
       colorOffset: Math.random() * 40 - 20
     }
 
@@ -64,7 +67,7 @@ const setPlayModeAttack = () => {
       particles.forEach((particle, i) => {
         particle.lifeTime--
 
-        const { lifeTime, colorOffset, radius } = particle
+        const { lifeTime, colorOffset, radius, maxY, bounce } = particle
 
         if (particle.lifeTime < 0) {
           particles.splice(i, 1)
@@ -77,10 +80,18 @@ const setPlayModeAttack = () => {
             particle.lifeTime / 100
           })`
 
-          particle.yVelocity += gravity
+          if (particle.y > maxY) {
+            if (bounce) {
+              particle.yVelocity = -particle.yVelocity * 0.4
+            } else {
+              particle.yVelocity *= 0.8
+            }
+          }
 
           particle.x += particle.xVelocity
           particle.y += particle.yVelocity
+
+          particle.yVelocity += gravity
 
           ctxTop.beginPath()
           ctxTop.arc(particle.x, particle.y, radius, 0, deg360Radians)
