@@ -31,7 +31,7 @@ const onFrameFunctions = (delta) => {
     ctxMid.clearRect(-translate.x, -translate.y, width, height)
     ctxTop.clearRect(-translate.x, -translate.y, width, height)
 
-    mode.effectsFunctions()
+    mode.effectsFunctions(delta)
 
     scene.RedrawEffectsDone()
   }

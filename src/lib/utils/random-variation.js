@@ -1,7 +1,8 @@
-const randomVariationInt = (start, range) => {
-  const variatedNumber = start + (Math.random() * range - range / 2);
+const randomVariation = (start, range, int = false) => {
+  const variatedNumber = start + (Math.random() * range - range / 2)
 
-  return Math.floor(variatedNumber);
-};
+  if (int) return Math.floor(variatedNumber)
+  return variatedNumber
+}
 
-export { randomVariationInt };
+export { randomVariation }

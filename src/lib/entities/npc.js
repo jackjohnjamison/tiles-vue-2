@@ -1,5 +1,5 @@
 import { isWalkable } from '@/lib/map'
-import { randomVariationInt } from '@/lib/utils'
+import { randomVariation } from '@/lib/utils'
 import { pathfinding } from './movement/pathfinding'
 import { npcPatrolSpeed } from '@/lib/constants'
 import { modeStore } from '@/stores/mode'
@@ -17,8 +17,8 @@ class npc extends entity {
     const { pathFinder, tileIndex } = this
 
     const destination = {
-      x: randomVariationInt(tileIndex.x, 10),
-      y: randomVariationInt(tileIndex.y, 10)
+      x: randomVariation(tileIndex.x, 10, true),
+      y: randomVariation(tileIndex.y, 10, true)
     }
 
     if (isWalkable(destination)) {
