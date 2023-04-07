@@ -28,14 +28,14 @@ class npc extends entity {
 
   update = (delta) => {
     // This is super ugly! I should probably stop the whole loop of NPC actions instead of testing every time!
-    if (modeStore().modeName !== 'editMode') {
-      const { pathFinder, pickPath, redraw, isMoving } = this
-      if (!isMoving) {
-        pickPath()
-      }
-      pathFinder.move(delta)
-      redraw()
-    }
+    // if (modeStore().modeName !== 'editMode') {
+    //   const { pathFinder, pickPath, redraw, isMoving } = this
+    //   if (!isMoving) {
+    //     pickPath()
+    //   }
+    //   pathFinder.move(delta)
+    //   redraw()
+    // }
   }
 }
 

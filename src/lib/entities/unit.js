@@ -39,8 +39,10 @@ class unit extends entity {
         loadMapAtLocation(travelPoint.mapName, travelPoint.entryPointName)
       }
 
-      pathFinder.move(delta)
-      this.redraw()
+      if (this.isMoving) {
+        pathFinder.move(delta)
+        this.redraw()
+      }
     }
 
     this.resetTravel = () => {

@@ -12,6 +12,7 @@ import { modeStore } from '@/stores/mode'
 import { scene, panCameraTo, panCameraKeys } from '@/lib/scene'
 import { hoveredTileStore } from '@/stores/hovered-tile'
 import { noop } from '@/lib/constants'
+//////////////////////////
 
 const setPlayMode = () => {
   const mode = modeStore()
@@ -30,20 +31,46 @@ const setPlayModeAttack = () => {
   const mode = modeStore()
 
   mode.set({
-    effectsFunctions: createFountainEffect(),
-
     modeName: 'playMode',
 
-    onFrameControls: (delta) => {
+    onFrameControls: (delta, mouseMoved) => {
       const { mouse } = scene
       const hoveredTile = hoveredTileStore()
 
       panCameraKeys(delta)
-      scene.requestRedrawEffects()
-      hoveredTile.updateHoveredTile({ x: mouse.x, y: mouse.y })
+
+      if (mouseMoved || scene.isRedrawEffectsRequested()) {
+        hoveredTile.updateHoveredTile({ x: mouse.x, y: mouse.y })
+      }
     },
 
-    onMouseMove: () => {},
+    effectsFunctions: () => {
+      const { entityMap } = scene
+      const hoveredTile = hoveredTileStore()
+
+      if (hoveredTile.tileIndex) {
+        const { x, y } = hoveredTile.tileIndex
+
+        const hoveredTargetId = entityMap.entities[x][y]?.id
+
+        console.log(hoveredTargetId)
+      }
+    },
+
+    onMouseMove: () => {
+      const { mouse, canvasTop } = scene
+
+      if (mouse.buttonCode === 1) {
+        panCameraTo(-mouse.drag.x, -mouse.drag.y)
+      }
+
+      // Cursor state
+      if (mouse.isDragged) {
+        canvasTop.style.cursor = 'grabbing'
+      } else {
+        canvasTop.style.cursor = 'crosshair'
+      }
+    },
 
     leftClickAction: () => {
       const { canvasTop } = scene
@@ -63,41 +90,25 @@ const setPlayModeAttack = () => {
   })
 }
 
-////////////////////////////////////////////////////////////
-// Changed the name temporarily to use this for animations
-const setPlayModeAttack_Real = () => {
+/// Setting animation
+const setPlayModeAttack_animation = () => {
   const mode = modeStore()
 
   mode.set({
+    effectsFunctions: createFountainEffect(),
+
     modeName: 'playMode',
 
-    onFrameControls: (delta, mouseMoved) => {
+    onFrameControls: (delta) => {
       const { mouse } = scene
       const hoveredTile = hoveredTileStore()
 
       panCameraKeys(delta)
-
-      if (mouseMoved || scene.isRedrawEffectsRequested()) {
-        hoveredTile.updateHoveredTile({ x: mouse.x, y: mouse.y })
-      }
+      scene.requestRedrawEffects()
+      hoveredTile.updateHoveredTile({ x: mouse.x, y: mouse.y })
     },
 
-    effectsFunctions: noop, // Replace later
-
-    onMouseMove: () => {
-      const { mouse, canvasTop } = scene
-
-      if (mouse.buttonCode === 1) {
-        panCameraTo(-mouse.drag.x, -mouse.drag.y)
-      }
-
-      // Cursor state
-      if (mouse.isDragged) {
-        canvasTop.style.cursor = 'grabbing'
-      } else {
-        canvasTop.style.cursor = 'crosshair'
-      }
-    },
+    onMouseMove: () => {},
 
     leftClickAction: () => {
       const { canvasTop } = scene
