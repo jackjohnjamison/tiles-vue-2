@@ -11,7 +11,7 @@ import { modeStore } from '@/stores/mode'
 ////////////// For attack
 import { scene, panCameraTo, panCameraKeys } from '@/lib/scene'
 import { hoveredTileStore } from '@/stores/hovered-tile'
-import { noop } from '@/lib/constants'
+import { noop, tileWidth, tileHeight } from '@/lib/constants'
 //////////////////////////
 
 const setPlayMode = () => {
@@ -45,15 +45,26 @@ const setPlayModeAttack = () => {
     },
 
     effectsFunctions: () => {
-      const { entityMap } = scene
+      const { entityMap, ctxTop } = scene
       const hoveredTile = hoveredTileStore()
 
       if (hoveredTile.tileIndex) {
         const { x, y } = hoveredTile.tileIndex
 
-        const hoveredTargetId = entityMap.entities[x][y]?.id
+        const entityLocation = entityMap.entities[x][y]
 
-        console.log(hoveredTargetId)
+        if (entityLocation) {
+          const entity = entityLocation.entity
+
+          const { x, y } = entity.position
+
+          const redrawWidth = tileWidth
+          const redrawHeight = tileHeight * 3
+
+          ctxTop.beginPath()
+          ctxTop.rect(x, y - tileHeight * 2, redrawWidth, redrawHeight)
+          ctxTop.stroke()
+        }
       }
     },
 

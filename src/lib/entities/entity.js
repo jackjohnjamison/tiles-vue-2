@@ -26,7 +26,7 @@ class entity {
     this.positionPrevious = this.position
     this.redrawEntities = redrawEntities
 
-    entityMap.addEntity(tileIndex, render, id)
+    entityMap.addEntity(tileIndex, render, id, this)
 
     setWalkable(tileIndex, false)
 

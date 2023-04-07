@@ -12,8 +12,8 @@ const createEntityMap = (tileMap) => {
     }
   }
 
-  entityMap.addEntity = (tileIndex, render, id) => {
-    entityMap.entities[tileIndex.x][tileIndex.y] = { render, id }
+  entityMap.addEntity = (tileIndex, render, id, entity) => {
+    entityMap.entities[tileIndex.x][tileIndex.y] = { render, id, entity }
   }
 
   entityMap.removeEntity = (tileIndex) => {
