@@ -15,23 +15,21 @@ class entity {
     }
   }
 
-  afterAdd = () => {}
-
   addToScene = (tileIndex) => {
     const { entityMap } = scene
-    const { render, redraw, afterAdd, id } = this
+    const { redraw } = this
 
     this.tileIndex = tileIndex
     this.position = tileIndexToPosition(tileIndex)
     this.positionPrevious = this.position
     this.redrawEntities = redrawEntities
 
-    entityMap.addEntity(tileIndex, render, id, this)
+    entityMap.addEntity(this)
 
     setWalkable(tileIndex, false)
 
     scene.entities.push(this)
-    afterAdd()
+
     redraw()
   }
 

@@ -6,7 +6,7 @@ const renderEntities = (x, y) => {
   const { tileMap, entityMap } = scene
   const tile = tileMap.tiles[x][y]
   const { feature } = tile
-  const entityMapLocation = entityMap.entities[x][y]
+  const entity = entityMap.entities[x][y]?.entity
 
   // This can be improved but first I need to know what tile markers I will need
   if (tile.marker) {
@@ -15,8 +15,8 @@ const renderEntities = (x, y) => {
     drawLineTileMarker({ x, y, strokeColor, fillColor })
   }
 
-  if (entityMapLocation) {
-    entityMapLocation.render()
+  if (entity) {
+    entity.render()
   }
 
   if (feature) {
@@ -25,9 +25,9 @@ const renderEntities = (x, y) => {
     const position = tileIndexToPosition({ x, y })
     scene.ctxEntity.drawImage(image.data, position.x, position.y - image.yOffset)
 
-    if (entityMapLocation) {
+    if (entity) {
       scene.ctxEntity.globalAlpha = 0.5
-      entityMapLocation.render()
+      entity.render()
       scene.ctxEntity.globalAlpha = 1
     }
   }

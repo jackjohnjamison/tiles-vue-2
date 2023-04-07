@@ -4,7 +4,7 @@ const deleteEntity = ({ x, y }) => {
   const { tileMap, entityMap, entities } = scene
 
   if (entityMap.entities[x][y]) {
-    const entityId = entityMap.entities[x][y].id
+    const entityId = entityMap.entities[x][y].entity.id
     const entityIndex = entities.findIndex((ent) => {
       return ent.id === entityId
     })

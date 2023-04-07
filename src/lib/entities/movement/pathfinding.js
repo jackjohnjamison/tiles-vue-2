@@ -58,7 +58,7 @@ const pathfinding = (entity, speed, step = noop) => {
 
         setWalkable(tileIndexPrevious, true)
 
-        entityMap.addEntity(tileIndex, entity.render, entity.id, entity)
+        entityMap.addEntity(entity)
 
         tileIndexPrevious.x = tileIndex.x
         tileIndexPrevious.y = tileIndex.y
