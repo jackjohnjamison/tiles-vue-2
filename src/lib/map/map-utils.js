@@ -54,14 +54,15 @@ const findHoveredTile = (position) => {
   }
 }
 
-const highlightTile = (tileIndex, strokeColor, fillColor) => {
+const highlightTile = (tileIndex, strokeColor, fillColor, ctx) => {
   const { x, y } = tileIndex
 
   drawLineTile({
     x,
     y,
     strokeColor: strokeColor,
-    fillColor: fillColor
+    fillColor: fillColor,
+    ctx
   })
 }
 

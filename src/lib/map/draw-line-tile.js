@@ -2,23 +2,22 @@ import { scene } from '@/lib/scene'
 import { tileWidth, tileHeight } from '@/lib/constants'
 import { tileIndexToPosition } from '.'
 
-const drawLineTile = ({ x, y, strokeColor, fillColor }) => {
-  const { ctxTop } = scene
-
+const drawLineTile = ({ x, y, strokeColor, fillColor, ctx }) => {
   const position = tileIndexToPosition({ x, y })
-  ctxTop.strokeStyle = strokeColor
-  ctxTop.fillStyle = fillColor
+
+  ctx.strokeStyle = strokeColor
+  ctx.fillStyle = fillColor
 
   // Draw tile outline
-  ctxTop.beginPath()
-  ctxTop.moveTo(position.x, position.y + tileHeight / 2)
-  ctxTop.lineTo(position.x + tileWidth / 2, position.y)
-  ctxTop.lineTo(position.x + tileWidth, position.y + tileHeight / 2)
-  ctxTop.lineTo(position.x + tileWidth / 2, position.y + tileHeight)
-  ctxTop.closePath()
+  ctx.beginPath()
+  ctx.moveTo(position.x, position.y + tileHeight / 2)
+  ctx.lineTo(position.x + tileWidth / 2, position.y)
+  ctx.lineTo(position.x + tileWidth, position.y + tileHeight / 2)
+  ctx.lineTo(position.x + tileWidth / 2, position.y + tileHeight)
+  ctx.closePath()
 
-  ctxTop.fill()
-  ctxTop.stroke()
+  ctx.fill()
+  ctx.stroke()
 }
 
 // These functions can probably have less duplication when I have the time

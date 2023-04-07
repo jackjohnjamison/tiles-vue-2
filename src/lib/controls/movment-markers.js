@@ -21,7 +21,7 @@ const movementMarkers = () => {
         const position = tileIndexToPosition(tileIndex)
         drawEllipse(position, color.warn, baseMarkerSize, ctxTop)
       } else {
-        highlightTile(tileIndex, color.warn, color.warnTrans)
+        highlightTile(tileIndex, color.warn, color.warnTrans, ctxTop)
       }
     } else {
       breadcrumbTrail(pathToTile, color.success, color.warnTrans, false, ctxMid)
@@ -30,7 +30,7 @@ const movementMarkers = () => {
         const position = tileIndexToPosition(tileIndex)
         drawEllipse(position, color.successTrans, baseMarkerSize, ctxTop)
       } else {
-        highlightTile(tileIndex, color.warn, color.warnTrans)
+        highlightTile(tileIndex, color.warn, color.warnTrans, ctxTop)
       }
     }
   }

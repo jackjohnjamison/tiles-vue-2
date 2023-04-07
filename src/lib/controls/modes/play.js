@@ -46,7 +46,7 @@ const setPlayModeAttack = () => {
     },
 
     effectsFunctions: () => {
-      const { entityMap, ctxTop } = scene
+      const { entityMap, ctxTop, ctxMid } = scene
       const hoveredTile = hoveredTileStore()
 
       if (hoveredTile.tileIndex) {
@@ -66,8 +66,15 @@ const setPlayModeAttack = () => {
           ctxTop.rect(x, y - tileHeight * 2, redrawWidth, redrawHeight)
           ctxTop.strokeStyle = entity.haloColor
           ctxTop.stroke()
+
+          ctxMid.beginPath()
+          ctxMid.rect(x, y - tileHeight * 2, redrawWidth, redrawHeight)
+          ctxMid.fillStyle = color.infoTrans
+          ctxMid.fill()
+
+          highlightTile(hoveredTile.tileIndex, entity.haloColor, color.warnTrans, ctxMid)
         } else {
-          highlightTile(hoveredTile.tileIndex, color.warn, color.warnTrans)
+          highlightTile(hoveredTile.tileIndex, color.warn, color.warnTrans, ctxTop)
         }
       }
     },
