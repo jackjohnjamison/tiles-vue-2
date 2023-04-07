@@ -1,9 +1,9 @@
 import { scene } from '@/lib/scene'
+import { createParticlePool } from './particle-pool'
 import { randomVariation } from '@/lib/utils'
 
 const deg360Radians = 2 * Math.PI
 
-const particles = []
 const gravity = 0.0095
 
 const xVelocityBase = 0
@@ -15,17 +15,16 @@ const yVelocityVariation = 0.1
 const radiusBase = 2.5
 const radiusVariation = 5
 
-const lifeTimeBase = 100
-const lifeTimeVariation = 20
+const lifeTime = 100
+const particleDensity = 10
 
 const colorOffsetBase = 0
 const colorOffsetVariation = 40
 
-const particleDensity = 3
-
-const createParticle = (x, y) => {
+const newParticle = (x, y) => {
   const yVariation = randomVariation(1, 6)
-  const particle = {
+
+  return {
     x,
     y,
     maxY: y + yVariation,
@@ -33,62 +32,68 @@ const createParticle = (x, y) => {
     xVelocity: randomVariation(xVelocityBase, xVelocityVariation),
     yVelocity: randomVariation(yVelocityBase, yVelocityVariation),
     radius: randomVariation(radiusBase, radiusVariation),
-    lifeTime: 100,
+    lifeTime: lifeTime,
     colorOffset: randomVariation(colorOffsetBase, colorOffsetVariation)
   }
+}
 
-  particles.unshift(particle)
+const resetParticle = (particle, x, y) => {
+  const yVariation = randomVariation(1, 6)
+
+  particle.lifeTime = lifeTime
+  particle.x = x
+  particle.y = y
+  particle.maxY = y + yVariation
+  particle.bounce = yVariation > 0
+  particle.yVelocity = randomVariation(yVelocityBase, yVelocityVariation)
 }
 
 export const createFountainEffect = () => {
   const { mouse, ctxTop } = scene
+  const poolSize = lifeTime * particleDensity
 
-  const update = (delta) => {
+  const { particles, pool } = createParticlePool(poolSize)
+
+  const update = () => {
     for (let i = 0; i < particleDensity; i++) {
-      createParticle(mouse.x, mouse.y)
-    }
+      let particle = pool.pop()
 
-    console.log(particles.length)
+      if (particle) {
+        resetParticle(particle, mouse.x, mouse.y)
+        particles.unshift(particle)
+      } else {
+        particles.unshift(newParticle(mouse.x, mouse.y))
+      }
+    }
 
     particles.forEach((particle, i) => {
       particle.lifeTime--
 
-      const { lifeTime, colorOffset, radius, maxY, bounce } = particle
-
-      if (particle.lifeTime < 0) {
-        particles.splice(i, 1)
-      } else {
-        ctxTop.fillStyle = `rgba(${lifeTime * 2 + colorOffset + 20}, 0, 0, ${
-          particle.lifeTime / lifeTimeBase
-        })`
-
-        ctxTop.strokeStyle = `rgba(${lifeTime * 2 + colorOffset - 20}, 0, 0, ${
-          particle.lifeTime / lifeTimeBase
-        })`
-
-        if (particle.y > maxY) {
-          if (bounce) {
-            particle.yVelocity = -particle.yVelocity * 0.4
-          } else {
-            particle.yVelocity *= 0.8
-          }
+      const { colorOffset, radius, maxY, bounce } = particle
+      ctxTop.fillStyle = `rgba(${particle.lifeTime * 2 + colorOffset + 20}, 0, 0, ${
+        particle.lifeTime / lifeTime
+      })`
+      ctxTop.strokeStyle = `rgba(${particle.lifeTime * 2 + colorOffset - 20}, 0, 0, ${
+        particle.lifeTime / lifeTime
+      })`
+      if (particle.y > maxY) {
+        if (bounce) {
+          particle.yVelocity = -particle.yVelocity * 0.4
+        } else {
+          particle.yVelocity *= 0.8
         }
+      }
+      particle.x += particle.xVelocity * 16
+      particle.y += particle.yVelocity * 16
+      particle.yVelocity += gravity
 
-        particle.x += particle.xVelocity * delta
-        particle.y += particle.yVelocity * delta
+      ctxTop.beginPath()
+      ctxTop.arc(particle.x, particle.y, radius + (100 - particle.lifeTime) / 100, 0, deg360Radians)
+      ctxTop.fill()
+      ctxTop.stroke()
 
-        particle.yVelocity += gravity
-
-        ctxTop.beginPath()
-        ctxTop.arc(
-          particle.x,
-          particle.y,
-          radius + (110 - particle.lifeTime) / 100,
-          0,
-          deg360Radians
-        )
-        ctxTop.fill()
-        ctxTop.stroke()
+      if (particle.lifeTime <= 0) {
+        pool.push(particles.splice(i, 1)[0])
       }
     })
   }
