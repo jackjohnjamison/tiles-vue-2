@@ -63,6 +63,10 @@ class entity {
     return true
   }
 
+  receiveAttack() {
+    console.log(this.id)
+  }
+
   update() {}
 }
 

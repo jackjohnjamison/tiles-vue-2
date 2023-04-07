@@ -90,7 +90,12 @@ const setPlayModeAttack = () => {
 
     leftClickAction: () => {
       const { canvasTop } = scene
-      console.log('Attack')
+      const hoveredTile = hoveredTileStore()
+
+      if (hoveredTile.hoveredEntity) {
+        hoveredTile.hoveredEntity.receiveAttack()
+      }
+
       canvasTop.style.cursor = 'pointer'
       setPlayMode()
     },
