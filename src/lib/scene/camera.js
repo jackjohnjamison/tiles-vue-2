@@ -25,8 +25,8 @@ const panCameraKeys = (delta) => {
     velocityX += cameraAcceleration * delta * (arrowRight - arrowLeft)
     velocityY += cameraAcceleration * delta * (arrowDown - arrowUp)
 
-    translate.x = Math.round(translate.x - velocityX)
-    translate.y = Math.round(translate.y - velocityY)
+    translate.x = translate.x - velocityX
+    translate.y = translate.y - velocityY
   }
 
   if (translate.x !== translatePrevious.x || translate.y !== translatePrevious.y) {

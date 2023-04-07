@@ -1,5 +1,4 @@
 import { scene } from '@/lib/scene'
-import { createParticlePool } from './particle-pool'
 import { randomVariation } from '@/lib/utils'
 
 import { keyCheck } from '@/lib/controls'
@@ -51,9 +50,9 @@ const newParticle = (x, y) => {
 
 export const createFountainEffect = () => {
   const { mouse, ctxTop } = scene
-  const poolSize = lifeTime * particleDensity
 
-  const { particles, pool } = createParticlePool(poolSize)
+  const particles = []
+  const pool = []
 
   const update = () => {
     if (keyCheck('ControlLeft')) {
@@ -76,12 +75,15 @@ export const createFountainEffect = () => {
         pool.push(particles.splice(i, 1)[0])
       } else {
         const { colorOffset, radius, maxY, bounce } = particle
+
         ctxTop.fillStyle = `rgba(${particle.lifeTime * 2 + colorOffset + 20}, 0, 0, ${
           particle.lifeTime / lifeTime
         })`
+
         ctxTop.strokeStyle = `rgba(${particle.lifeTime * 2 + colorOffset - 20}, 0, 0, ${
           particle.lifeTime / lifeTime
         })`
+
         if (particle.y > maxY) {
           if (bounce) {
             particle.yVelocity = -particle.yVelocity * 0.4
@@ -89,6 +91,7 @@ export const createFountainEffect = () => {
             particle.yVelocity *= 0.8
           }
         }
+
         particle.x += particle.xVelocity * 16
         particle.y += particle.yVelocity * 16
         particle.yVelocity += gravity

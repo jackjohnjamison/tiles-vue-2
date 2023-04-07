@@ -37,7 +37,7 @@ npm run lint
 ## TODO
 - Switch to enums for game modes, maybe
 - Use the improved image import script from tanks - looks harder than I thought!
-- Move Math.round into common draw function?
+- Move Math.round into common draw function, or even just remove delta?
 - Add TypeScript, maybe just for the pinia stores to begin with?
 - CSS linting / formatting 
 https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint

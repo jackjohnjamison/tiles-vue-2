@@ -41,11 +41,7 @@ class entity {
 
     drawEllipse(position, haloColor, baseMarkerSize, ctxEntity)
 
-    ctxEntity.drawImage(
-      sprite.data,
-      Math.round(position.x),
-      Math.round(position.y - sprite.yOffset)
-    )
+    ctxEntity.drawImage(sprite.data, position.x, position.y - sprite.yOffset)
   }
 
   redraw = () => {

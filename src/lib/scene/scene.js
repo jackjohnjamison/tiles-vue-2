@@ -107,8 +107,8 @@ scene.loadMap = (tileMap, entryPointName = null) => {
   firstRender()
 
   // Centre camera on player
-  const camerCentreX = Math.round(scene.canvasTop.width / 2 - scene.player.position.x)
-  const camerCentreY = Math.round(scene.canvasTop.height / 2 - scene.player.position.y)
+  const camerCentreX = scene.canvasTop.width / 2 - scene.player.position.x
+  const camerCentreY = scene.canvasTop.height / 2 - scene.player.position.y
   panCameraTo(camerCentreX, camerCentreY)
 }
 
