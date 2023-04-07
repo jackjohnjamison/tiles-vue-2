@@ -11,7 +11,8 @@ import { modeStore } from '@/stores/mode'
 ////////////// For attack
 import { scene, panCameraTo, panCameraKeys } from '@/lib/scene'
 import { hoveredTileStore } from '@/stores/hovered-tile'
-import { noop, tileWidth, tileHeight } from '@/lib/constants'
+import { noop, tileWidth, tileHeight, color } from '@/lib/constants'
+import { highlightTile } from '@/lib/map'
 //////////////////////////
 
 const setPlayMode = () => {
@@ -63,7 +64,10 @@ const setPlayModeAttack = () => {
 
           ctxTop.beginPath()
           ctxTop.rect(x, y - tileHeight * 2, redrawWidth, redrawHeight)
+          ctxTop.strokeStyle = entity.haloColor
           ctxTop.stroke()
+        } else {
+          highlightTile(hoveredTile.tileIndex, color.warn, color.warnTrans)
         }
       }
     },
