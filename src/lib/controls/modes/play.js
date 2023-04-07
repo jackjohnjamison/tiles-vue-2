@@ -46,36 +46,30 @@ const setPlayModeAttack = () => {
     },
 
     effectsFunctions: () => {
-      const { entityMap, ctxTop, ctxMid } = scene
+      const { ctxTop, ctxMid } = scene
       const hoveredTile = hoveredTileStore()
 
-      if (hoveredTile.tileIndex) {
-        const { x, y } = hoveredTile.tileIndex
+      if (hoveredTile.hoveredEntity) {
+        const { hoveredEntity } = hoveredTile
 
-        const entityLocation = entityMap.entities[x][y]
+        const { x, y } = hoveredEntity.position
 
-        if (entityLocation) {
-          const entity = entityLocation.entity
+        const redrawWidth = tileWidth
+        const redrawHeight = tileHeight * 3
 
-          const { x, y } = entity.position
+        ctxTop.beginPath()
+        ctxTop.rect(x, y - tileHeight * 2, redrawWidth, redrawHeight)
+        ctxTop.strokeStyle = hoveredEntity.haloColor
+        ctxTop.stroke()
 
-          const redrawWidth = tileWidth
-          const redrawHeight = tileHeight * 3
+        ctxMid.beginPath()
+        ctxMid.rect(x, y - tileHeight * 2, redrawWidth, redrawHeight)
+        ctxMid.fillStyle = color.infoTrans
+        ctxMid.fill()
 
-          ctxTop.beginPath()
-          ctxTop.rect(x, y - tileHeight * 2, redrawWidth, redrawHeight)
-          ctxTop.strokeStyle = entity.haloColor
-          ctxTop.stroke()
-
-          ctxMid.beginPath()
-          ctxMid.rect(x, y - tileHeight * 2, redrawWidth, redrawHeight)
-          ctxMid.fillStyle = color.infoTrans
-          ctxMid.fill()
-
-          highlightTile(hoveredTile.tileIndex, entity.haloColor, color.warnTrans, ctxMid)
-        } else {
-          highlightTile(hoveredTile.tileIndex, color.warn, color.warnTrans, ctxTop)
-        }
+        highlightTile(hoveredTile.tileIndex, hoveredEntity.haloColor, color.warnTrans, ctxMid)
+      } else if (hoveredTile.tileIndex) {
+        highlightTile(hoveredTile.tileIndex, color.warn, color.warnTrans, ctxTop)
       }
     },
 

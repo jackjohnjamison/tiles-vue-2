@@ -9,7 +9,8 @@ export const hoveredTileStore = defineStore('hoveredTile', {
       tileIsHovered: false,
       tileIndex: { x: null, y: null },
       tileIndexPrevious: null,
-      pathToTile: []
+      pathToTile: [],
+      hoveredEntity: null
     }
   },
 
@@ -19,9 +20,11 @@ export const hoveredTileStore = defineStore('hoveredTile', {
       this.tileIndex = findHoveredTile(mousePosition)
 
       if (this.tileIndex) {
-        const { player } = scene
-        this.tileIsHovered = true
+        const { player, entityMap } = scene
         this.pathToTile = findPath(player.tileIndex, this.tileIndex)
+
+        const { x, y } = this.tileIndex
+        this.hoveredEntity = entityMap.entities[x][y]?.entity
       } else {
         this.tileIsHovered = false
         this.pathToTile = []
