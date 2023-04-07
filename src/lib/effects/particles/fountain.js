@@ -5,13 +5,16 @@ import { keyCheck } from '@/lib/controls'
 
 const deg360Radians = 2 * Math.PI
 
-const gravity = 0.0095
+const gravity = 0.15
 
 const xVelocityBase = 0
-const xVelocityVariation = 0.14
+const xVelocityVariation = 2.4
 
-const yVelocityBase = -0.42
-const yVelocityVariation = 0.1
+const bounceAbsorption = 0.4
+const friction = 0.8
+
+const yVelocityBase = -7
+const yVelocityVariation = 2
 
 const radiusBase = 2.5
 const radiusVariation = 5
@@ -86,21 +89,21 @@ export const createFountainEffect = () => {
 
         if (particle.y > maxY) {
           if (bounce) {
-            particle.yVelocity = -particle.yVelocity * 0.4
+            particle.yVelocity = -particle.yVelocity * bounceAbsorption
           } else {
-            particle.yVelocity *= 0.8
+            particle.yVelocity *= friction
           }
         }
 
-        particle.x += particle.xVelocity * 16
-        particle.y += particle.yVelocity * 16
+        particle.x += particle.xVelocity
+        particle.y += particle.yVelocity
         particle.yVelocity += gravity
 
         ctxTop.beginPath()
         ctxTop.arc(
           particle.x,
           particle.y,
-          radius + (100 - particle.lifeTime) / 100,
+          radius + (lifeTime - particle.lifeTime) / lifeTime,
           0,
           deg360Radians
         )
