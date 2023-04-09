@@ -28,6 +28,7 @@ export const hoveredTileStore = defineStore('hoveredTile', {
       } else {
         this.tileIsHovered = false
         this.pathToTile = []
+        this.hoveredEntity = null
       }
 
       if (JSON.stringify(this.tileIndex) !== this.tileIndexPrevious) {

@@ -5,13 +5,13 @@ import {
   requestMove,
   commonOnMouseMove
 } from './common-functions'
-import { createFountainEffect } from '@/lib/effects'
+
 import { modeStore } from '@/stores/mode'
 
 ////////////// For attack
 import { scene, panCameraTo, panCameraKeys } from '@/lib/scene'
 import { hoveredTileStore } from '@/stores/hovered-tile'
-import { noop, tileWidth, tileHeight, color } from '@/lib/constants'
+import { tileWidth, tileHeight, color } from '@/lib/constants'
 import { highlightTile } from '@/lib/map'
 //////////////////////////
 
@@ -26,6 +26,13 @@ const setPlayMode = () => {
     leftClickAction: requestMove,
     onUnset: commonUnset
   })
+}
+
+const unsetAttackMode = () => {
+  const { canvasTop } = scene
+
+  canvasTop.style.cursor = 'pointer'
+  setPlayMode()
 }
 
 const setPlayModeAttack = () => {
@@ -89,60 +96,23 @@ const setPlayModeAttack = () => {
     },
 
     leftClickAction: () => {
-      const { canvasTop } = scene
       const hoveredTile = hoveredTileStore()
 
       if (hoveredTile.hoveredEntity) {
-        hoveredTile.hoveredEntity.receiveAttack()
+        const response = hoveredTile.hoveredEntity.receiveAttack(1)
+        if (response) {
+          response()
+        } else {
+          unsetAttackMode()
+        }
+      } else {
+        unsetAttackMode()
       }
-
-      canvasTop.style.cursor = 'pointer'
-      setPlayMode()
     },
 
     rightClickAction: () => {
-      const { canvasTop } = scene
       console.log('Cancel')
-      canvasTop.style.cursor = 'pointer'
-      setPlayMode()
-    },
-
-    onUnset: commonUnset
-  })
-}
-
-/// Setting animation
-const setPlayModeAttack_animation = () => {
-  const mode = modeStore()
-
-  mode.set({
-    effectsFunctions: createFountainEffect(),
-
-    modeName: 'playMode',
-
-    onFrameControls: (delta) => {
-      const { mouse } = scene
-      const hoveredTile = hoveredTileStore()
-
-      panCameraKeys(delta)
-      scene.requestRedrawEffects()
-      hoveredTile.updateHoveredTile({ x: mouse.x, y: mouse.y })
-    },
-
-    onMouseMove: () => {},
-
-    leftClickAction: () => {
-      const { canvasTop } = scene
-      console.log('Attack')
-      canvasTop.style.cursor = 'pointer'
-      setPlayMode()
-    },
-
-    rightClickAction: () => {
-      const { canvasTop } = scene
-      console.log('Cancel')
-      canvasTop.style.cursor = 'pointer'
-      setPlayMode()
+      unsetAttackMode()
     },
 
     onUnset: commonUnset

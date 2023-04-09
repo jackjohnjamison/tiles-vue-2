@@ -3,6 +3,8 @@ import { getId } from '@/lib/utils'
 import { tileIndexToPosition, setWalkable } from '@/lib/map'
 import { drawEllipse } from '@/lib/effects'
 import { baseMarkerSize } from '@/lib/constants'
+import { setMode } from '@/lib/controls'
+import { createFountainEffect } from '@/lib/effects'
 
 class entity {
   constructor({ sprite, haloColor }) {
@@ -13,6 +15,7 @@ class entity {
       x: 0,
       y: 0
     }
+    this.health = 1
   }
 
   addToScene = (tileIndex) => {
@@ -63,8 +66,17 @@ class entity {
     return true
   }
 
-  receiveAttack() {
-    console.log(this.id)
+  die = () => {
+    setMode.setAmination(createFountainEffect, {}, setMode.playMode)
+  }
+
+  receiveAttack(damage) {
+    this.health -= damage
+    if (this.health <= 0) {
+      return this.die
+    } else {
+      return false
+    }
   }
 
   update() {}

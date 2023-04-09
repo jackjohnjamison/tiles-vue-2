@@ -51,14 +51,18 @@ const newParticle = (x, y) => {
   }
 }
 
-export const createFountainEffect = () => {
+export const createFountainEffect = ({ runtime = 300 }, callback) => {
   const { mouse, ctxTop } = scene
 
   const particles = []
   const pool = []
 
+  let remainingTime = runtime
+
   const update = () => {
-    if (keyCheck('ControlLeft')) {
+    console.log(remainingTime)
+
+    if (remainingTime > 0) {
       for (let i = 0; i < particleDensity; i++) {
         let particle = pool.pop()
 
@@ -68,7 +72,11 @@ export const createFountainEffect = () => {
         } else {
           particles.unshift(newParticle(mouse.x, mouse.y))
         }
+
+        remainingTime--
       }
+    } else if (particles.length === 0) {
+      callback()
     }
 
     particles.forEach((particle, i) => {
