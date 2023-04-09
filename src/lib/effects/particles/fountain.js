@@ -1,8 +1,6 @@
 import { scene } from '@/lib/scene'
 import { randomVariation } from '@/lib/utils'
 
-import { keyCheck } from '@/lib/controls'
-
 const deg360Radians = 2 * Math.PI
 
 const gravity = 0.15
