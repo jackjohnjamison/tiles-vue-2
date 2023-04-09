@@ -15,8 +15,8 @@
   setSelectedUnit(scene.player)
 
   const setUnitAction = (e) => {
-    const actionName = e.target.value    
-    setMode[actionName]()
+    const { type, index } = e.target.dataset
+    setMode[type](selectedUnit.actions[index])
   }
 </script>
 
@@ -27,12 +27,13 @@
       <p>{{ selectedUnit.name }}</p>
 
       <button
-        v-for="(attack, i) in selectedUnit.attacks"
+        v-for="(action, i) in selectedUnit.actions"
         :key=i
+        :data-index=i
+        :data-type=action.type
         class=button--dialog
-        value=playModeAttack
         @click=setUnitAction($event)
-        v-html="`${attack.name} ${attack.weapon.icon}`"
+        v-html="`${action.name} ${action.icon}`"
       />
     </div>
   </section>

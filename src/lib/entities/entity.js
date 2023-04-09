@@ -70,7 +70,9 @@ class entity {
     setMode.setAmination(createFountainEffect, {}, setMode.playMode)
   }
 
-  receiveAttack(damage) {
+  receiveAttack(attack) {
+    const { damage } = attack.weapon
+
     this.health -= damage
     if (this.health <= 0) {
       return this.die

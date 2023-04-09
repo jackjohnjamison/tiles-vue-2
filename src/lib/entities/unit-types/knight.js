@@ -22,14 +22,18 @@ export const knight = {
 
   portrait: `${imageAssetPath}portraits/knight-sm.jpg`,
 
-  attacks: [
+  actions: [
     {
+      type: 'attack',
       name: 'Melee',
-      weapon: weapons.longSword
+      weapon: weapons.longSword,
+      icon: weapons.longSword.icon
     },
     {
+      type: 'attack',
       name: 'Ranged',
-      weapon: weapons.shortBow
+      weapon: weapons.shortBow,
+      icon: weapons.shortBow.icon
     }
   ]
 }
