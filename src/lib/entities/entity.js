@@ -35,6 +35,15 @@ class entity {
     redraw()
   }
 
+  getCenter = () => {
+    const { position } = this
+
+    return {
+      x: position.x + centerOffsetX,
+      y: position.y
+    }
+  }
+
   render = () => {
     const { ctxEntity } = scene
     const { sprite, position, haloColor } = this
@@ -77,7 +86,8 @@ class entity {
   }
 
   die = () => {
-    const { position } = this
+    const { ctxEntity } = scene
+    const { sprite, position, getCenter } = this
     const dealthAnimationFrames = 100
 
     let remainingFrames = dealthAnimationFrames
@@ -93,9 +103,6 @@ class entity {
     }
 
     this.render = () => {
-      const { ctxEntity } = scene
-      const { sprite, position } = this
-
       ctxEntity.globalAlpha = Math.max(remainingFrames / dealthAnimationFrames, 0)
 
       // If remaining frames is even
@@ -115,10 +122,7 @@ class entity {
       deathAnimation: {
         animation: createFountainEffect,
         props: {
-          origin: {
-            x: position.x + centerOffsetX,
-            y: position.y
-          },
+          origin: getCenter(),
           entity: this,
           runtime: dealthAnimationFrames
         }

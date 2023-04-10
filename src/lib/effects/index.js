@@ -2,5 +2,6 @@ import { drawEllipse } from './draw-ellipse'
 import { breadcrumbTrail } from './breadcrumb-trail'
 import { drawPin } from './draw-pin'
 import { createFountainEffect } from './particles/fountain'
+import { createSparkEffect } from './particles/spark'
 
-export { drawEllipse, breadcrumbTrail, drawPin, createFountainEffect }
+export { drawEllipse, breadcrumbTrail, drawPin, createFountainEffect, createSparkEffect }

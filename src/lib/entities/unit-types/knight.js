@@ -1,5 +1,6 @@
 import { imageAssetPath } from '@/lib/constants'
 import { modes } from '@/lib/controls'
+import { createSparkEffect } from '@/lib/effects'
 
 export const weapons = {
   longSword: {
@@ -29,14 +30,16 @@ export const knight = {
       controler: modes.baseAttack,
       name: 'Melee',
       weapon: weapons.longSword,
-      icon: weapons.longSword.icon
+      icon: weapons.longSword.icon,
+      animation: createSparkEffect
     },
     {
       type: 'attack',
       controler: modes.baseAttack,
       name: 'Ranged',
       weapon: weapons.shortBow,
-      icon: weapons.shortBow.icon
+      icon: weapons.shortBow.icon,
+      animation: createSparkEffect
     }
   ]
 }

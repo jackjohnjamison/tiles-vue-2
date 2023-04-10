@@ -6,6 +6,22 @@ import { modeStore } from '@/stores/mode'
 import { blankControler } from './base-controlers'
 import { baseAnimation } from './base-animation'
 
+const handleAttack = (targetEntity, attack) => {
+  const { resumeTurnState } = scene
+
+  const response = targetEntity.receiveAttack(attack)
+
+  if (response) {
+    if (response.deathAnimation) {
+      const { animation, props } = response.deathAnimation
+
+      modeStore().set(new baseAnimation(animation, props))
+    }
+  } else {
+    resumeTurnState()
+  }
+}
+
 export class baseAttack extends blankControler {
   constructor(attack) {
     const { resumeTurnState, mouse, ctxTop, ctxMid, canvasTop } = scene
@@ -61,18 +77,20 @@ export class baseAttack extends blankControler {
     }
 
     this.leftClickAction = () => {
-      if (hoveredTile.hoveredEntity) {
-        const response = hoveredTile.hoveredEntity.receiveAttack(attack)
+      const targetEntity = hoveredTile.hoveredEntity
 
-        if (response) {
-          if (response.deathAnimation) {
-            const { animation, props } = response.deathAnimation
-
-            modeStore().set(new baseAnimation(animation, props))
-          }
-        } else {
-          resumeTurnState()
-        }
+      if (targetEntity) {
+        modeStore().set(
+          new baseAnimation(
+            attack.animation,
+            {
+              origin: targetEntity.getCenter()
+            },
+            () => {
+              handleAttack(targetEntity, attack)
+            }
+          )
+        )
       } else {
         resumeTurnState()
       }
