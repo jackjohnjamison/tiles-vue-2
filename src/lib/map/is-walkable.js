@@ -12,4 +12,11 @@ const setWalkable = ({ x, y }, walkable) => {
   pathGrid.setWalkableAt(x, y, walkable)
 }
 
-export { isWalkable, setWalkable }
+const resetWalkable = ({ x, y }) => {
+  const { pathGrid, tiles } = scene.tileMap
+  const initialWalkable = tiles[x][y].walkable
+
+  pathGrid.setWalkableAt(x, y, initialWalkable)
+}
+
+export { isWalkable, setWalkable, resetWalkable }

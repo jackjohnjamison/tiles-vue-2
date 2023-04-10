@@ -10,7 +10,9 @@ const deleteEntity = ({ x, y }) => {
     })
 
     // Passes the entity its own entity index so it can go delete itself
-    entities[entityIndex].deleteEntity(entityIndex)
+    if (entityIndex && entityIndex !== -1) {
+      entities[entityIndex].deleteEntity(entityIndex)
+    }
   } else if (tileMap.tiles[x][y].travelPoint) {
     delete tileMap.tiles[x][y].travelPoint
     delete tileMap.tiles[x][y].marker

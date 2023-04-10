@@ -1,6 +1,6 @@
 import { scene, redrawEntities } from '@/lib/scene'
 import { getId } from '@/lib/utils'
-import { tileIndexToPosition, setWalkable } from '@/lib/map'
+import { tileIndexToPosition, setWalkable, resetWalkable } from '@/lib/map'
 import { drawEllipse } from '@/lib/effects'
 import { baseMarkerSize, centerOffsetX } from '@/lib/constants'
 import { createFountainEffect } from '@/lib/effects'
@@ -60,6 +60,7 @@ class entity {
     const { entityMap, entities } = scene
 
     entityMap.removeEntity(this.tileIndex)
+    resetWalkable(this.tileIndex)
     this.redrawEntities(tileIndex, position, positionPrevious)
 
     if (entityIndex) {
@@ -69,7 +70,9 @@ class entity {
         return ent.id === this.id
       })
 
-      entities.splice(entityIndex, 1)
+      if (entityIndex && entityIndex !== -1) {
+        entities.splice(entityIndex, 1)
+      }
     }
   }
 
@@ -100,7 +103,7 @@ class entity {
         ctxEntity.filter = `blur(${(dealthAnimationFrames - remainingFrames) / 10}px)`
         ctxEntity.drawImage(sprite.data, position.x, position.y - sprite.yOffset)
       } else {
-        ctxEntity.filter = `brightness(${dealthAnimationFrames - remainingFrames}%)`
+        ctxEntity.filter = `brightness(200%)`
         ctxEntity.drawImage(sprite.data, position.x, position.y - sprite.yOffset)
       }
 

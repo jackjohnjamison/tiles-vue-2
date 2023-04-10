@@ -1,6 +1,12 @@
 import { scene } from '@/lib/scene'
 import { findPath } from '@/lib/find-path'
-import { positionToTileIndex, tileIndexToPosition, isWalkable, setWalkable } from '@/lib/map'
+import {
+  positionToTileIndex,
+  tileIndexToPosition,
+  isWalkable,
+  setWalkable,
+  resetWalkable
+} from '@/lib/map'
 import { tileWidth, tileHeight, noop } from '@/lib/constants'
 
 const pathfinding = (entity, speed, step = noop) => {
@@ -56,7 +62,7 @@ const pathfinding = (entity, speed, step = noop) => {
       if (tileIndex.x !== tileIndexPrevious.x || tileIndex.y !== tileIndexPrevious.y) {
         entityMap.removeEntity(tileIndexPrevious)
 
-        setWalkable(tileIndexPrevious, true)
+        resetWalkable(tileIndexPrevious)
 
         entityMap.addEntity(entity)
 

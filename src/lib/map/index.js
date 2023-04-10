@@ -1,4 +1,4 @@
-import { isWalkable, setWalkable } from './is-walkable'
+import { isWalkable, setWalkable, resetWalkable } from './is-walkable'
 import { paintTile, unsetTileLock } from './paint-tile'
 import { drawLineTile, drawLineTileMarker } from './draw-line-tile'
 import {
@@ -34,6 +34,7 @@ export {
   saveTileMaptoJSON,
   isWalkable,
   setWalkable,
+  resetWalkable,
   paintTile,
   unsetTileLock,
   addTileMarker,
