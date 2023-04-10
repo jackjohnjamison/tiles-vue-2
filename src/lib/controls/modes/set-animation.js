@@ -6,7 +6,7 @@ import { commonUnset } from './common-functions'
 
 /// Setting animation
 export const setAnimation = (animation, animationProperties, callback) => {
-  const mode = modeStore()
+  const modes = modeStore()
 
   mode.set({
     effectsFunctions: animation(animationProperties, callback),

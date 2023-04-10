@@ -1,47 +1,26 @@
 import { defineStore } from 'pinia'
-import { noop } from '@/lib/constants'
+import { modes } from '@/lib/controls'
+
+const modeTypes = {
+  blankControler: new modes.blankControler()
+}
 
 export const modeStore = defineStore('mode', {
   state: () => {
     return {
-      modeName: undefined,
-
-      onFrameControls: noop,
-      effectsFunctions: noop,
-
-      onMouseMove: noop,
-      leftClickAction: noop,
-      rightClickAction: noop,
-
-      onUnset: noop
+      mode: modeTypes.blankControler
     }
   },
 
   actions: {
-    set({
-      modeName,
-      onFrameControls = noop,
-      effectsFunctions = noop,
-      onMouseMove = noop,
-      leftClickAction = noop,
-      rightClickAction = noop,
-      onUnset = noop
-    }) {
-      this.onUnset()
+    set(mode) {
+      this.mode.onUnset()
 
-      this.modeName = modeName
-      this.onFrameControls = onFrameControls
-      this.effectsFunctions = effectsFunctions
-      this.onMouseMove = onMouseMove
-      this.leftClickAction = leftClickAction
-      this.rightClickAction = rightClickAction
-      this.onUnset = onUnset
-    },
-
-    setMouseAction({ onMouseMove = noop, leftClickAction = noop, rightClickAction = noop }) {
-      this.onMouseMove = onMouseMove
-      this.leftClickAction = leftClickAction
-      this.rightClickAction = rightClickAction
+      if (modeTypes[mode.name]) {
+        this.mode = modeTypes[mode.name]
+      } else {
+        this.mode = modeTypes[mode.name] = new modes[mode.name]()
+      }
     }
   }
 })

@@ -11,7 +11,7 @@ const mouse = {
 }
 
 const mouseTracker = (element) => {
-  const mode = modeStore()
+  const modes = modeStore()
   // Disables right click on the targeted element
   element.addEventListener('contextmenu', (e) => e.preventDefault())
 
@@ -47,9 +47,9 @@ const mouseTracker = (element) => {
 
   document.onmouseup = () => {
     if (mouse.buttonCode === 1) {
-      mode.leftClickAction()
+      modes.mode.leftClickAction()
     } else if (mouse.buttonCode === 3) {
-      mode.rightClickAction()
+      modes.mode.rightClickAction()
     }
 
     mouse.isDragged = false

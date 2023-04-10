@@ -1,6 +1,6 @@
 <script setup>
   import { scene } from '@/lib/scene'
-  import { setMode } from '@/lib/controls'
+  // import { setMode } from '@/lib/controls'
 
   let selectedUnit
 
@@ -16,7 +16,7 @@
 
   const setUnitAction = (e) => {
     const { type, index } = e.target.dataset
-    setMode[type](selectedUnit.actions[index])
+    // setMode[type](selectedUnit.actions[index])
   }
 </script>
 

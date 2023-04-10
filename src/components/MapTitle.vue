@@ -3,7 +3,7 @@
   import { mapTitleStore } from '@/stores/map-title'
   import { modeStore } from "@/stores/mode"
 
-  const mode = modeStore()
+  const modes = modeStore()
   const mapTitle = mapTitleStore()
   let newTitle
 
@@ -14,12 +14,12 @@
 
 <template>
   <div class="map-title pane">
-    <div v-if="mode.mode === 'editMode' && mapTitle.isEditing" class=title-wrapper>
+    <div v-if="modes.mode.modeName === 'editMode' && mapTitle.isEditing" class=title-wrapper>
       <input type=text :maxlength=maxMapNameLength ref=newTitle :value=mapTitle.title />
       <button class=button--dialog @click=setMapTitle>&#x2714;</button>
     </div>
 
-    <div v-else-if="mode.mode === 'editMode'" class=title-wrapper>
+    <div v-else-if="modes.mode.modeName === 'editMode'" class=title-wrapper>
       <h1>{{ mapTitle.title }}</h1>
       <button class=button--dialog @click=mapTitle.toEditMode>&#x1F589;</button>
     </div>

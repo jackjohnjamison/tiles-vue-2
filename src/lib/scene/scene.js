@@ -1,12 +1,13 @@
 import { createTileMapFromParams, loadMapFromFetch } from '@/lib/map'
 import { createEntityMap, entity, unit, npc } from '@/lib/entities'
-import { mouseTracker, setMode } from '@/lib/controls'
+import { mouseTracker } from '@/lib/controls'
 import { defaultMapSize, defaultMapTitle, color } from '@/lib/constants'
 import { sprites } from '@/lib/sprites'
-import { initControls } from '@/lib/controls'
+import { initControls, modes, editMode } from '@/lib/controls'
 import { mapTitleStore } from '@/stores/map-title'
 import { setView } from './set-view'
 import { firstRender, onFrameFunctions, panCameraTo, renderLoop } from '.'
+import { modeStore } from '@/stores/mode'
 
 const scene = {}
 let redrawEffects = false
@@ -33,6 +34,9 @@ scene.start = async (canvases, map) => {
   scene.RedrawEffectsDone = () => {
     redrawEffects = false
   }
+
+  // Edit mode needs to be instantiated after the scene has been created
+  // modes.editMode = new editMode() // Still doesn't work
 
   try {
     const mapData = await loadMapFromFetch(map)
@@ -102,7 +106,7 @@ scene.loadMap = (tileMap, entryPointName = null) => {
     })
   }
 
-  setMode.playMode()
+  modeStore().set(modes.playMode)
   scene.view.setApertureSize()
   firstRender()
 

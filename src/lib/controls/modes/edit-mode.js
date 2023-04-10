@@ -1,20 +1,14 @@
 import { scene } from '@/lib/scene'
 import { paintTile, unsetTileLock, addTileMarker, tileIndexToPosition } from '@/lib/map'
 import { drawEllipse, drawPin } from '@/lib/effects'
-import { movementMarkers } from '@/lib/controls'
 import { sprites } from '@/lib/sprites'
 import { npc, deleteEntity } from '@/lib/entities'
 import { panelStore } from '@/stores/editor-panel'
-import {
-  commonOnFrameControls,
-  requestMove,
-  commonOnMouseMove,
-  commonUnset
-} from './common-functions'
 import { entityActionStore } from '@/stores/entity-actions'
 import { hoveredTileStore } from '@/stores/hovered-tile'
 import { color } from '@/lib/constants'
-import { modeStore } from '@/stores/mode'
+
+import { commonControler } from './base-controlers'
 
 const addNpc = (tileIndex) => {
   const _npc = new npc({
@@ -75,28 +69,26 @@ const entityClickAction = (tileIndex, action) => {
   }
 }
 
-const setEditMode = () => {
-  const { mouse, ctxMid, ctxTop } = scene
-  const panel = panelStore()
-  const hoveredTile = hoveredTileStore()
-  const entityAction = entityActionStore()
-  const mode = modeStore()
+export class editMode extends commonControler {
+  constructor() {
+    super()
+    const { mouse, ctxMid, ctxTop } = scene
+    const panel = panelStore()
+    const hoveredTile = hoveredTileStore()
+    const entityAction = entityActionStore()
 
-  mode.set({
-    modeName: 'editMode',
+    this.modeName = 'editMode'
 
-    // Run on every frame
-    onFrameControls: (delta, mouseMoved) => {
-      commonOnFrameControls(delta, mouseMoved)
+    this.onFrameControls = (delta, mouseMoved) => {
+      commonControler.onFrameControls(delta, mouseMoved)
 
       if (hoveredTile.tileIndex && panel.activePanel === 'tiles') {
         if (mouse.buttonCode === 3) paintTile(hoveredTile.tileIndex)
       }
-    },
+    }
 
-    // Run on frame if a effects update is requested
-    effectsFunctions: () => {
-      movementMarkers()
+    this.effectsFunctions = () => {
+      commonControler.effectsFunctions()
 
       // Adds Entry point markers but only if on a relivent entity selection
       if (panel.activePanel === 'entities') {
@@ -110,12 +102,9 @@ const setEditMode = () => {
           })
         }
       }
-    },
+    }
 
-    onMouseMove: commonOnMouseMove,
-    leftClickAction: requestMove,
-
-    rightClickAction: () => {
+    this.rightClickAction = () => {
       const validClick = hoveredTile.tileIndex && !mouse.isDragged
       const isEditingEntities = panel.activePanel === 'entities'
 
@@ -124,12 +113,8 @@ const setEditMode = () => {
       }
 
       unsetTileLock()
-    },
+    }
 
-    onUnset: commonUnset
-  })
-
-  entityAction.updateEntryPoints()
+    entityAction.updateEntryPoints()
+  }
 }
-
-export { setEditMode }

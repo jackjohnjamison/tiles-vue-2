@@ -9,12 +9,12 @@ let mousePrevious = { x: null, y: null }
 const onFrameFunctions = (delta) => {
   const { mouse } = scene
   const mouseMoved = mouse.x !== mousePrevious.x || mouse.y !== mousePrevious.y
-  const mode = modeStore()
+  const modes = modeStore()
 
-  mode.onFrameControls(delta, mouseMoved)
+  modes.mode.onFrameControls(delta, mouseMoved)
 
   if (mouseMoved) {
-    mode.onMouseMove()
+    modes.mode.onMouseMove()
 
     mousePrevious.x = mouse.x
     mousePrevious.y = mouse.y
@@ -31,7 +31,7 @@ const onFrameFunctions = (delta) => {
     ctxMid.clearRect(-translate.x, -translate.y, width, height)
     ctxTop.clearRect(-translate.x, -translate.y, width, height)
 
-    mode.effectsFunctions(delta)
+    modes.mode.effectsFunctions(delta)
 
     scene.RedrawEffectsDone()
   }

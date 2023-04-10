@@ -2,16 +2,14 @@ import { mouseTracker, resetMousePosition } from './mouse'
 import { movementMarkers } from './movment-markers'
 import { keyCheck, resetKeys, keyEventFunctions } from './key-check'
 import { initControls } from './init-controls'
-import { setPlayMode } from './modes/play'
-import { setPlayModeAttack } from './modes/attack'
-import { setAnimation } from './modes/set-animation'
-import { setEditMode } from './modes/edit'
+import { playMode, blankControler } from './modes/base-controlers'
+// import { setPlayModeAttack } from './modes/attack'
+// import { setAnimation } from './modes/set-animation'
+import { editMode } from './modes/edit-mode'
 
-const setMode = {
-  playMode: setPlayMode,
-  attack: setPlayModeAttack,
-  setAmination: setAnimation,
-  editMode: setEditMode
+const modes = {
+  blankControler,
+  playMode
 }
 
 export {
@@ -22,5 +20,6 @@ export {
   initControls,
   movementMarkers,
   resetMousePosition,
-  setMode
+  modes,
+  editMode
 }

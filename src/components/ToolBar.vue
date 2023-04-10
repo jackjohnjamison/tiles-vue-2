@@ -1,10 +1,11 @@
 <script setup>
-  import { setMode } from '@/lib/controls'
+  import { modes } from '@/lib/controls'
+  import { modeStore } from '@/stores/mode'
 
   const switchMode = (e) => {
     const modeName = e.target.value
 
-    setMode[modeName]()
+    modeStore().set(modes[modeName])
   }
 </script>
 

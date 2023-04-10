@@ -14,7 +14,7 @@ const unsetAttackMode = () => {
 }
 
 export const setPlayModeAttack = (attack) => {
-  const mode = modeStore()
+  const modes = modeStore()
 
   mode.set({
     modeName: 'playMode',

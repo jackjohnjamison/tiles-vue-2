@@ -6,17 +6,17 @@
   import CharacterDialog from '@/components/play/CharacterDialog.vue'
 
   const pause = pauseStore()
-  const mode = modeStore()
+  const modes = modeStore()
 </script>
 
 <template>
   <div v-if="!pause.isPaused">
     <MapTitle />
-    <div v-if="mode.modeName === 'playMode'">
+    <div v-if="modes.mode.modeName === 'playMode'">
       <CharacterDialog />
     </div>
 
-    <EditorPanel v-else-if="mode.modeName === 'editMode'" />
+    <EditorPanel v-else-if="modes.mode.modeName === 'editMode'" />
     
   </div>
 </template>
