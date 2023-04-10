@@ -4,18 +4,21 @@ import { hoveredTileStore } from '@/stores/hovered-tile'
 import { noop } from '@/lib/constants'
 
 class blankControler {
-  modeName = 'blank'
-  onFrameControls = noop
-  effectsFunctions = noop
-  onMouseMove = noop
-  leftClickAction = noop
-  rightClickAction = noop
-  onUnset = noop
-  updateEntities = noop
+  static modeName = 'blank'
+  static onFrameControls = noop
+  static effectsFunctions = noop
+  static onMouseMove = noop
+  static leftClickAction = noop
+  static rightClickAction = noop
+  static onUnset = noop
+  static updateEntities = noop
+  static set = noop
 }
 
-class commonControler extends blankControler {
-  onFrameControls = (delta, mouseMoved) => {
+class playMode extends blankControler {
+  static modeName = 'playMode'
+
+  static onFrameControls = (delta, mouseMoved) => {
     const { mouse } = scene
     const hoveredTile = hoveredTileStore()
 
@@ -26,7 +29,9 @@ class commonControler extends blankControler {
     }
   }
 
-  onMouseMove = () => {
+  static effectsFunctions = movementMarkers
+
+  static onMouseMove = () => {
     const hoveredTile = hoveredTileStore()
     const { mouse, canvasTop } = scene
 
@@ -46,7 +51,7 @@ class commonControler extends blankControler {
     }
   }
 
-  leftClickAction = () => {
+  static leftClickAction = () => {
     // Request move function
     const hoveredTile = hoveredTileStore()
     const { mouse, player } = scene
@@ -57,16 +62,11 @@ class commonControler extends blankControler {
     }
   }
 
-  onUnset = () => {
+  static onUnset = () => {
     const { player } = scene
     player.unsetPath()
     scene.requestRedrawEffects()
   }
 }
 
-class playMode extends commonControler {
-  modeName = 'playMode'
-  effectsFunctions = movementMarkers
-}
-
-export { blankControler, commonControler, playMode }
+export { blankControler, playMode }

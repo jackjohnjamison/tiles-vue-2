@@ -9,7 +9,8 @@ import { editMode } from './modes/edit-mode'
 
 const modes = {
   blankControler,
-  playMode
+  playMode,
+  editMode
 }
 
 export {
@@ -20,6 +21,5 @@ export {
   initControls,
   movementMarkers,
   resetMousePosition,
-  modes,
-  editMode
+  modes
 }

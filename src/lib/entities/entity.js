@@ -3,7 +3,6 @@ import { getId } from '@/lib/utils'
 import { tileIndexToPosition, setWalkable } from '@/lib/map'
 import { drawEllipse } from '@/lib/effects'
 import { baseMarkerSize } from '@/lib/constants'
-// import { setMode } from '@/lib/controls'
 import { createFountainEffect } from '@/lib/effects'
 
 class entity {
