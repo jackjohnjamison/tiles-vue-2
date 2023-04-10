@@ -108,7 +108,7 @@ class entity {
       }
 
       ctxEntity.filter = 'none'
-      ctxEntity.globalAlpha
+      ctxEntity.globalAlpha = 1
     }
 
     return {

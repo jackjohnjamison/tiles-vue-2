@@ -4,7 +4,12 @@ import { blankControler } from './base-controlers'
 // Setting animation
 export class baseAnimation extends blankControler {
   constructor(animation, animationProperties, callback = scene.resumeTurnState) {
+    const { canvasTop } = scene
     super()
+
+    this.set = () => {
+      canvasTop.style.cursor = 'none'
+    }
 
     this.effectsFunctions = animation(animationProperties, callback)
 
