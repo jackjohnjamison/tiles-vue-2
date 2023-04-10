@@ -3,6 +3,9 @@ import { randomVariation } from '@/lib/utils'
 
 const deg360Radians = 2 * Math.PI
 
+const defaultOrigin = { x: 0, y: 0 }
+const defaultRuntime = 300
+
 const gravity = 0.15
 
 const xVelocityBase = 0
@@ -49,8 +52,11 @@ const newParticle = (x, y) => {
   }
 }
 
-export const createFountainEffect = ({ runtime = 300 }, callback) => {
-  const { mouse, ctxTop } = scene
+export const createFountainEffect = (
+  { runtime = defaultRuntime, origin = defaultOrigin },
+  callback
+) => {
+  const { ctxTop } = scene
 
   const particles = []
   const pool = []
@@ -63,10 +69,10 @@ export const createFountainEffect = ({ runtime = 300 }, callback) => {
         let particle = pool.pop()
 
         if (particle) {
-          particle.reset(mouse.x, mouse.y)
+          particle.reset(origin.x, origin.y)
           particles.unshift(particle)
         } else {
-          particles.unshift(newParticle(mouse.x, mouse.y))
+          particles.unshift(newParticle(origin.x, origin.y))
         }
 
         remainingTime--

@@ -12,5 +12,9 @@ export class baseAnimation extends blankControler {
       panCameraKeys(delta)
       scene.requestRedrawEffects()
     }
+
+    if (animationProperties.entity) {
+      this.updateEntities = animationProperties.entity.update
+    }
   }
 }

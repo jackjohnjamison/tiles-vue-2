@@ -1,4 +1,4 @@
-import { scene, panCameraTo, panCameraKeys } from '@/lib/scene'
+import { scene, renderFrame, panCameraTo, panCameraKeys } from '@/lib/scene'
 import { movementMarkers } from '@/lib/controls'
 import { hoveredTileStore } from '@/stores/hovered-tile'
 import { noop } from '@/lib/constants'
@@ -10,8 +10,8 @@ class blankControler {
   onMouseMove = noop
   leftClickAction = noop
   rightClickAction = noop
-  onUnset = noop
   updateEntities = noop
+  onUnset = noop
   set = noop
 }
 
@@ -59,6 +59,8 @@ class playMode extends blankControler {
       scene.requestRedrawEffects()
     }
   }
+
+  updateEntities = renderFrame
 
   onUnset = () => {
     const { player } = scene

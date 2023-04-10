@@ -40,7 +40,7 @@ const onFrameFunctions = (delta) => {
     func(delta)
   })
 
-  renderFrame(delta)
+  modes.mode.updateEntities(delta)
 }
 
 export { onFrameFunctions, additionalFunctions }

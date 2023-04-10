@@ -22,6 +22,7 @@ export class baseAttack extends blankControler {
     }
 
     this.effectsFunctions = () => {
+      // Highlight target function
       if (hoveredTile.hoveredEntity) {
         const { hoveredEntity } = hoveredTile
 

@@ -2,7 +2,7 @@ import { scene, redrawEntities } from '@/lib/scene'
 import { getId } from '@/lib/utils'
 import { tileIndexToPosition, setWalkable } from '@/lib/map'
 import { drawEllipse } from '@/lib/effects'
-import { baseMarkerSize } from '@/lib/constants'
+import { baseMarkerSize, centerOffsetX } from '@/lib/constants'
 import { createFountainEffect } from '@/lib/effects'
 
 class entity {
@@ -55,21 +55,70 @@ class entity {
     }
   }
 
-  deleteEntity = () => {
+  deleteEntity = (entityIndex = null) => {
     const { tileIndex, position, positionPrevious } = this
-    const { entityMap } = scene
+    const { entityMap, entities } = scene
+
     entityMap.removeEntity(this.tileIndex)
     this.redrawEntities(tileIndex, position, positionPrevious)
 
-    // Returns true because it has been deleted
-    return true
+    if (entityIndex) {
+      entities.splice(entityIndex, 1)
+    } else {
+      const entityIndex = entities.findIndex((ent) => {
+        return ent.id === this.id
+      })
+
+      entities.splice(entityIndex, 1)
+    }
   }
 
   die = () => {
+    const { position } = this
+    const dealthAnimationFrames = 100
+
+    let remainingFrames = dealthAnimationFrames
+
+    this.update = () => {
+      remainingFrames--
+
+      if (remainingFrames >= 0) {
+        this.redraw()
+      } else {
+        this.deleteEntity()
+      }
+    }
+
+    this.render = () => {
+      const { ctxEntity } = scene
+      const { sprite, position } = this
+
+      ctxEntity.globalAlpha = Math.max(remainingFrames / dealthAnimationFrames, 0)
+
+      // If remaining frames is even
+      if (remainingFrames % 2 == 0) {
+        ctxEntity.filter = `blur(${(dealthAnimationFrames - remainingFrames) / 10}px)`
+        ctxEntity.drawImage(sprite.data, position.x, position.y - sprite.yOffset)
+      } else {
+        ctxEntity.filter = `brightness(${dealthAnimationFrames - remainingFrames}%)`
+        ctxEntity.drawImage(sprite.data, position.x, position.y - sprite.yOffset)
+      }
+
+      ctxEntity.filter = 'none'
+      ctxEntity.globalAlpha
+    }
+
     return {
       deathAnimation: {
         animation: createFountainEffect,
-        props: this.position
+        props: {
+          origin: {
+            x: position.x + centerOffsetX,
+            y: position.y
+          },
+          entity: this,
+          runtime: dealthAnimationFrames
+        }
       }
     }
   }
