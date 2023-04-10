@@ -2,129 +2,82 @@ import { scene } from '@/lib/scene'
 import { randomVariation } from '@/lib/utils'
 
 const deg360Radians = 2 * Math.PI
+const lifeTime = 10
 
 const defaultOrigin = { x: 0, y: 0 }
-const defaultRuntime = 300
 
-const gravity = 0.15
+const particleDensity = 20
 
-const xVelocityBase = 0
-const xVelocityVariation = 2.4
-
-const bounceAbsorption = 0.4
-const friction = 0.8
-
-const yVelocityBase = -7
-const yVelocityVariation = 2
-
-const radiusBase = 2.5
-const radiusVariation = 5
-
-const lifeTime = 100
-const particleDensity = 3
-
-const colorOffsetBase = 0
-const colorOffsetVariation = 40
-
-const newParticle = (x, y) => {
-  const yVariation = randomVariation(1, 6)
-
+const createBang = ({ x, y }, ctx, radiusGain) => {
   return {
-    x,
-    y,
-    maxY: y + yVariation,
-    bounce: yVariation > 0,
-    xVelocity: randomVariation(xVelocityBase, xVelocityVariation),
-    yVelocity: randomVariation(yVelocityBase, yVelocityVariation),
-    radius: randomVariation(radiusBase, radiusVariation),
-    lifeTime: lifeTime,
-    colorOffset: randomVariation(colorOffsetBase, colorOffsetVariation),
-    reset: function (x, y) {
-      const yVariation = randomVariation(1, 6)
+    radius: 1,
+    alpha: 1,
+    color: '255, 255, 255',
+    lifeTime,
+    update: function () {
+      this.lifeTime--
+      this.radius += radiusGain
+      this.alpha = this.lifeTime / lifeTime / 3
+      ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`
 
-      this.lifeTime = lifeTime
-      this.x = x
-      this.y = y
-      this.maxY = y + yVariation
-      this.bounce = yVariation > 0
-      this.yVelocity = randomVariation(yVelocityBase, yVelocityVariation)
+      ctx.beginPath()
+      ctx.arc(x, y, this.radius, 0, deg360Radians)
+      ctx.fill()
     }
   }
 }
 
-export const createSparkEffect = (
-  { runtime = defaultRuntime, origin = defaultOrigin },
-  callback
-) => {
+const createParticle = ({ x, y }, ctx) => {
+  const angle = Math.random() * Math.PI * 2
+  const speed = 10
+
+  return {
+    x,
+    y,
+    angle: Math.random() * Math.PI * 2,
+    radius: randomVariation(4, 6),
+    xVelocity: speed * Math.cos(angle),
+    yVelocity: speed * Math.sin(angle),
+    lifeTime,
+    update: function () {
+      this.lifeTime--
+      this.radius = Math.max(this.radius - 1, 0)
+      this.x += this.xVelocity
+      this.y += this.yVelocity
+      ctx.fillStyle = `rgba(${255 * (this.lifeTime / lifeTime)}, 0, 0, ${this.lifeTime / lifeTime})`
+
+      ctx.beginPath()
+      ctx.arc(this.x, this.y, this.radius, 0, deg360Radians)
+      ctx.fill()
+    }
+  }
+}
+
+export const createSparkEffect = ({ origin = defaultOrigin }, callback) => {
   const { ctxTop } = scene
 
   const particles = []
   const pool = []
 
-  let remainingTime = runtime
+  for (let i = 0; i < particleDensity; i++) {
+    particles.push(createParticle(origin, ctxTop))
+  }
+
+  particles.push(createBang(origin, ctxTop, 5))
+  particles.push(createBang(origin, ctxTop, 10))
 
   const update = () => {
-    if (remainingTime > 0) {
-      for (let i = 0; i < particleDensity; i++) {
-        let particle = pool.pop()
-
-        if (particle) {
-          particle.reset(origin.x, origin.y)
-          particles.unshift(particle)
-        } else {
-          particles.unshift(newParticle(origin.x, origin.y))
-        }
-
-        remainingTime--
-      }
-    } else if (particles.length === 0) {
-      callback()
-    }
-
     particles.forEach((particle, i) => {
-      particle.lifeTime--
-
       if (particle.lifeTime <= 0) {
         pool.push(particles.splice(i, 1)[0])
       } else {
-        const { colorOffset, radius, maxY, bounce } = particle
-
-        ctxTop.fillStyle = `rgba(${particle.lifeTime * 2 + colorOffset + 20}, 0, 0, ${
-          particle.lifeTime / lifeTime
-        })`
-
-        ctxTop.strokeStyle = `rgba(${particle.lifeTime * 2 + colorOffset - 20}, 0, 0, ${
-          particle.lifeTime / lifeTime
-        })`
-
-        if (particle.y > maxY) {
-          if (bounce) {
-            particle.yVelocity = -particle.yVelocity * bounceAbsorption
-          } else {
-            particle.yVelocity *= friction
-          }
-        }
-
-        particle.x += particle.xVelocity
-        particle.y += particle.yVelocity
-        particle.yVelocity += gravity
-
-        ctxTop.beginPath()
-        ctxTop.arc(
-          particle.x,
-          particle.y,
-          radius + (lifeTime - particle.lifeTime) / lifeTime,
-          0,
-          deg360Radians
-        )
-        ctxTop.fill()
-        ctxTop.stroke()
-
-        if (particle.lifeTime <= 0) {
-          pool.push(particles.splice(i, 1)[0])
-        }
+        particle.update()
       }
     })
+
+    if (particles.length === 0) {
+      callback()
+    }
   }
 
   return update

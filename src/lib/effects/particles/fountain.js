@@ -119,10 +119,6 @@ export const createFountainEffect = (
         )
         ctxTop.fill()
         ctxTop.stroke()
-
-        if (particle.lifeTime <= 0) {
-          pool.push(particles.splice(i, 1)[0])
-        }
       }
     })
   }
