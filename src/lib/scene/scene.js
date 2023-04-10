@@ -40,6 +40,12 @@ scene.start = async (canvases, map) => {
     editMode: new modes.editMode()
   }
 
+  scene.resumeTurnState = () => {
+    // Later this will be updated to return to the current turn state after an animation is played
+    // Currently there are no turn states so it will always return to playmode
+    modeStore().set(scene.modes.playMode)
+  }
+
   try {
     const mapData = await loadMapFromFetch(map)
 

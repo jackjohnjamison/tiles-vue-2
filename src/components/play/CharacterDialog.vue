@@ -1,6 +1,6 @@
 <script setup>
   import { scene } from '@/lib/scene'
-  // import { setMode } from '@/lib/controls'
+  import { modeStore } from '@/stores/mode'
 
   let selectedUnit
 
@@ -15,8 +15,10 @@
   setSelectedUnit(scene.player)
 
   const setUnitAction = (e) => {
-    const { type, index } = e.target.dataset
-    // setMode[type](selectedUnit.actions[index])
+    const { index } = e.target.dataset
+    const action = selectedUnit.actions[index]
+
+    modeStore().set(new action.controler(action))
   }
 </script>
 
@@ -30,7 +32,6 @@
         v-for="(action, i) in selectedUnit.actions"
         :key=i
         :data-index=i
-        :data-type=action.type
         class=button--dialog
         @click=setUnitAction($event)
         v-html="`${action.name} ${action.icon}`"

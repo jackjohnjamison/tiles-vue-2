@@ -1,4 +1,5 @@
 import { imageAssetPath } from '@/lib/constants'
+import { modes } from '@/lib/controls'
 
 export const weapons = {
   longSword: {
@@ -25,12 +26,14 @@ export const knight = {
   actions: [
     {
       type: 'attack',
+      controler: modes.baseAttack,
       name: 'Melee',
       weapon: weapons.longSword,
       icon: weapons.longSword.icon
     },
     {
       type: 'attack',
+      controler: modes.baseAttack,
       name: 'Ranged',
       weapon: weapons.shortBow,
       icon: weapons.shortBow.icon

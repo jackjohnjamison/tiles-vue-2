@@ -66,7 +66,12 @@ class entity {
   }
 
   die = () => {
-    setMode.setAmination(createFountainEffect, {}, setMode.playMode)
+    return {
+      deathAnimation: {
+        animation: createFountainEffect,
+        props: this.position
+      }
+    }
   }
 
   receiveAttack(attack) {
@@ -74,7 +79,7 @@ class entity {
 
     this.health -= damage
     if (this.health <= 0) {
-      return this.die
+      return this.die()
     } else {
       return false
     }

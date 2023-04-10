@@ -1,39 +1,27 @@
 import { scene, panCameraTo, panCameraKeys } from '@/lib/scene'
 import { hoveredTileStore } from '@/stores/hovered-tile'
-import { setMode } from '@/lib/controls'
 import { tileWidth, tileHeight, color } from '@/lib/constants'
 import { highlightTile } from '@/lib/map'
 import { modeStore } from '@/stores/mode'
-import { commonUnset } from './common-functions'
+import { blankControler } from './base-controlers'
+import { baseAnimation } from './base-animation'
 
-const unsetAttackMode = () => {
-  const { canvasTop } = scene
+export class baseAttack extends blankControler {
+  constructor(attack) {
+    const { resumeTurnState, mouse, ctxTop, ctxMid, canvasTop } = scene
+    const hoveredTile = hoveredTileStore()
 
-  canvasTop.style.cursor = 'pointer'
-  setMode.playMode()
-}
+    super()
 
-export const setPlayModeAttack = (attack) => {
-  const modes = modeStore()
-
-  mode.set({
-    modeName: 'playMode',
-
-    onFrameControls: (delta, mouseMoved) => {
-      const { mouse } = scene
-      const hoveredTile = hoveredTileStore()
-
+    this.onFrameControls = (delta, mouseMoved) => {
       panCameraKeys(delta)
 
       if (mouseMoved || scene.isRedrawEffectsRequested()) {
         hoveredTile.updateHoveredTile({ x: mouse.x, y: mouse.y })
       }
-    },
+    }
 
-    effectsFunctions: () => {
-      const { ctxTop, ctxMid } = scene
-      const hoveredTile = hoveredTileStore()
-
+    this.effectsFunctions = () => {
       if (hoveredTile.hoveredEntity) {
         const { hoveredEntity } = hoveredTile
 
@@ -56,11 +44,9 @@ export const setPlayModeAttack = (attack) => {
       } else if (hoveredTile.tileIndex) {
         highlightTile(hoveredTile.tileIndex, color.warn, color.warnTrans, ctxTop)
       }
-    },
+    }
 
-    onMouseMove: () => {
-      const { mouse, canvasTop } = scene
-
+    this.onMouseMove = () => {
       if (mouse.buttonCode === 1) {
         panCameraTo(-mouse.drag.x, -mouse.drag.y)
       }
@@ -71,28 +57,29 @@ export const setPlayModeAttack = (attack) => {
       } else {
         canvasTop.style.cursor = 'crosshair'
       }
-    },
+    }
 
-    leftClickAction: () => {
-      const hoveredTile = hoveredTileStore()
-
+    this.leftClickAction = () => {
       if (hoveredTile.hoveredEntity) {
         const response = hoveredTile.hoveredEntity.receiveAttack(attack)
+
         if (response) {
-          response()
+          if (response.deathAnimation) {
+            const { animation, props } = response.deathAnimation
+
+            modeStore().set(new baseAnimation(animation, props))
+          }
         } else {
-          unsetAttackMode()
+          resumeTurnState()
         }
       } else {
-        unsetAttackMode()
+        resumeTurnState()
       }
-    },
+    }
 
-    rightClickAction: () => {
+    this.rightClickAction = () => {
       console.log('Cancel')
-      unsetAttackMode()
-    },
-
-    onUnset: commonUnset
-  })
+      resumeTurnState()
+    }
+  }
 }

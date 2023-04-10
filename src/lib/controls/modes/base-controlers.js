@@ -4,7 +4,7 @@ import { hoveredTileStore } from '@/stores/hovered-tile'
 import { noop } from '@/lib/constants'
 
 class blankControler {
-  modeType = ''
+  modeType = 'playMode'
   onFrameControls = noop
   effectsFunctions = noop
   onMouseMove = noop
@@ -16,8 +16,6 @@ class blankControler {
 }
 
 class playMode extends blankControler {
-  modeType = 'playMode'
-
   onFrameControls = (delta, mouseMoved) => {
     const { mouse } = scene
     const hoveredTile = hoveredTileStore()
