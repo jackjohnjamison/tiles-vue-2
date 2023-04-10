@@ -70,60 +70,54 @@ const entityClickAction = (tileIndex, action) => {
 }
 
 export class editMode extends playMode {
-  static modeName = 'editMode'
-
-  static onFrameControls = (delta, mouseMoved) => {
-    const { mouse } = scene
-    const panel = panelStore()
-    const hoveredTile = hoveredTileStore()
-
-    playMode.onFrameControls(delta, mouseMoved)
-
-    if (hoveredTile.tileIndex && panel.activePanel === 'tiles') {
-      if (mouse.buttonCode === 3) paintTile(hoveredTile.tileIndex)
-    }
-  }
-
-  static effectsFunctions = () => {
-    const { ctxMid, ctxTop } = scene
+  constructor() {
+    const { mouse, ctxMid, ctxTop } = scene
     const entityAction = entityActionStore()
     const panel = panelStore()
+    const hoveredTile = hoveredTileStore()
+    const { onFrameControls, effectsFunctions } = super()
 
-    playMode.effectsFunctions()
+    this.modeType = 'editMode'
 
-    // Adds Entry point markers but only if on a relivent entity selection
-    if (panel.activePanel === 'entities') {
-      if (entityAction.action === 'entryPoint' || entityAction.action === 'travelPoint') {
-        const { entryPoints } = scene.tileMap
+    this.onFrameControls = (delta, mouseMoved) => {
+      onFrameControls(delta, mouseMoved)
 
-        Object.keys(entryPoints).forEach((entryPointKey) => {
-          const entryPoint = entryPoints[entryPointKey]
-          const position = tileIndexToPosition({ x: entryPoint.x, y: entryPoint.y })
-          drawEllipse(position, color.info, 20, ctxMid)
-          drawPin(color.info, color.info, ctxTop, position)
-        })
+      if (hoveredTile.tileIndex && panel.activePanel === 'tiles') {
+        if (mouse.buttonCode === 3) paintTile(hoveredTile.tileIndex)
       }
     }
-  }
 
-  static rightClickAction = () => {
-    const { mouse } = scene
-    const hoveredTile = hoveredTileStore()
-    const entityAction = entityActionStore()
-    const panel = panelStore()
+    this.effectsFunctions = () => {
+      effectsFunctions()
 
-    const validClick = hoveredTile.tileIndex && !mouse.isDragged
-    const isEditingEntities = panel.activePanel === 'entities'
+      // Adds Entry point markers but only if on a relivent entity selection
+      if (panel.activePanel === 'entities') {
+        if (entityAction.action === 'entryPoint' || entityAction.action === 'travelPoint') {
+          const { entryPoints } = scene.tileMap
 
-    if (validClick && isEditingEntities) {
-      entityClickAction(hoveredTile.tileIndex, entityAction.action)
+          Object.keys(entryPoints).forEach((entryPointKey) => {
+            const entryPoint = entryPoints[entryPointKey]
+            const position = tileIndexToPosition({ x: entryPoint.x, y: entryPoint.y })
+            drawEllipse(position, color.info, 20, ctxMid)
+            drawPin(color.info, color.info, ctxTop, position)
+          })
+        }
+      }
     }
 
-    unsetTileLock()
-  }
+    this.rightClickAction = () => {
+      const validClick = hoveredTile.tileIndex && !mouse.isDragged
+      const isEditingEntities = panel.activePanel === 'entities'
 
-  static set = () => {
-    const entityAction = entityActionStore()
-    entityAction.updateEntryPoints()
+      if (validClick && isEditingEntities) {
+        entityClickAction(hoveredTile.tileIndex, entityAction.action)
+      }
+
+      unsetTileLock()
+    }
+
+    this.set = () => {
+      entityAction.updateEntryPoints()
+    }
   }
 }

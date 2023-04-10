@@ -9,7 +9,7 @@
 </script>
 
 <template>
-  <aside v-if="modes.mode.modeName === 'editMode' && hoveredTile.tileIsHovered" class="tile-info">
+  <aside v-if="modes.modeType === 'editMode' && hoveredTile.tileIsHovered" class="tile-info">
     Current tile ( x: {{ hoveredTile.tileIndex.x }} y: {{ hoveredTile.tileIndex.y }})
     <div v-if="keyCheck('ControlLeft')">
       {{JSON.stringify(

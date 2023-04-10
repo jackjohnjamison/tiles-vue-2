@@ -8,7 +8,7 @@ export const entityActionStore = defineStore('entityAction', {
 
       // For entry points
       entryPointName: 'default',
-      entryPoints: scene.tileMap.entryPoints,
+      entryPoints: scene.tileMap?.entryPoints,
 
       // For travel points
       mapName: null,

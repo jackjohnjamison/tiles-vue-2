@@ -35,8 +35,10 @@ scene.start = async (canvases, map) => {
     redrawEffects = false
   }
 
-  // Edit mode needs to be instantiated after the scene has been created
-  // modes.editMode = new editMode() // Still doesn't work
+  scene.modes = {
+    playMode: new modes.playMode(),
+    editMode: new modes.editMode()
+  }
 
   try {
     const mapData = await loadMapFromFetch(map)
@@ -106,7 +108,7 @@ scene.loadMap = (tileMap, entryPointName = null) => {
     })
   }
 
-  modeStore().set(modes.playMode)
+  modeStore().set(scene.modes.playMode)
   scene.view.setApertureSize()
   firstRender()
 

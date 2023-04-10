@@ -1,8 +1,9 @@
 <script setup>
-  import { modes } from '@/lib/controls'
+  import { scene } from '@/lib/scene'
   import { modeStore } from '@/stores/mode'
 
   const switchMode = (e) => {
+    const { modes } = scene
     const modeName = e.target.value
 
     modeStore().set(modes[modeName])
