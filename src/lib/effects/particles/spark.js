@@ -44,7 +44,7 @@ const createParticle = ({ x, y }, ctx) => {
       this.radius = Math.max(this.radius - 1, 0)
       this.x += this.xVelocity
       this.y += this.yVelocity
-      ctx.fillStyle = `rgba(${255 * (this.lifeTime / lifeTime)}, 0, 0, ${this.lifeTime / lifeTime})`
+      ctx.fillStyle = `rgba(0, 0, ${255 * (this.lifeTime / lifeTime)}, ${this.lifeTime / lifeTime})`
 
       ctx.beginPath()
       ctx.arc(this.x, this.y, this.radius, 0, deg360Radians)
