@@ -52,6 +52,11 @@ class unit extends entity {
     this.requestMove = pathFinder.requestMove
     this.unsetPath = pathFinder.unsetPath
 
+    this.die = () => {
+      // Returns false because the player can not die
+      return false
+    }
+
     this.deleteEntity = () => {
       // Returns false because the player can not be deleted
       return false

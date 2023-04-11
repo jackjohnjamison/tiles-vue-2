@@ -14,7 +14,7 @@ class entity {
       x: 0,
       y: 0
     }
-    this.health = 1
+    this.health = 10
   }
 
   addToScene = (tileIndex) => {
