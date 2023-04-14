@@ -44,7 +44,7 @@ class entity {
     }
   }
 
-  render = () => {
+  defaultRender = () => {
     const { ctxEntity } = scene
     const { sprite, position, haloColor } = this
 
@@ -52,6 +52,8 @@ class entity {
 
     ctxEntity.drawImage(sprite.data, position.x, position.y - sprite.yOffset)
   }
+
+  render = this.defaultRender
 
   redraw = () => {
     const { tileIndex, position, positionPrevious } = this
@@ -85,7 +87,8 @@ class entity {
     }
   }
 
-  die = () => {
+  // On death events including new render for death animation and deleting entity
+  setStateDie = () => {
     const { ctxEntity } = scene
     const { sprite, position, getCenter } = this
     const dealthAnimationFrames = 100
@@ -135,7 +138,7 @@ class entity {
 
     this.health -= damage
     if (this.health <= 0) {
-      return this.die()
+      return this.setStateDie()
     } else {
       return false
     }

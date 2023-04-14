@@ -35,6 +35,7 @@ npm run lint
 ```
 
 ## TODO
+- Restructure animations. They are too spread out right now.
 - Switch to enums for game modes, maybe
 - Use the improved image import script from tanks - looks harder than I thought!
 - Move Math.round into common draw function, or even just remove delta?

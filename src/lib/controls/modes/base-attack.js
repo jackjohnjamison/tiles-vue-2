@@ -15,7 +15,12 @@ const handleAttack = (targetEntity, attack) => {
     if (response.deathAnimation) {
       const { animation, props } = response.deathAnimation
 
-      modeStore().set(new baseAnimation(animation, props))
+      modeStore().set(
+        new baseAnimation({
+          animation: animation,
+          animationProps: props
+        })
+      )
     }
   } else {
     resumeTurnState()
@@ -81,15 +86,15 @@ export class baseAttack extends blankControler {
 
       if (targetEntity) {
         modeStore().set(
-          new baseAnimation(
-            attack.animation,
-            {
+          new baseAnimation({
+            animation: attack.animation,
+            animationProps: {
               origin: targetEntity.getCenter()
             },
-            () => {
+            callback: () => {
               handleAttack(targetEntity, attack)
             }
-          )
+          })
         )
       } else {
         resumeTurnState()

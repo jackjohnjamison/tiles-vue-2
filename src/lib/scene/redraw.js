@@ -9,7 +9,6 @@ const redrawWindowYoffset = tileHeight * 1.5
 
 const createRedrawWindow = (ctx, redrawWindowOrigin) => {
   const { x, y } = redrawWindowOrigin
-  ctx.save()
   ctx.beginPath()
   ctx.rect(x, y, redrawWidth, redrawHeight)
   ctx.clip()
@@ -24,6 +23,9 @@ const redrawTile = (tileIndex) => {
   })
 
   redrawWindowOrigin.y -= redrawWindowYoffset
+
+  ctxEntity.save()
+  ctxFloor.save()
 
   createRedrawWindow(ctxFloor, redrawWindowOrigin)
   createRedrawWindow(ctxEntity, redrawWindowOrigin)

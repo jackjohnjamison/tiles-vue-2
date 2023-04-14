@@ -3,7 +3,7 @@ import { blankControler } from './base-controlers'
 
 // Setting animation
 export class baseAnimation extends blankControler {
-  constructor(animation, animationProperties, callback = scene.resumeTurnState) {
+  constructor({ animation, animationProps, callback = scene.resumeTurnState }) {
     const { canvasTop } = scene
     super()
 
@@ -11,15 +11,15 @@ export class baseAnimation extends blankControler {
       canvasTop.style.cursor = 'none'
     }
 
-    this.effectsFunctions = animation(animationProperties, callback)
+    this.effectsFunctions = animation(animationProps, callback)
 
     this.onFrameControls = (delta) => {
       panCameraKeys(delta)
       scene.requestRedrawEffects()
     }
 
-    if (animationProperties.entity) {
-      this.updateEntities = animationProperties.entity.update
+    if (animationProps.entity) {
+      this.updateEntities = animationProps.entity.update
     }
   }
 }
